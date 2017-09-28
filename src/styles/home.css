@@ -1,0 +1,109 @@
+#home-container {
+
+	height: 100%;
+	width: 100%;
+
+}
+
+#home-nav-bar {
+
+	height: 60px;
+	width: 100%;
+
+	position: fixed;
+
+	top: 0;
+	left: 0;
+
+}
+
+#home-banner {
+
+	height: 550px;
+	width: 100%;
+
+	position: relative;
+
+	font-family: 'Raleway', 'open sans', 'Roboto', 'sans serif';
+
+	border-bottom: 1px solid lightgray;
+
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+
+#home-banner-darken {
+
+	height: 100%;
+	width: 100%;
+
+	position: absolute;
+
+	top: 0;
+	left: 0;
+
+	background-color: #585B65;
+	background: linear-gradient(135deg, #585b64 0%, #2c2f38 100%);
+
+	opacity: .95;
+
+}
+
+#home-banner-content-container {
+
+	height: 100%;
+	width: 100%;
+
+	position: absolute;
+
+	top: 0;
+	left: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#home-banner-content > div {
+
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	color: white;
+
+}
+
+#home-banner-title {
+
+	font-size: 50px;
+	font-weight: bolder;
+
+	color: white;
+
+	text-transform: uppercase;
+
+	margin-bottom: 10px;
+
+}
+
+#home-banner-description {
+
+	font-family: 'open sans', 'Roboto', 'sans serif', 'Raleway';
+	font-size: 20px;
+
+	margin-bottom: 50px;
+
+}
+
+#home-banner-buttons > div:first-child {
+
+	margin-right: 20px;
+
+}

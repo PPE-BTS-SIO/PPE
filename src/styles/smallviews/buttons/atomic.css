@@ -1,0 +1,41 @@
+.atomic-button-container, .atomic-button-label {
+
+	transition: .3s;
+
+}
+
+.atomic-button-container {
+
+	padding: 10px 25px;
+
+	border: 1px solid lightgray;
+	border-radius: 100px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+}
+
+.atomic-button-container:hover {
+
+	cursor: pointer;
+
+	background-color: white;
+
+}
+
+.atomic-button-container:hover > .atomic-button-label {
+
+	color: rgba(0, 0, 0, .8) !important;
+
+}
+
+.atomic-button-label {
+
+	font-family: 'Roboto', 'open sans', 'sans serif', 'Raleway';
+
+	color: white;
+
+}
