@@ -2514,7 +2514,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.4:
+fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.6:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -5272,6 +5272,12 @@ react-scripts@1.0.14:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "1.1.2"
+
+react-tap-event-plugin@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-3.0.0.tgz#1dfe5090ba5579eafa36b06a92302bc9e65a86a0"
+  dependencies:
+    fbjs "^0.8.6"
 
 react-transition-group@^1.1.2:
   version "1.2.0"

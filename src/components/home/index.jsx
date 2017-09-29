@@ -1,53 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Button from '../smallviews/button';
+import NavigationBar from './nav_bar';
+import Banner from './banner';
+import ActionsBar from './actions_bar';
+import View from './view';
 
-import Bg1 from '../../medias/images/backgrounds/1.jpeg';
+import '../../styles/home/home.css';
 
-import '../../styles/home.css';
+class Home extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			contentView: 0
+		}
+	}
 
-const Home = () => (
-	<div id="home-container">
-		<NavigationBar />
-		<Banner />
-	</div>
-);
+	changeContentView = contentView => this.setState({ contentView });
 
-const NavigationBar = () => (
-	<div id="home-nav-bar">
-
-	</div>
-);
-
-const Banner = () => (
-	<div
-		id="home-banner"
-		style={{
-			backgroundImage: `url(${Bg1})`
-		}}
-	>
-		<div id="home-banner-darken" />
-		<div id="home-banner-content-container">
-			<div id="home-banner-content">
-				<div id="home-banner-title">
-					{'La référence de la gestion'}
-				</div>
-				<div id="home-banner-description">
-					{'Découvrez nos offres et nos services'}
-				</div>
-				<div id="home-banner-buttons">
-					<Button
-						type="atomic"
-						label="Je suis client"
-					/>
-					<Button
-						type="atomic"
-						label="Je suis développeur"
-					/>
-			</div>
-			</div>
+	render() {
+		const contentView = this.state.contentView;
+		return (
+			<div id="home-container">
+				<NavigationBar />
+				<Banner />
+				<ActionsBar
+					contentView={contentView}
+					changeContentView={this.changeContentView}
+				/>
 		</div>
-	</div>
-);
+		);
+	}
+}
 
 export default Home;
