@@ -27,6 +27,10 @@ class Home extends Component {
 					contentView={contentView}
 					changeContentView={this.changeContentView}
 				/>
+			<View
+				contentView={contentView}
+				changeContentView={this.changeContentView}
+			/>
 		</div>
 		);
 	}
