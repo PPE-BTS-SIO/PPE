@@ -38,6 +38,12 @@ element.
 You can still pass props to it, either :
 - const MyStatelessComponent = ({ props1, props2, props3 }) => {...};
 - const MyStatelessComponent = (props) => { const props1 = props.props1 };
+
+The { map } function loop though all objects in the 'sections' array.
+Each iterations return a 'Section' object.
+For this to work we surrounded this method with a simple <div>.
+Each <Section /> has a 'backgroundColor' props, the value is '#EFEFEF' if
+{ index % 2 === 0 }, if not the value is 'white'.
 */
 const FAQ = () => (
 	<div id="home-faq-container">
@@ -53,8 +59,11 @@ const FAQ = () => (
 	</div>
 );
 
+/*
+'Section' is a stateless component which act as a FAQ's child.
+It will display each section based on the given props.
+*/
 const Section = ({ question, anwer, picture, picturePosition, backgroundColor }) => {
-		let sectionContent = null;
 		switch (picturePosition) {
 			case 'left': return (
 				<div
