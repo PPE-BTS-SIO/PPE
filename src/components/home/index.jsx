@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import NavigationBar from './nav_bar';
+import NavigationBar from '../smallviews/nav_bar';
 import Banner from './banner';
 import ActionsBar from './actions_bar';
 import View from './view';
@@ -38,7 +38,7 @@ class Home extends Component {
 		const contentView = this.state.contentView;
 		return (
 			<div id="home-container">
-				<NavigationBar />
+				<NavigationBar isLTS/>
 				<Banner />
 				<ActionsBar
 					contentView={contentView}

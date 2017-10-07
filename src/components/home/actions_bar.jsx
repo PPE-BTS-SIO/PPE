@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
+import openSocket from 'socket.io-client';
+
 import Button from '../smallviews/button';
 
 const ActionsBar = ({ contentView, changeContentView }) => {
@@ -31,11 +35,13 @@ const ActionsBar = ({ contentView, changeContentView }) => {
 				/>
 			</div>
 		</div>
-		<Button
-			type="raised"
-			label="Dicuter avec un technicien"
-			primary
-		/>
+		<Link to="/livechat">
+			<Button
+				type="raised"
+				label="Dicuter avec un technicien"
+				primary
+			/>
+		</Link>
 	</div>
 );
 }

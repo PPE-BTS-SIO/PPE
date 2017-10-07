@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
+import Routes from './routes';
+
 /*
 The MuiThemeProvider is a material-ui component.
 We must use it in order to render material-ui's other components.
 */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-/*
-'Home' is the component which will display the home page.
-We don't need to import 'home/index', it will do it automatically if use the root folder.
-*/
-import Home from './components/home/';
 
 /*
 Importing default styles, used to change appearance of the top-level objects.
@@ -34,7 +30,7 @@ class App extends Component {
     return (
 			<MuiThemeProvider>
 	      <div id="container">
-					<Home />
+					<Routes />
 	      </div>
 			</MuiThemeProvider>
     );

@@ -1,0 +1,32 @@
+.nav-bar-below {
+
+	height: 70px !important;
+
+	background-color: white;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+.nav-bar-below,
+.nav-bar-below .nav-bar-tab,
+.nav-bar-below #nav-bar-logo > span {
+
+	color: rgba(0, 0, 0, .6);
+
+}
+
+.nav-bar-below .nav-bar-tab-active {
+
+	border: 2px solid rgba(0, 0, 0, .4);
+
+}
+
+.nav-bar-below .nav-bar-tab-active:hover {
+
+	background-color: rgba(0, 0, 0, .8);
+	border: 2px solid rgba(0, 0, 0, .5);
+
+	color: white;
+
+}
