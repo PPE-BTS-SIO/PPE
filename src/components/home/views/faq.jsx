@@ -49,6 +49,7 @@ const FAQ = () => (
 	<div id="home-faq-container">
 		{sections.map((section, index) => (
 			<Section
+				key={`${section.question}_${index}`}
 				question={section.question}
 				answer={section.answer}
 				picture={section.picture}

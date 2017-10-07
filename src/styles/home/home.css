@@ -1,3 +1,8 @@
+/*
+This is where the behind-the-scene magic happens.
+Those are our styles for the Home page.
+*/
+
 #home-container {
 
 	height: 100%;
@@ -7,7 +12,7 @@
 
 }
 
-#home-nav-bar {
+.home-nav-bar {
 
 	height: 100px;
 	width: calc(100% - 120px);
@@ -25,6 +30,8 @@
 
 	z-index: 1;
 
+	transition: .3s;
+
 }
 
 #home-nav-bar-logo > span {
@@ -33,8 +40,19 @@
 	font-weight: bolder;
 	font-size: 30px;
 
-	color: white;
 	text-transform: uppercase;
+
+}
+
+.home-nav-bar-above > #home-nav-bar-logo > span {
+
+	color: white;
+
+}
+
+.home-nav-bar-below > #home-nav-bar-logo > span {
+
+	color: rgba(0, 0, 0, .6);
 
 }
 
