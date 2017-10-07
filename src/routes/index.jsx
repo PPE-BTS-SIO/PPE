@@ -15,7 +15,7 @@ import {
 
 const Routes = () => (
 	<Router>
-		<div>
+		<div id="routes-container">
 			<Route
 				exact
 				path="/"

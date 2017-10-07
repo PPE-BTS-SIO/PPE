@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DefaultNavigationBar = () => (
 	<div className={`nav-bar`}>
@@ -8,9 +9,11 @@ const DefaultNavigationBar = () => (
 			</span>
 		</div>
 		<div id="nav-bar-navigation">
-			<span className="nav-bar-tab nav-bar-tab-active">
-				{'Accueil'}
-			</span>
+			<Link to="/">
+				<span className="nav-bar-tab nav-bar-tab-active">
+					{'Accueil'}
+				</span>
+			</Link>
 			<span className="nav-bar-tab">
 				{'Se connecter'}
 			</span>

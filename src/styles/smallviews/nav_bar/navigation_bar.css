@@ -1,12 +1,12 @@
 .nav-bar {
 
-	height: 100px;
 	width: calc(100% - 120px);
 
-	position: fixed;
+	height: 70px;
 
-	top: 0;
-	left: 0;
+	background-color: white;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
 	padding: 0 60px;
 
@@ -17,6 +17,8 @@
 	z-index: 999;
 
 	transition: .3s;
+
+	position: relative;
 
 }
 
@@ -34,7 +36,7 @@
 
 	text-transform: uppercase;
 
-	color: white;
+	color: rgba(0, 0, 0, .6);
 
 }
 
@@ -53,7 +55,7 @@
 	padding-bottom: 5px;
 
 	font-family: 'Roboto', 'open sans', 'sans serif', 'Raleway';
-	color: white;
+	color: rgba(0, 0, 0, .6);
 	font-size: 16px;
 
 	padding: 0 5px;
@@ -74,15 +76,15 @@
 
 	padding: 8px !important;
 
-	border: 2px solid lightgray;
+	border: 2px solid rgba(0, 0, 0, .4);
 
 }
 
 .nav-bar-tab-active:hover {
 
-	background-color: white;
-	border: 2px solid white;
+	background-color: rgba(0, 0, 0, .8);
+	border: 2px solid rgba(0, 0, 0, .5);
 
-	color: black;
+	color: white;
 
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway:400,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Raleway:400,900');
 
 html, body, #root, #container {
 
@@ -7,5 +7,45 @@ html, body, #root, #container {
 
 	padding: 0;
 	margin: 0;
+
+	background-color: #E2E2E2;
+
+	font-family: 'Roboto', 'open sans', 'sans serif';
+	color: rgba(0, 0, 0, .8);
+
+}
+
+a {
+
+	text-decoration: none;
+
+}
+
+*:focus {
+
+	outline: none;
+
+}
+
+.card-1 {
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.card-1:hover {
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+	cursor: pointer;
+
+}
+
+#routes-container,
+#live-chat-container {
+
+	height: 100%;
+	width: 100%;
 
 }

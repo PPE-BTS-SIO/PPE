@@ -1,0 +1,45 @@
+#live-chat-inputs-container {
+
+	height: 60px;
+	width: calc(100% - 301px);
+
+	background-color: white;
+
+	border-top: 1px solid lightgray;
+
+	float: left;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 0 50px;
+
+	-moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+
+}
+
+#live-chat-inputs-message-box {
+
+	height: 35px;
+	width: 600px;
+
+	border: 1px solid lightgray;
+	border-radius: 5px;
+
+	box-shadow: none !important;
+
+	float: left;
+
+	padding: 0 15px;
+
+	-moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	font-family: 'Roboto', 'open sans', 'sans serif';
+	color: rgba(0, 0, 0, .6);
+
+}

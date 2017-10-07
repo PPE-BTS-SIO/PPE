@@ -1,0 +1,15 @@
+#live-chat-content-container {
+
+	height: calc(100% - (70px + 61px));
+	width: calc(100% - 301px);
+
+	float: left;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	color: rgba(0, 0, 0, .5);
+
+}
