@@ -9,7 +9,7 @@ class WaitingForServer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			elapsedTime: 0,
+			elapsedTime: 1,
 			open: false
 		}
 	}
