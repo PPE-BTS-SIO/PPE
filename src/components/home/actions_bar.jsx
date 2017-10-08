@@ -38,7 +38,7 @@ const ActionsBar = ({ contentView, changeContentView }) => {
 		<Link to="/livechat">
 			<Button
 				type="raised"
-				label="Dicuter avec un technicien"
+				label="Discuter avec un technicien"
 				primary
 			/>
 		</Link>

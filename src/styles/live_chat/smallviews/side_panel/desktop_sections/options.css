@@ -1,0 +1,36 @@
+#live-chat-desktop-side-panel-options-container {
+
+	height: 150px;
+	width: 100%;
+
+	border-bottom: 1px solid lightgray;
+
+	padding: 0 30px;
+
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	transition: .3s;
+
+}
+
+#live-chat-desktop-side-panel-options-buttons {
+
+	height: 100px;
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+
+}
+
+#live-chat-desktop-side-panel-options-buttons > div {
+
+	width: 100%;
+
+	margin-bottom: 10px;
+
+}

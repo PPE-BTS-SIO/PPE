@@ -25,7 +25,7 @@ class TechnicalAdviser extends Component {
 				id="live-chat-desktop-side-panel-technical-adviser-container"
 				onTouchTap={() => this.setState({ isExtended: !this.state.isExtended })}
 				style={{
-					height: isExtended ? '500px' : '150px'
+					height: isExtended ? '600px' : '120px'
 				}}
 			>
 				<div className="live-chat-desktop-side-panel-section-name">
@@ -35,8 +35,6 @@ class TechnicalAdviser extends Component {
 					<div
 						id="live-chat-desktop-side-panel-technical-adviser-picture"
 						className="card-1"
-						circle
-						zDepth={2}
 						style={{
 							backgroundImage: `url('${technicalAdviser.picture}')`
 						}}
