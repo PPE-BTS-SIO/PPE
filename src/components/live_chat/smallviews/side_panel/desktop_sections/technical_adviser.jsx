@@ -33,12 +33,16 @@ class TechnicalAdviser extends Component {
 				</div>
 				<div id="live-chat-desktop-side-panel-technical-adviser">
 					<div
-						id="live-chat-desktop-side-panel-technical-adviser-picture"
+						id="live-chat-desktop-side-panel-technical-adviser-picture-container"
 						className="card-1"
-						style={{
-							backgroundImage: `url('${technicalAdviser.picture}')`
-						}}
-					/>
+					>
+						<div
+							id="live-chat-desktop-side-panel-technical-adviser-picture"
+							style={{
+								backgroundImage: `url('${technicalAdviser.picture}')`
+							}}
+						/>
+					</div>
 					<span id="live-chat-desktop-side-panel-technical-adviser-name">
 						{technicalAdviser.name}
 					</span>

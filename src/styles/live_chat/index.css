@@ -3,3 +3,31 @@
 	overflow: hidden;
 
 }
+
+#live-chat-waiting-for-connection {
+
+	height: 100%;
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#live-chat-waiting-for-connection-content > div {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	color: rgba(0, 0, 0, .4);
+
+}
+
+#live-chat-waiting-for-connection-content > div:first-child {
+
+	margin-bottom: 30px;
+
+}

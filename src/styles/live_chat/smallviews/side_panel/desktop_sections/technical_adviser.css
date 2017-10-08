@@ -30,10 +30,27 @@
 
 }
 
-#live-chat-desktop-side-panel-technical-adviser-picture {
+#live-chat-desktop-side-panel-technical-adviser-picture-container {
 
 	height: 60px !important;
 	width: 60px !important;
+
+	border-radius: 100px;
+
+	padding: 2px;
+
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	border: 1px solid #E2E2E2;
+
+}
+
+#live-chat-desktop-side-panel-technical-adviser-picture {
+
+	height: 100%;
+	width: 100%;
 
 	background-position: center;
 	background-size: cover;
