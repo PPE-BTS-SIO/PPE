@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import openSocket from 'socket.io-client';
 
@@ -14,25 +15,11 @@ import '../../styles/live_chat/index.css';
 let socket = null;
 
 class LiveChat extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			connectionStatus: 'waiting'
-		}
-	}
-
-	componentWillMount() {
-		socket = openSocket('localhost:8000');
-		socket.on('connect', () => this.setState({ connectionStatus: 'connected' }));
-		socket.on('connect_error', () => this.setState({ connectionStatus: 'error' }));
-		socket.on('disconnect', () => this.setState({ connectionStatus: 'disconnected' }));
-	}
-
 	render() {
-		const connectionStatus = this.state.connectionStatus;
-		if (connectionStatus === 'connected') {
+		const nodeStatus = this.props.nodeStatus;
+		if (nodeStatus === 'connected') {
 			return <Connected />
-		} else if (connectionStatus === 'waiting') {
+		} else if (nodeStatus === 'waiting') {
 			return <WaitingForServer />
 		}
 		return (
@@ -52,4 +39,9 @@ const Connected = () => (
 	</div>
 );
 
-export default LiveChat;
+const mapStateToProps = (state) => ({
+	socket: state.nodeServer.socket,
+	nodeStatus: state.nodeServer.status
+})
+
+export default connect(mapStateToProps)(LiveChat);

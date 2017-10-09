@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { connectToServer } from './actions/node_server_actions';
 
 import Routes from './routes';
 
@@ -19,6 +23,19 @@ This is our first & most important component.
 It is the one which tells what components to display.
 */
 class App extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	componentWillMount() {
+		if (this.props.nodeStatus === 'not-connected') {
+			this.props.connectToServer();
+		}
+	}
+
+	componentWillReceiveProps(props) {
+		console.log(props);
+	}
 
 	/*
 	The render method is the main method of a React component.
@@ -37,4 +54,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+	nodeStatus: state.nodeServer.status
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+	connectToServer
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
