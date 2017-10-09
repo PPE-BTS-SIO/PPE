@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Snackbar from 'material-ui/Snackbar';
+
 import { connectToServer } from './actions/node_server_actions';
 
 import Routes from './routes';
@@ -25,6 +27,10 @@ It is the one which tells what components to display.
 class App extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			openNotConnected: false,
+			openConnected: false
+		}
 	}
 
 	componentWillMount() {
@@ -34,7 +40,17 @@ class App extends Component {
 	}
 
 	componentWillReceiveProps(props) {
-		console.log(props);
+		if (props.nodeStatus !== 'connected' && !this.state.openNotConnected) {
+			this.setState({
+				openNotConnected: true,
+				openConnected: false
+			});
+		} else if (props.nodeStatus === 'connected' && this.state.openNotConnected) {
+			this.setState({
+				openNotConnected: false,
+				openConnected: true
+			});
+		}
 	}
 
 	/*
@@ -48,15 +64,32 @@ class App extends Component {
 			<MuiThemeProvider>
 	      <div id="container">
 					<Routes />
+						<Snackbar
+		          open={this.state.openNotConnected}
+		          message="Vous n'êtes pas connecté au serveur"
+		          action="Rafraichir"
+		          autoHideDuration={500000000}
+		          onActionTouchTap={() => window.location.reload()}
+		          onRequestClose={() => this.setState({ openSnackbar: false })}
+		        />
+						<Snackbar
+		          open={this.state.openConnected}
+		          message="Vous êtes désormais connecté"
+		          autoHideDuration={4000}
+		          onRequestClose={() => this.setState({ openConnected: false })}
+		        />
 	      </div>
 			</MuiThemeProvider>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-	nodeStatus: state.nodeServer.status
-});
+const mapStateToProps = (state) => {
+	return {
+		nodeStatus: state.nodeServer.status,
+		role: state.user.role
+	}
+};
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
 	connectToServer

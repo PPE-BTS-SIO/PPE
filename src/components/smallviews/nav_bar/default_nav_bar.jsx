@@ -1,7 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-const DefaultNavigationBar = () => (
+import { createUser } from '../../../actions/user_actions';
+
+const DefaultNavigationBar = ({ socket, createUser }) => (
 	<div className={`nav-bar`}>
 		<div id="nav-bar-logo">
 			<span>
@@ -14,11 +18,22 @@ const DefaultNavigationBar = () => (
 					{'Accueil'}
 				</span>
 			</Link>
-			<span className="nav-bar-tab">
+			<span
+				className="nav-bar-tab"
+				onTouchTap={() => {
+					createUser(socket, 'yo', 'test');
+				}}
+			>
 				{'Se connecter'}
 			</span>
 		</div>
 	</div>
 );
 
-export default DefaultNavigationBar;
+const mapStateToProps = (state) => ({
+	socket: state.nodeServer.socket
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({ createUser }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultNavigationBar);

@@ -32,10 +32,7 @@ class TechnicalAdviser extends Component {
 					{'Votre conseiller'}
 				</div>
 				<div id="live-chat-desktop-side-panel-technical-adviser">
-					<div
-						id="live-chat-desktop-side-panel-technical-adviser-picture-container"
-						className="card-1"
-					>
+					<div id="live-chat-desktop-side-panel-technical-adviser-picture-container">
 						<div
 							id="live-chat-desktop-side-panel-technical-adviser-picture"
 							style={{

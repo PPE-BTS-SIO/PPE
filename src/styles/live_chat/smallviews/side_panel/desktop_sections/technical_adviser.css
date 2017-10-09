@@ -37,13 +37,11 @@
 
 	border-radius: 100px;
 
-	padding: 1px;
+	padding: 2px;
 
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-
-	border: 1px solid #E2E2E2;
 
 }
 
