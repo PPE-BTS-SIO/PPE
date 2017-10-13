@@ -35,7 +35,7 @@ class Home extends Component {
 	changeContentView = contentView => this.setState({ contentView });
 
 	render() {
-		const { contentView } = this.state.contentView;
+		const { contentView } = this.state;
 		return (
 			<div id="home-container">
 				<NavigationBar isLTS />
