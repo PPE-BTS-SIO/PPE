@@ -34,7 +34,7 @@ class WaitingForServer extends Component {
 	};
 
 	render() {
-		const elapsedTime = this.state.elapsedTime;
+		const { elapsedTime } = this.state.elapsedTime;
 
 		return (
 			<div id="live-chat-container">
@@ -50,13 +50,13 @@ class WaitingForServer extends Component {
 					</div>
 				</div>
 				<Snackbar
-          open={this.state.open}
-          message="Le serveur semble ne pas répondre"
-          action="Rafraichir"
-          autoHideDuration={50000}
-          onActionTouchTap={() => window.location.reload()}
-          onRequestClose={() => this.setState({ open: false })}
-        />
+					open={this.state.open}
+					message="Le serveur semble ne pas répondre"
+					action="Rafraichir"
+					autoHideDuration={50000}
+					onActionTouchTap={() => window.location.reload()}
+					onRequestClose={() => this.setState({ open: false })}
+				/>
 			</div>
 		);
 	}

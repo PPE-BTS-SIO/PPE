@@ -29,7 +29,7 @@ const Banner = () => (
 						type="atomic"
 						label="Voir la F.A.Q"
 					/>
-			</div>
+				</div>
 			</div>
 		</div>
 	</div>

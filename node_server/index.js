@@ -8,6 +8,7 @@ socketio.on('connection', (client) => {
 });
 
 handleClientRequests = (client) => {
+	client.on('client/send-chat-message', message => console.log(message));
 	client.on('client/create-user', (username, password) => {
 		console.log(`Got login request with login : ${username} and psw : ${password} !`);
 		client.emit('server/create-user', {

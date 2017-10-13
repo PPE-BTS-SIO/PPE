@@ -16,25 +16,25 @@ class LTSNavigationBar extends Component {
 		return (
 			<LTSComponent
 				triggerWhenAbove={1}
-				onTrigger={(position) =>  {
-					this.setState({ id: position === 'below' ? 'nav-bar-below' : 'nav-bar-above'})
+				onTrigger={(position) => {
+					this.setState({ id: position === 'below' ? 'nav-bar-below' : 'nav-bar-above' })
 				}}
 			>
-			<div className={`nav-bar ${this.state.id}`}>
-				<div id="nav-bar-logo">
-					<span>
-						{'cashcash'}
-					</span>
+				<div className={`nav-bar ${this.state.id}`}>
+					<div id="nav-bar-logo">
+						<span>
+							{'cashcash'}
+						</span>
+					</div>
+					<div id="nav-bar-navigation">
+						<span className="nav-bar-tab nav-bar-tab-active">
+							{'Accueil'}
+						</span>
+						<span className="nav-bar-tab">
+							{'Se connecter'}
+						</span>
+					</div>
 				</div>
-				<div id="nav-bar-navigation">
-					<span className="nav-bar-tab nav-bar-tab-active">
-						{'Accueil'}
-					</span>
-					<span className="nav-bar-tab">
-						{'Se connecter'}
-					</span>
-				</div>
-			</div>
 			</LTSComponent>
 		);
 	}

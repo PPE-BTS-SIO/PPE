@@ -12,8 +12,6 @@ import WaitingForServer from './waiting_for_server';
 
 import '../../styles/live_chat/index.css';
 
-let socket = null;
-
 class LiveChat extends Component {
 	render() {
 		const nodeStatus = this.props.nodeStatus;
@@ -39,7 +37,7 @@ const Connected = () => (
 	</div>
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	socket: state.nodeServer.socket,
 	nodeStatus: state.nodeServer.status
 })

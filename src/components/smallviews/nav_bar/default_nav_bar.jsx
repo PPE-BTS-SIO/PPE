@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { createUser } from '../../../actions/user_actions';
 
-const DefaultNavigationBar = ({ socket, createUser }) => (
-	<div className={`nav-bar`}>
+const DefaultNavigationBar = ({ socket }) => (
+	<div className="nav-bar">
 		<div id="nav-bar-logo">
 			<span>
 				{'cashcash'}
@@ -30,10 +30,10 @@ const DefaultNavigationBar = ({ socket, createUser }) => (
 	</div>
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	socket: state.nodeServer.socket
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ createUser }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ createUser }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DefaultNavigationBar);

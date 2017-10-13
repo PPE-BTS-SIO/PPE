@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-import Paper from 'material-ui/Paper';
-
 import KeyBoardArrowDownIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 
 import '../../../../../styles/live_chat/smallviews/side_panel/desktop_sections/technical_adviser.css';
 
 class TechnicalAdviser extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 			isExtended: false
@@ -15,11 +13,11 @@ class TechnicalAdviser extends Component {
 	}
 
 	render() {
-		const technicalAdviser = this.props.technicalAdviser;
+		const { technicalAdviser } = this.props.technicalAdviser;
 		if (!technicalAdviser) {
 			return null;
 		}
-		const isExtended = this.state.isExtended;
+		const { isExtended } = this.state.isExtended;
 		return (
 			<div
 				id="live-chat-desktop-side-panel-technical-adviser-container"

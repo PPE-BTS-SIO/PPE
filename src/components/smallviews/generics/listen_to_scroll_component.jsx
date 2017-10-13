@@ -20,11 +20,10 @@ class LTSComponent extends Component {
 
 		The triggerWhenAbove is the value to which the onTrigger property is fired (in px).
 		*/
-		const triggerWhenAbove = this.props.triggerWhenAbove;
+		const { triggerWhenAbove } = this.props.triggerWhenAbove;
 		const isFixed = this.props.isFixed === false ? false : true;
 		let render = this.props.render === false ? false : true;
 		if (!triggerWhenAbove) {
-			console.warn("[LTSComponent] You have to give a valid value to the 'triggerWhenAbove' property !");
 			render = false;
 		}
 		this.state = {
@@ -51,6 +50,7 @@ class LTSComponent extends Component {
 			this.onTrigger('above');
 		}
 		this.addEventListener();
+		return null;
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -93,8 +93,8 @@ class LTSComponent extends Component {
 	}
 
 	render() {
-		const render = this.state.render;
-		const children = this.props.children;
+		const { render } = this.state.render;
+		const { children } = this.props.children;
 		if (!render || !children) {
 			return null;
 		}

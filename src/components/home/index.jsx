@@ -35,20 +35,20 @@ class Home extends Component {
 	changeContentView = contentView => this.setState({ contentView });
 
 	render() {
-		const contentView = this.state.contentView;
+		const { contentView } = this.state.contentView;
 		return (
 			<div id="home-container">
-				<NavigationBar isLTS/>
+				<NavigationBar isLTS />
 				<Banner />
 				<ActionsBar
 					contentView={contentView}
 					changeContentView={this.changeContentView}
 				/>
-			<View
-				contentView={contentView}
-				changeContentView={this.changeContentView}
-			/>
-		</div>
+				<View
+					contentView={contentView}
+					changeContentView={this.changeContentView}
+				/>
+			</div>
 		);
 	}
 }

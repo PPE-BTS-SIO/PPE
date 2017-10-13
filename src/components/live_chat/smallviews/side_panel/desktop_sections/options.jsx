@@ -1,7 +1,6 @@
 import React from 'react';
 
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
-import PrintIcon from 'material-ui/svg-icons/action/print';
 
 import Button from '../../../../smallviews/button';
 

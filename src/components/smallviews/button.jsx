@@ -18,29 +18,31 @@ The different type are :
 The style props allow us to change the button directly inline.
 Others props can be given, this is useful on material-ui's component.
 */
-const Button = ({ label, type, style, ...props }) => {
+const Button = ({
+	label, type, style, ...props
+}) => {
 	switch (type) {
-		case 'atomic': return (
-			<AtomicButton
-				label={label}
-				style={style}
-				{...props}
-			/>
-		);
-		case 'flat': return (
-			<FlatButton
-				label={label}
-				style={style}
-				{...props}
-			/>
-		);
-		default: return (
-			<RaisedButton
-				label={label}
-				style={style}
-				{...props}
-			/>
-		);
+	case 'atomic': return (
+		<AtomicButton
+			label={label}
+			style={style}
+			{...props}
+		/>
+	);
+	case 'flat': return (
+		<FlatButton
+			label={label}
+			style={style}
+			{...props}
+		/>
+	);
+	default: return (
+		<RaisedButton
+			label={label}
+			style={style}
+			{...props}
+		/>
+	);
 	}
 }
 

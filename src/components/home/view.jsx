@@ -8,8 +8,8 @@ contentView.
 */
 const View = ({ contentView, changeContentView }) => {
 	switch (contentView) {
-		case 1: return <div>{'yo'}</div>
-		default: return <FAQ changeContentView={changeContentView} />
+	case 1: return <div>yo</div>
+	default: return <FAQ changeContentView={changeContentView} />
 	}
 };
 

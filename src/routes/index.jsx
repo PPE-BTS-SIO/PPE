@@ -1,5 +1,10 @@
 import React from 'react';
 
+import {
+	BrowserRouter as Router,
+	Route
+} from 'react-router-dom';
+
 /*
 'Home' is the component which will display the home page.
 We don't need to import 'home/index', it will do it automatically if use the root folder.
@@ -7,11 +12,6 @@ We don't need to import 'home/index', it will do it automatically if use the roo
 import Home from '../components/home/';
 
 import LiveChat from '../components/live_chat'
-
-import {
-	BrowserRouter as Router,
-	Route
-} from 'react-router-dom';
 
 const Routes = () => (
 	<Router>
