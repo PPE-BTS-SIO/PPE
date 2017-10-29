@@ -26,11 +26,10 @@ export default (state = initialState, action) => {
 		const newState = JSON.parse(JSON.stringify(state));
 		newState.hasReceivedUserData = true;
 		if (action.isValid && action.user) {
-			const { user } = action.user;
+			const { user } = action;
 			newState.informations = user.informations;
 			newState.role = user.role;
 		}
-		console.log('REDUCER');
 		return newState;
 	}
 

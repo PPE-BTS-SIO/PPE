@@ -7,11 +7,10 @@ import {
 
 /*
 'Home' is the component which will display the home page.
-We don't need to import 'home/index', it will do it automatically if use the root folder.
 */
 import Home from '../components/home/';
 
-import LiveChat from '../components/live_chat'
+import LiveChat from '../components/live_chat/live_chat'
 
 const Routes = () => (
 	<Router>

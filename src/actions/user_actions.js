@@ -1,3 +1,5 @@
+import { sha3_512 } from 'js-sha3';
+
 import {
 
 	CREATE_USER_STARTED,
@@ -12,7 +14,7 @@ export const createUser = (socket, username, password) => (dispatch) => {
 	dispatch({
 		type: CREATE_USER_STARTED
 	});
-	socket.emit('client/create-user', username, password);
+	socket.emit('client/create-user', username, sha3_512(password));
 	socket.off('server/create-user');
 	socket.on('server/create-user', (data) => {
 		dispatch({

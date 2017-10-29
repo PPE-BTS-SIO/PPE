@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import openSocket from 'socket.io-client';
 
-import NavigationBar from '../smallviews/nav_bar';
-import SidePanel from './smallviews/side_panel'
+import NavigationBar from '../smallviews/nav_bar/navigation_bar';
+import SidePanel from './smallviews/side_panel/side_panel'
 import Content from './smallviews/content';
 import Inputs from './smallviews/inputs';
 

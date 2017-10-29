@@ -1,12 +1,12 @@
+import openSocket from 'socket.io-client'
+
 import {
 	CONNECTION_TO_NODE_SERVER_STARTED,
 	CONNECTION_TO_NODE_SERVER_CHANGED_STATUS
 } from './types';
 
-import openSocket from 'socket.io-client';
-
 export const connectToServer = () => (dispatch) => {
-	const socket = openSocket('localhost:8000');
+	const socket = openSocket('192.168.1.44:8000');
 	dispatch({
 		type: CONNECTION_TO_NODE_SERVER_STARTED,
 		socket

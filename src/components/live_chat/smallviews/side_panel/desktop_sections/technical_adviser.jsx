@@ -13,11 +13,11 @@ class TechnicalAdviser extends Component {
 	}
 
 	render() {
-		const { technicalAdviser } = this.props.technicalAdviser;
+		const { technicalAdviser } = this.props;
 		if (!technicalAdviser) {
 			return null;
 		}
-		const { isExtended } = this.state.isExtended;
+		const { isExtended } = this.state;
 		return (
 			<div
 				id="live-chat-desktop-side-panel-technical-adviser-container"

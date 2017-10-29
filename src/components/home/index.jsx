@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import NavigationBar from '../smallviews/nav_bar';
+import NavigationBar from '../smallviews/nav_bar/navigation_bar';
 import Banner from './banner';
 import ActionsBar from './actions_bar';
 import View from './view';

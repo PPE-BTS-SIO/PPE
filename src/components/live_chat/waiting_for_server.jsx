@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 import Snackbar from 'material-ui/Snackbar';
 
-import NavigationBar from '../smallviews/nav_bar';
+import NavigationBar from '../smallviews/nav_bar/navigation_bar';
 
 class WaitingForServer extends Component {
 	constructor(props) {

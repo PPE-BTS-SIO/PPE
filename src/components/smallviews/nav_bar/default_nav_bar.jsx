@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { createUser } from '../../../actions/user_actions';
 
-const DefaultNavigationBar = ({ socket }) => (
+const DefaultNavigationBar = ({ socket, requestCreateUser }) => (
 	<div className="nav-bar">
 		<div id="nav-bar-logo">
 			<span>
@@ -21,7 +21,7 @@ const DefaultNavigationBar = ({ socket }) => (
 			<span
 				className="nav-bar-tab"
 				onTouchTap={() => {
-					createUser(socket, 'yo', 'test');
+					requestCreateUser(socket, 'yo', 'test');
 				}}
 			>
 				{'Se connecter'}
@@ -34,6 +34,6 @@ const mapStateToProps = state => ({
 	socket: state.nodeServer.socket
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ createUser }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ requestCreateUser: createUser }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DefaultNavigationBar);

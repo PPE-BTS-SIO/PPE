@@ -21,8 +21,8 @@ class LTSComponent extends Component {
 		The triggerWhenAbove is the value to which the onTrigger property is fired (in px).
 		*/
 		const { triggerWhenAbove } = this.props;
-		const isFixed = this.props.isFixed === false ? false : true;
-		let render = this.props.render === false ? false : true;
+		const isFixed = this.props.isFixed !== false;
+		let render = this.props.render !== false;
 		if (!triggerWhenAbove) {
 			render = false;
 		}
@@ -39,7 +39,7 @@ class LTSComponent extends Component {
 			return null;
 		}
 		if (!this.props.children) {
-			console.warn("[LTSComponent] Children must be valid React elements !");
+			console.error("[LTSComponent] Children must be valid React elements !");
 			return null;
 		}
 		if (window.scrollY >= this.state.triggerWhenAbove

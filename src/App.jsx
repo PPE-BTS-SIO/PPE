@@ -13,7 +13,7 @@ import Snackbar from 'material-ui/Snackbar';
 
 import { connectToServer } from './actions/node_server_actions';
 
-import Routes from './routes';
+import Routes from './routes/routes';
 /*
 Importing default styles, used to change appearance of the top-level objects.
 This style will be used anywhere in the entire website.
