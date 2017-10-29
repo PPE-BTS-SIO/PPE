@@ -1,10 +1,12 @@
 import React from 'react';
 
+import ContentItem from './content_item';
+
 import '../../../styles/live_chat/smallviews/content.css';
 
-const Content = ({ elements }) => {
+const Content = ({ chatData }) => {
 	let content = null;
-	if (!elements) {
+	if (!chatData || Object.keys(chatData).length < 1) {
 		content = (
 			<span>
 				{"Cette conversation n'a aucun historique !"}
@@ -12,8 +14,18 @@ const Content = ({ elements }) => {
 		);
 	} else {
 		content = (
-			<div>
-				{'yo cette conversation doit avoir un historique normalement.'}
+			<div
+				id="live-chat-content"
+				className="custom-overflow"
+			>
+				{
+					Object.keys(chatData).map(id => (
+						<ContentItem
+							key={`content_item_${id}`}
+							item={chatData[id]}
+						/>
+					))
+				}
 			</div>
 		);
 	}

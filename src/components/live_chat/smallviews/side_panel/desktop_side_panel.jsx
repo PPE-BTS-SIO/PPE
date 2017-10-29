@@ -20,7 +20,10 @@ const DesktopSidePanel = ({ informations, changeInformations }) => {
 				searchInput={informations.searchInput}
 				changeInput={changeInput}
 			/>
-			<div id="live-chat-desktop-side-panel-scollable">
+			<div
+				id="live-chat-desktop-side-panel-scollable"
+				className="custom-overflow"
+			>
 				<TechnicalAdviser
 					technicalAdviser={informations.technicalAdviser}
 				/>
