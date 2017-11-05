@@ -54,7 +54,7 @@ class WaitingForServer extends Component {
 					message="Le serveur semble ne pas répondre"
 					action="Rafraichir"
 					autoHideDuration={50000}
-					onActionTouchTap={() => window.location.reload()}
+					onActionClick={() => window.location.reload()}
 					onRequestClose={() => this.setState({ open: false })}
 				/>
 			</div>

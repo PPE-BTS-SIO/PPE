@@ -69,7 +69,7 @@ class App extends Component {
 						message="Vous n'êtes pas connecté au serveur"
 						action="Rafraichir"
 						autoHideDuration={500000000}
-						onActionTouchTap={() => window.location.reload()}
+						onActionClick={() => window.location.reload()}
 						onRequestClose={() => this.setState({ openNotConnected: false })}
 					/>
 					<Snackbar

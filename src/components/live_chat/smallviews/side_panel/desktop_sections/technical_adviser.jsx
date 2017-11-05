@@ -21,7 +21,7 @@ class TechnicalAdviser extends Component {
 		return (
 			<div
 				id="live-chat-desktop-side-panel-technical-adviser-container"
-				onTouchTap={() => this.setState({ isExtended: !this.state.isExtended })}
+				onClick={() => this.setState({ isExtended: !this.state.isExtended })}
 				style={{
 					height: isExtended ? '600px' : '120px'
 				}}

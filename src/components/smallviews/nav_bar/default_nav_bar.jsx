@@ -20,7 +20,7 @@ const DefaultNavigationBar = ({ socket, requestCreateUser }) => (
 			</Link>
 			<span
 				className="nav-bar-tab"
-				onTouchTap={() => {
+				onClick={() => {
 					requestCreateUser(socket, 'yo', 'test');
 				}}
 			>

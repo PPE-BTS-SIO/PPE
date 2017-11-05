@@ -15,13 +15,13 @@ const ActionsBar = ({ contentView, changeContentView }) => {
 				<div id="home-cvb-tabs">
 					<div
 						className={getClassNames(0)}
-						onTouchTap={() => changeContentView(0)}
+						onClick={() => changeContentView(0)}
 					>
 						{'F.A.Q'}
 					</div>
 					<div
 						className={getClassNames(1)}
-						onTouchTap={() => changeContentView(1)}
+						onClick={() => changeContentView(1)}
 					>
 						{'Agences'}
 					</div>
