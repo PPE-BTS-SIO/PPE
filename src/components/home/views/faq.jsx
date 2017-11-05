@@ -1,6 +1,8 @@
 import React from 'react';
 
 import WhoWeAre from './sections/who_we_are';
+import HowDoesItWorks from './sections/how_does_it_works';
+import WhenAndWhere from './sections/when_and_where';
 
 import '../../../styles/home/views/faq.css';
 
@@ -17,8 +19,8 @@ You can still pass props to it, either :
 const FAQ = () => (
 	<div id="home-faq-container">
 		<WhoWeAre />
-		<WhoWeAre />
-		<WhoWeAre />
+		<HowDoesItWorks />
+		<WhenAndWhere />
 	</div>
 );
 

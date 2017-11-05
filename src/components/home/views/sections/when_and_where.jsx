@@ -2,9 +2,9 @@ import React from 'react';
 
 import Section from '../section';
 
-import '../../../../styles/home/views/sections/who_we_are.css';
+import '../../../../styles/home/views/sections/when_and_where.css';
 
-const WhoWeAre = () => (
+const WhenAndWhere = () => (
 	<Section
 		visibleContent={<Visible />}
 		hiddenContent={<Hidden />}
@@ -15,8 +15,8 @@ const WhoWeAre = () => (
 );
 
 const Visible = () => (
-	<div id="section-whoweare-visible-container">
-		{'Qui sommes-nous ?'}
+	<div id="section-whenandwhere-visible-container">
+		{'Où et quand ?'}
 	</div>
 );
 
@@ -26,4 +26,4 @@ const Hidden = () => (
 	</div>
 );
 
-export default WhoWeAre;
+export default WhenAndWhere;

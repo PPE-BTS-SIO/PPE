@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../../../styles/home/views/faq.css';
+import '../../../styles/home/views/section.css';
 
 class Section extends Component {
 	constructor(props) {
@@ -90,7 +90,8 @@ const Hidden = ({
 		return null;
 	}
 	const newStyle = Object.assign({}, style, {
-		height: open ? height : 0
+		height: open ? height : 0,
+		opacity: open ? 'block' : 'none'
 	});
 	return (
 		<div

@@ -1,20 +1,15 @@
 .home-faq-section {
 
-	width: 100%;
-
 	border-bottom: 1px solid lightgray;
-
-	transition: .3s;
 
 	overflow: hidden;
 
 }
 
-.home-faq-section-visible-container,
-.home-faq-section-hidden-container	{
+.home-faq-section,
+.home-faq-section >* {
 
 	width: 100%;
-
-	
+	transition: all .3s;
 
 }

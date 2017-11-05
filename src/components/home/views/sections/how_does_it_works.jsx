@@ -2,21 +2,21 @@ import React from 'react';
 
 import Section from '../section';
 
-import '../../../../styles/home/views/sections/who_we_are.css';
+import '../../../../styles/home/views/sections/how_does_it_works.css';
 
-const WhoWeAre = () => (
+const HowDoesItWorks = () => (
 	<Section
 		visibleContent={<Visible />}
 		hiddenContent={<Hidden />}
 		style={{
-			backgroundColor: '#EFEFEF'
+			backgroundColor: '#FFFFFF'
 		}}
 	/>
 );
 
 const Visible = () => (
-	<div id="section-whoweare-visible-container">
-		{'Qui sommes-nous ?'}
+	<div id="section-howdoesitworks-visible-container">
+		{'Fonctionnement'}
 	</div>
 );
 
@@ -26,4 +26,4 @@ const Hidden = () => (
 	</div>
 );
 
-export default WhoWeAre;
+export default HowDoesItWorks;
