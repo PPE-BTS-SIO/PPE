@@ -2,23 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-/*
-The MuiThemeProvider is a material-ui component.
-We must use it in order to render material-ui's other components.
-*/
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-
 import Snackbar from 'material-ui/Snackbar';
+import Button from 'material-ui/Button';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { blue } from 'material-ui/colors';
 
 import { connectToServer } from './actions/node_server_actions';
 
 import Routes from './routes/routes';
+
 /*
 Importing default styles, used to change appearance of the top-level objects.
 This style will be used anywhere in the entire website.
 */
 import './styles/global.css';
+
+const theme = createMuiTheme({
+	palette: {
+		primary: blue
+	}
+})
 
 /*
 This is our first & most important component.
@@ -61,19 +64,24 @@ class App extends Component {
 	*/
 	render() {
 		return (
-			<MuiThemeProvider>
+			<MuiThemeProvider theme={theme}>
 				<div id="container">
 					<Routes />
 					<Snackbar
 						open={this.state.openNotConnected}
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'left'
+						}}
 						message="Vous n'êtes pas connecté au serveur"
-						action="Rafraichir"
-						autoHideDuration={500000000}
-						onActionClick={() => window.location.reload()}
-						onRequestClose={() => this.setState({ openNotConnected: false })}
+						action={<SnackbarAction />}
 					/>
 					<Snackbar
 						open={this.state.openConnected}
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'left'
+						}}
 						message="Vous êtes désormais connecté"
 						autoHideDuration={4000}
 						onRequestClose={() => this.setState({ openConnected: false })}
@@ -83,6 +91,15 @@ class App extends Component {
 		);
 	}
 }
+
+const SnackbarAction = () => (
+	<Button
+		onClick={() => window.location.reload()}
+		color="accent"
+	>
+		{'Rafraichir'}
+	</Button>
+);
 
 const mapStateToProps = state => ({
 	nodeStatus: state.nodeServer.status,

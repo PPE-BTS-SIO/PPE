@@ -8,13 +8,13 @@ It is basically a label with a rounded lightgray border and a transparent backgr
 On hover, the background turns white and the label turns black.
 The style can be edited either in the stylesheet file or directly inline.
 */
-const AtomicButton = ({ label, style }) => (
+const AtomicButton = ({ children, style }) => (
 	<div
 		className="atomic-button-container"
 		style={style}
 	>
 		<span className="atomic-button-label">
-			{label}
+			{children}
 		</span>
 	</div>
 );

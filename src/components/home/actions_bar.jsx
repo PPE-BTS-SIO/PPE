@@ -2,9 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import openSocket from 'socket.io-client';
-
-import Button from '../smallviews/button';
+import Button from 'material-ui/Button';
 
 const ActionsBar = ({ contentView, changeContentView }) => {
 	const getClassNames = tabNumber => `home-cvb-tab ${tabNumber === contentView ? 'home-cvb-tab-active' : ''}`;
@@ -37,10 +35,11 @@ const ActionsBar = ({ contentView, changeContentView }) => {
 			</div>
 			<Link to="/livechat">
 				<Button
-					type="raised"
-					label="Discuter avec un technicien"
-					primary
-				/>
+					raised
+					color="primary"
+				>
+					{'Discuter avec un technicien'}
+				</Button>
 			</Link>
 		</div>
 	);

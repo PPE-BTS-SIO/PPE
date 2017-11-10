@@ -1,8 +1,8 @@
 import React from 'react';
 
-import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+import NotificationsIcon from 'material-ui-icons/Notifications';
 
-import Button from '../../../../smallviews/button';
+import Button from 'material-ui/Button';
 
 import '../../../../../styles/live_chat/smallviews/side_panel/desktop_sections/options.css';
 
@@ -18,22 +18,24 @@ const Options = () => (
 		</div>
 		<div id="live-chat-desktop-side-panel-options-buttons">
 			<Button
-				type="raised"
-				label="Demander une intervention"
+				raised
 				labelStyle={labelStyle}
-			/>
+			>
+				{'Demander une intervention'}
+			</Button>
 			<Button
-				type="raised"
-				label="Notifications"
-				icon={<NotificationsIcon color="#9E9E9E" />}
-				labelPosition="after"
+				raised
 				labelStyle={labelStyle}
-			/>
+			>
+				<NotificationsIcon color="#9E9E9E" />
+				{'Notifications'}
+			</Button>
 			<Button
-				type="raised"
-				label="Imprimer la conversation"
+				raised
 				labelStyle={labelStyle}
-			/>
+			>
+				{'Imprimer la conversation'}
+			</Button>
 		</div>
 	</div>
 );

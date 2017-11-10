@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../smallviews/button';
+import AtomicButton from '../smallviews/buttons/atomic_button';
 
 import Bg1 from '../../medias/images/backgrounds/1.jpeg';
 
@@ -21,14 +21,12 @@ const Banner = () => (
 					{'Notre équipe est à votre écoute !'}
 				</div>
 				<div id="home-banner-buttons">
-					<Button
-						type="atomic"
-						label="Demander une intervention"
-					/>
-					<Button
-						type="atomic"
-						label="Voir la F.A.Q"
-					/>
+					<AtomicButton>
+						{'Demander une intervention'}
+					</AtomicButton>
+					<AtomicButton>
+						{'Voir la F.A.Q'}
+					</AtomicButton>
 				</div>
 			</div>
 		</div>

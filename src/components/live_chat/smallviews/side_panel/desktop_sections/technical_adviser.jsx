@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import KeyBoardArrowDownIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
+import KeyBoardArrowDownIcon from 'material-ui-icons/KeyboardArrowDown';
 
 import '../../../../../styles/live_chat/smallviews/side_panel/desktop_sections/technical_adviser.css';
 

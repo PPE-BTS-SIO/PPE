@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CircularProgress from 'material-ui/CircularProgress';
+import { CircularProgress } from 'material-ui/Progress';
 import Snackbar from 'material-ui/Snackbar';
 
 import NavigationBar from '../smallviews/nav_bar/navigation_bar';

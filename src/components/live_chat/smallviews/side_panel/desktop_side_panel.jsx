@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchIcon from 'material-ui/svg-icons/action/search';
+import SearchIcon from 'material-ui-icons/Search';
 
 import TechnicalAdviser from './desktop_sections/technical_adviser';
 import Options from './desktop_sections/options';
