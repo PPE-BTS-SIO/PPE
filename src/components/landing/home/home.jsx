@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-import classnames from 'classnames';
-
 import injectSheet from 'react-jss/lib/injectSheet';
 
 import NavigationBar from '../../smallviews/nav_bar/navigation_bar';
 import Banner from '../banner/banner';
 import ActionsBar from '../actions_bar/actions_bar';
-import FAQ from '../views/faq';
+import FAQ from '../views/faq/faq';
 
 import styles from './home_styles';
 
@@ -42,7 +40,7 @@ class Home extends Component {
 		const { contentView } = this.state;
 		const { sheet: { classes } } = this.props;
 		return (
-			<div className={classnames(classes.container)}>
+			<div className={classes.container}>
 				<NavigationBar isLTS />
 				<Banner />
 				<ActionsBar

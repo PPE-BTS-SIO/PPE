@@ -10,9 +10,9 @@ import Button from 'material-ui/Button';
 import styles from './actions_bar_styles';
 
 const ActionsBar = ({ contentView, changeContentView, classes }) => (
-	<div className={classnames(classes.container)}>
-		<div className={classnames(classes.navigation)}>
-			<div className={classnames(classes.tabs)}>
+	<div className={classes.container}>
+		<div className={classes.navigation}>
+			<div className={classes.tabs}>
 				<div
 					className={
 						classnames(
@@ -36,9 +36,9 @@ const ActionsBar = ({ contentView, changeContentView, classes }) => (
 					{'Agences'}
 				</div>
 			</div>
-			<div className={classnames(classes.inkBarContainer)}>
+			<div className={classes.inkBarContainer}>
 				<div
-					className={classnames(classes.inkBar)}
+					className={classes.inkBar}
 					style={{
 						marginLeft: contentView * 100
 					}}

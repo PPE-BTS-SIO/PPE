@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import '../../../styles/home/views/section.css';
+import injectSheet from 'react-jss/lib/injectSheet';
+
+import styles from './section_styles';
 
 class Section extends Component {
 	constructor(props) {
@@ -28,7 +30,8 @@ class Section extends Component {
 			visibleStyle,
 			hiddenStyle,
 			visibleContent,
-			hiddenContent
+			hiddenContent,
+			classes
 		} = this.props;
 
 		const visibleHeight = options.visibleHeight || 250;
@@ -36,7 +39,7 @@ class Section extends Component {
 
 		return (
 			<div
-				className="home-faq-section"
+				className={classes.container}
 				style={style}
 			>
 				<Visible
@@ -103,4 +106,4 @@ const Hidden = ({
 	);
 }
 
-export default Section;
+export default injectSheet(styles)(Section);

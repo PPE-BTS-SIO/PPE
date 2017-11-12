@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import classnames from 'classnames';
-
 import injectSheet from 'react-jss/lib/injectSheet';
 
 import AtomicButton from '../../smallviews/buttons/atomic_button';
@@ -45,21 +43,21 @@ class Banner extends Component {
 
 		return (
 			<div
-				className={classnames(classes.container)}
+				className={classes.container}
 				style={{
 					backgroundImage: `url('${backgrounds[currentBackground]}')`
 				}}
 			>
-				<div className={classnames(classes.darken)} />
-				<div className={classnames(classes.contentContainer)}>
-					<div className={classnames(classes.content)}>
-						<div className={classnames(classes.title)}>
+				<div className={classes.darken} />
+				<div className={classes.contentContainer}>
+					<div className={classes.content}>
+						<div className={classes.title}>
 							{'Interventions & Questions'}
 						</div>
-						<div className={classnames(classes.description)}>
+						<div className={classes.description}>
 							{'Notre équipe est à votre écoute !'}
 						</div>
-						<div className={classnames(classes.buttons)}>
+						<div className={classes.buttons}>
 							<AtomicButton>
 								{'Demander une intervention'}
 							</AtomicButton>
