@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
-import NavigationBar from '../smallviews/nav_bar/navigation_bar';
-import Banner from './banner';
-import ActionsBar from './actions_bar';
-import View from './view';
+import classnames from 'classnames';
 
-import '../../styles/home/home.css';
+import injectSheet from 'react-jss/lib/injectSheet';
+
+import NavigationBar from '../../smallviews/nav_bar/navigation_bar';
+import Banner from '../banner/banner';
+import ActionsBar from '../actions_bar/actions_bar';
+import FAQ from '../views/faq';
+
+import styles from './home_styles';
 
 /*
 'Home' is the component which will display the home page.
@@ -36,8 +40,9 @@ class Home extends Component {
 
 	render() {
 		const { contentView } = this.state;
+		const { sheet: { classes } } = this.props;
 		return (
-			<div id="home-container">
+			<div className={classnames(classes.container)}>
 				<NavigationBar isLTS />
 				<Banner />
 				<ActionsBar
@@ -53,4 +58,15 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+/*
+This component render content based on the current
+contentView.
+*/
+const View = ({ contentView, changeContentView }) => {
+	switch (contentView) {
+	case 1: return <div>yo</div>
+	default: return <FAQ changeContentView={changeContentView} />
+	}
+};
+
+export default injectSheet(styles)(Home);

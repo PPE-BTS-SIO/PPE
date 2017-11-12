@@ -8,7 +8,7 @@ import {
 /*
 'Home' is the component which will display the home page.
 */
-import Home from '../components/home/';
+import Home from '../components/landing/home/home';
 
 import LiveChat from '../components/live_chat/live_chat'
 
