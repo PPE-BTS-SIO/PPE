@@ -5,10 +5,12 @@ import injectSheet from 'react-jss/lib/injectSheet';
 import AtomicButton from '../../smallviews/buttons/atomic_button';
 
 import Bg1 from '../../../medias/images/backgrounds/1.jpeg';
+import Bg2 from '../../../medias/images/backgrounds/2.jpg';
+import Bg3 from '../../../medias/images/backgrounds/3.jpeg';
 
 import styles from './banner_styles';
 
-const backgrounds = [Bg1];
+const backgrounds = [Bg1, Bg2, Bg3];
 
 class Banner extends Component {
 	constructor(props) {
@@ -35,7 +37,7 @@ class Banner extends Component {
 		});
 	}
 
-	interval = setInterval(this.changeBackground, 5000);
+	interval = setInterval(this.changeBackground, 7000);
 
 	render() {
 		const { sheet: { classes } } = this.props;

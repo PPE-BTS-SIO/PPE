@@ -17,7 +17,8 @@ export default ({
 		width: '100%',
 		position: 'relative',
 		fontFamily: ['Raleway', 'open sans', 'Roboto', 'sans serif'],
-		border: createBorder(),
+		transition: 'background 2s',
+		borderBottom: createBorder(),
 		...createBackground()
 	},
 	darken: {
