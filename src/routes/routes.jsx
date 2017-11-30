@@ -8,9 +8,7 @@ import {
 /*
 'Home' is the component which will display the home page.
 */
-import Home from '../components/landing/home/home';
-
-import LiveChat from '../components/live_chat/live_chat'
+import Login from '../components/login/login';
 
 const Routes = () => (
 	<Router>
@@ -18,11 +16,7 @@ const Routes = () => (
 			<Route
 				exact
 				path="/"
-				component={Home}
-			/>
-			<Route
-				path="/livechat"
-				component={LiveChat}
+				component={Login}
 			/>
 		</div>
 	</Router>
