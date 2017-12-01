@@ -1,0 +1,52 @@
+#isp-customerSearchbox-section {
+
+	height: 100px;
+	width: 100%;
+
+	border-bottom: 1px solid lightgray;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#isp-customerSearchbox-container {
+
+	height: 40px;
+	width: 250px;
+
+	border: 1px solid lightgray;
+	border-radius: 3px;
+	overflow: hidden;
+
+}
+
+#isp-customerSearchbox-container > * {
+
+	float: left;
+
+}
+
+#isp-customerSearchbox-icon-container {
+
+	height: 100%;
+	width: 48px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#isp-customerSearchbox-container > input {
+
+	height: 100%;
+	width: 200px;
+
+	border: none;
+
+	font-family: "Roboto", "open sans", "sans serif";
+	color: #7F7F7F;
+
+}

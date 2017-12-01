@@ -1,0 +1,17 @@
+#interventions-wrapper {
+
+	height: calc(100% - (150px + 50px + 70px));
+	max-height: calc(100% - (150px + 50px + 70px));
+	width: calc(100% - 300px);
+
+	background-color: white;
+
+	overflow: auto;
+
+	padding: 50px 40px;
+
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+
+}

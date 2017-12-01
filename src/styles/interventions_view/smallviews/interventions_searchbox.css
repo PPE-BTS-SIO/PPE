@@ -1,0 +1,54 @@
+#ib-searchbox {
+
+	height: 60px;
+	width: 380px;
+
+	border-top: 1px solid lightgray;
+	border-radius: 5px;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.13), 0 3px 6px rgba(0,0,0,0.20);
+
+	background-color: white;
+
+	overflow: hidden;
+
+}
+
+#ib-searchbox > * {
+
+	float: right;
+
+}
+
+#ib-searchbox > input {
+
+	height: 100%;
+	width: calc(100% - 70px);
+
+	border: none;
+
+	padding: 0 20px;
+
+	color: #7F7F7F;
+	font-size: 18px;
+	font-family: "Roboto", "open sans", "sans serif";
+
+}
+
+#ib-searchbox-icon-container {
+
+	height: 100%;
+	width: 70px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#ib-searchbox-icon-container svg {
+
+	min-width: 30px !important;
+	min-height: 30px !important;
+
+}

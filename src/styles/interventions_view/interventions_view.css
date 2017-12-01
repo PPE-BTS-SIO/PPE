@@ -1,0 +1,12 @@
+#interventions-view-wrapper {
+
+	height: 100%;
+	width: 100%;
+
+}
+
+#interventions-view-wrapper > * {
+
+	float: left;
+
+}

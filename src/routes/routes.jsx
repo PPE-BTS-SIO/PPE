@@ -6,9 +6,10 @@ import {
 } from 'react-router-dom';
 
 /*
-'Home' is the component which will display the home page.
+'Login' is the component which will display the login page.
 */
 import Login from '../components/login/login';
+import InterventionsView from '../components/interventions_view/interventions_view';
 
 const Routes = () => (
 	<Router>
@@ -17,6 +18,11 @@ const Routes = () => (
 				exact
 				path="/"
 				component={Login}
+			/>
+			<Route
+				exact
+				path="/interventions"
+				component={InterventionsView}
 			/>
 		</div>
 	</Router>
