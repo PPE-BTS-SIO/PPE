@@ -1,0 +1,56 @@
+.iob-option {
+
+	height: 100%;
+	width: 220px;
+
+	border-right: 1px solid lightgray;
+
+}
+
+.iob-option:hover {
+
+	cursor: pointer;
+
+}
+
+.iob-option > * {
+
+	float: right;
+
+}
+
+.iob-option-icon-container {
+
+	height: 100%;
+	width: 60px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.iob-option-icon-container svg {
+
+	min-height: 25px !important;
+	max-height: 25px !important;
+
+}
+
+.iob-option-label-container {
+
+	height: 100%;
+	width: calc(100% - 60px);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	font-size: 14px;
+	color: rgba(0, 0, 0, .35);
+	font-family: "Roboto", "open sans", "sans serif";
+	font-weight: bolder;
+	text-transform: uppercase;
+
+}

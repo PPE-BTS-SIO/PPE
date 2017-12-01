@@ -1,7 +1,7 @@
-#interventions-options-bar {
+.interventions-options-bar {
 
 	height: 50px;
-	width: calc(100% - 300px);
+	width: 100%;
 
 	border-top: 1px solid lightgray;
 
@@ -10,5 +10,20 @@
 	background-color: white;
 
 	position: relative;
+
+}
+
+.interventions-options-bar > * {
+
+	float: left;
+
+}
+
+.iob-sticky {
+
+	position: fixed;
+
+	top: 70px;
+	left: 300px;
 
 }

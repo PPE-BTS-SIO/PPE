@@ -10,3 +10,13 @@
 	float: left;
 
 }
+
+#interventions-view-content-wrapper {
+
+	height: auto;
+	max-height: calc(100% - 70px);
+	width: calc(100% - 300px);
+
+	overflow: auto;
+
+}
