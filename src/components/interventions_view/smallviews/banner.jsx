@@ -7,10 +7,10 @@ import '../../../styles/interventions_view/smallviews/interventions_banner.css';
 import '../../../styles/interventions_view/smallviews/interventions_searchbox.css';
 import '../../../styles/interventions_view/smallviews/interventions_add_button.css';
 
-const InterventionsBanner = ({ setInterventionsInput }) => (
+const InterventionsBanner = ({ setInterventionsInput, handleAddClick }) => (
 	<div id="interventions-banner">
 		<InterventionsSearchbox setInterventionsInput={setInterventionsInput} />
-		<AddButton />
+		<AddButton handleAddClick={handleAddClick} />
 	</div>
 );
 
@@ -26,8 +26,11 @@ const InterventionsSearchbox = ({ setInterventionsInput }) => (
 	</div>
 );
 
-const AddButton = () => (
-	<div id="ib-add-button">
+const AddButton = ({ handleAddClick }) => (
+	<div
+		id="ib-add-button"
+		onClick={handleAddClick}
+	>
 		<Add color="rgba(0, 0, 0, .4)" />
 	</div>
 );

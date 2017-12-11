@@ -2,7 +2,9 @@ import React from 'react';
 
 import {
 	BrowserRouter as Router,
-	Route
+	Switch,
+	Route,
+	Redirect
 } from 'react-router-dom';
 
 /*
@@ -13,7 +15,7 @@ import InterventionsView from '../components/interventions_view/interventions_vi
 
 const Routes = () => (
 	<Router>
-		<div id="routes-container">
+		<Switch>
 			<Route
 				exact
 				path="/"
@@ -24,7 +26,11 @@ const Routes = () => (
 				path="/interventions"
 				component={InterventionsView}
 			/>
-		</div>
+			<Redirect
+				from="*"
+				to="/"
+			/>
+		</Switch>
 	</Router>
 );
 

@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
+import classnames from 'classnames';
+
 import NavigationBar from '../smallviews/nav_bar/navigation_bar';
-import InterventionsSidePanel from './smallviews/interventions_side_panel';
-import InterventionsBanner from './smallviews/interventions_banner';
-import InterventionsOptionsBar from './smallviews/interventions_options_bar';
-import InterventionsWrapper from './smallviews/interventions_wrapper';
+import SidePanel from './smallviews/side_panel';
+import Banner from './smallviews/banner';
+import OptionsBar from './smallviews/options_bar';
+import AddCard from './smallviews/add_card';
+import Intervention from './smallviews/intervention';
 
 import '../../styles/interventions_view/interventions_view.css';
+import '../../styles/interventions_view/smallviews/interventions_content.css';
 
 class InterventionsView extends Component {
 	constructor(props) {
@@ -32,23 +36,55 @@ class InterventionsView extends Component {
 		}
 	}
 
+	handleAddClick = () => {
+		const { isAdding } = this.state;
+		this.setState({ isAdding: !isAdding });
+	}
+
 	render() {
-		const { shouldStick } = this.state;
+		const { shouldStick, isAdding } = this.state;
 		return (
 			<div id="interventions-view-wrapper">
 				<NavigationBar />
-				<InterventionsSidePanel setCustomerInput={this.setCustomerInput} />
+				<SidePanel setCustomerInput={this.setCustomerInput} />
 				<div
 					id="interventions-view-content-wrapper"
 					onScroll={this.handleContentScroll}
 				>
-					<InterventionsBanner setInterventionsInput={this.setInterventionsInput} />
-					<InterventionsOptionsBar shouldStick={this.state.shouldStick} />
-					<InterventionsWrapper shouldAddPadding={shouldStick} />
+					<Banner
+						setInterventionsInput={this.setInterventionsInput}
+						handleAddClick={this.handleAddClick}
+					/>
+					<OptionsBar shouldStick={this.state.shouldStick} />
+					<InterventionsContent
+						shouldAddPadding={shouldStick}
+						isAdding={isAdding}
+					/>
 				</div>
 			</div>
 		)
 	}
 }
+
+const InterventionsContent = ({ shouldAddPadding, isAdding }) => (
+	<div className={
+		classnames('interventions-content', {
+			'interventions-content-with-extra-padding': shouldAddPadding
+		})
+	}
+	>
+		<div className={classnames(
+			'interventions-content-wrapper',
+			{ 'interventions-content-wrapper-translated': isAdding }
+		)}
+		>
+			<AddCard isAdding={isAdding} />
+			<Intervention />
+			<Intervention />
+			<Intervention />
+			<Intervention />
+		</div>
+	</div>
+);
 
 export default InterventionsView;

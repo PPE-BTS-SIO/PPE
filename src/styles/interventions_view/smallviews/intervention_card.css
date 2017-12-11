@@ -1,4 +1,4 @@
-.interventions-card {
+.intervention-card {
 
 	height: 200px;
 	width: 100%;
@@ -10,9 +10,13 @@
 
 	margin-bottom: 20px;
 
+	-webkit-transform: none;
+	transform: none;
+	transition: transform 300ms linear;
+
 }
 
-.interventions-card:last-child {
+.intervention-card:last-child {
 
 	margin-bottom: 0;
 

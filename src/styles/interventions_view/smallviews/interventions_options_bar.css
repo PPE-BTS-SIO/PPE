@@ -11,6 +11,8 @@
 
 	position: relative;
 
+	z-index: 1;
+
 }
 
 .interventions-options-bar > * {
