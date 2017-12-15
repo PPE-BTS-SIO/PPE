@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import classnames from 'classnames';
 
@@ -8,6 +8,7 @@ import Banner from './smallviews/banner';
 import OptionsBar from './smallviews/options_bar';
 import AddCard from './smallviews/add_card';
 import Intervention from './smallviews/intervention';
+import LocationDialog from './smallviews/dialogs/location_dialog';
 
 import '../../styles/interventions_view/interventions_view.css';
 import '../../styles/interventions_view/smallviews/interventions_content.css';
@@ -18,7 +19,12 @@ class InterventionsView extends Component {
 		this.state = {
 			customerInput: null,
 			interventionsInput: null,
-			isAdding: false
+			isAdding: false,
+			dialogsOpenState: {
+				location: false,
+				status: false,
+				date: false
+			}
 		}
 	}
 
@@ -41,11 +47,33 @@ class InterventionsView extends Component {
 		this.setState({ isAdding: !isAdding });
 	}
 
+	changeDialogsOpenState = (dialogsOpened) => {
+		const { dialogsOpenState } = this.state;
+		this.setState({
+			dialogsOpenState: Object.assign({}, dialogsOpenState, dialogsOpened)
+		});
+	}
+
+	handleOptionBarClick = (elementClicked) => {
+		if (!elementClicked) return false;
+		const dialogOpenState = this.state.dialogsOpenState[elementClicked];
+		this.changeDialogsOpenState({ [elementClicked]: !dialogOpenState });
+		return true;
+	}
+
 	render() {
-		const { shouldStick, isAdding } = this.state;
+		const {
+			shouldStick,
+			isAdding,
+			dialogsOpenState
+		} = this.state;
 		return (
 			<div id="interventions-view-wrapper">
 				<NavigationBar />
+				<Dialogs
+					dialogsOpenState={this.state.dialogsOpenState}
+					changeDialogsOpenState={this.changeDialogsOpenState}
+				/>
 				<SidePanel setCustomerInput={this.setCustomerInput} />
 				<div
 					id="interventions-view-content-wrapper"
@@ -55,7 +83,10 @@ class InterventionsView extends Component {
 						setInterventionsInput={this.setInterventionsInput}
 						handleAddClick={this.handleAddClick}
 					/>
-					<OptionsBar shouldStick={this.state.shouldStick} />
+					<OptionsBar
+						shouldStick={this.state.shouldStick}
+						onClick={this.handleOptionBarClick}
+					/>
 					<InterventionsContent
 						shouldAddPadding={shouldStick}
 						isAdding={isAdding}
@@ -79,11 +110,44 @@ const InterventionsContent = ({ shouldAddPadding, isAdding }) => (
 		)}
 		>
 			<AddCard isAdding={isAdding} />
-			<Intervention />
-			<Intervention />
-			<Intervention />
-			<Intervention />
+			<Intervention
+				id="1"
+				customerId="C1"
+				plannedDate="20/11/2017"
+				location="Lille"
+				comment="Aute veniam magna vet elit."
+			/>
+			<Intervention
+				id="2"
+				customerId="C1"
+				plannedDate="20/11/2017"
+				location="Lille"
+				comment="Aute veniam magna vet elit."
+			/>
+			<Intervention
+				id="3"
+				customerId="C1"
+				plannedDate="20/11/2017"
+				location="Lille"
+				comment="Aute veniam magna vet elit."
+			/>
+			<Intervention
+				id="4"
+				customerId="C1"
+				plannedDate="20/11/2017"
+				location="Lille"
+				comment="Aute veniam magna vet elit."
+			/>
 		</div>
+	</div>
+);
+
+const Dialogs = ({ dialogsOpenState, changeDialogsOpenState }) => (
+	<div>
+		<LocationDialog
+			open={dialogsOpenState.location}
+			handleClose={() => changeDialogsOpenState({ location: false })}
+		/>
 	</div>
 );
 

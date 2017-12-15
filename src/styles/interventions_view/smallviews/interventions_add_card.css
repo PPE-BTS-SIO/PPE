@@ -1,14 +1,44 @@
 .interventions-add-card {
 
-	height: 200px;
-	width: 750px;
+	height: 400px;
+	width: 300px;
 
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	border-top: 1px solid #E2E2E2;
 	border-radius: 3px;
 
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.iac-title-container {
+
+	height: 80px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-family: "Roboto", "open sans", "sans serif";
+	color: #7F7F7F;
+	font-size: 16px;
+	font-weight: bolder;
+	text-transform: uppercase;
+
+	border-bottom: 1px solid lightgray;
+
+}
+
+.iac-content {
+
+	height: calc(100% - 80px);
+	padding: 20px 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: space-between;
+	flex-wrap: wrap;
 
 }
