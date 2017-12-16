@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import { createUser } from '../../../actions/user_actions';
-
-const DefaultNavigationBar = ({ socket, requestCreateUser }) => (
+const DefaultNavigationBar = () => (
 	<div className="nav-bar">
 		<div id="nav-bar-logo">
 			<span>
@@ -18,22 +16,11 @@ const DefaultNavigationBar = ({ socket, requestCreateUser }) => (
 					{'Accueil'}
 				</span>
 			</Link>
-			<span
-				className="nav-bar-tab"
-				onClick={() => {
-					requestCreateUser(socket, 'yo', 'test');
-				}}
-			>
+			<span className="nav-bar-tab">
 				{'Se connecter'}
 			</span>
 		</div>
 	</div>
 );
 
-const mapStateToProps = state => ({
-	socket: state.nodeServer.socket
-});
-
-const mapDispatchToProps = dispatch => bindActionCreators({ requestCreateUser: createUser }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultNavigationBar);
+export default DefaultNavigationBar;

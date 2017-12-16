@@ -6,7 +6,7 @@ import {
 } from './types';
 
 export const connectToServer = () => (dispatch) => {
-	const socket = openSocket('192.168.43.204:8000');
+	const socket = openSocket('192.168.1.19:8000');
 	dispatch({
 		type: CONNECTION_TO_NODE_SERVER_STARTED,
 		socket
