@@ -2,6 +2,8 @@ import React from 'react';
 
 import Dotdotdot from 'react-dotdotdot';
 
+import Tooltip from 'material-ui/Tooltip';
+
 import CheckIcon from 'material-ui-icons/Check';
 import Person from 'material-ui-icons/Person';
 import AccountBoxIcon from 'material-ui-icons/AccountBox';
@@ -42,9 +44,17 @@ const InterventionId = ({ id }) => (
 );
 
 const AssignTechnicianButton = () => (
-	<div className="ic-assign-technician-button">
-		<Person color="#7F7F7F" />
-	</div>
+	<Tooltip
+		placement="top"
+		title="Assigner à un techicien"
+		style={{
+			whiteSpace: 'nowrap'
+		}}
+	>
+		<div className="ic-assign-technician-button">
+			<Person color="#7F7F7F" />
+		</div>
+	</Tooltip>
 );
 
 const StatusButton = () => (

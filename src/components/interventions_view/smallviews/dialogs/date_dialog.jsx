@@ -24,7 +24,7 @@ const DateDialog = ({
 			onRequestClose={handleClose}
 		>
 			<DialogTitle>
-				{'Filtrer par location'}
+				{'Filtrer par date'}
 			</DialogTitle>
 			<DialogContent>
 				<DatePicker
