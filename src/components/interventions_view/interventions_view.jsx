@@ -9,6 +9,8 @@ import OptionsBar from './smallviews/options_bar';
 import AddCard from './smallviews/add_card';
 import Intervention from './smallviews/intervention';
 import LocationDialog from './smallviews/dialogs/location_dialog';
+import StatusDialog from './smallviews/dialogs/status_dialog';
+import DateDialog from './smallviews/dialogs/date_dialog';
 
 import '../../styles/interventions_view/interventions_view.css';
 import '../../styles/interventions_view/smallviews/interventions_content.css';
@@ -20,6 +22,11 @@ class InterventionsView extends Component {
 			customerInput: null,
 			interventionsInput: null,
 			isAdding: false,
+			preciseFilters: {
+				location: null,
+				status: null,
+				date: null
+			},
 			dialogsOpenState: {
 				location: false,
 				status: false,
@@ -51,6 +58,13 @@ class InterventionsView extends Component {
 		const { dialogsOpenState } = this.state;
 		this.setState({
 			dialogsOpenState: Object.assign({}, dialogsOpenState, dialogsOpened)
+		});
+	}
+
+	setPreciseFilter = (filter) => {
+		const { preciseFilters } = this.state;
+		this.setState({
+			preciseFilters: Object.assign({}, preciseFilters, filter)
 		});
 	}
 
@@ -147,6 +161,14 @@ const Dialogs = ({ dialogsOpenState, changeDialogsOpenState }) => (
 		<LocationDialog
 			open={dialogsOpenState.location}
 			handleClose={() => changeDialogsOpenState({ location: false })}
+		/>
+		<StatusDialog
+			open={dialogsOpenState.status}
+			handleClose={() => changeDialogsOpenState({ status: false })}
+		/>
+		<DateDialog
+			open={dialogsOpenState.date}
+			handleClose={() => changeDialogsOpenState({ date: false })}
 		/>
 	</div>
 );

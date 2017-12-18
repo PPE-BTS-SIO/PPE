@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-const DefaultNavigationBar = () => (
+import { withTheme } from 'material-ui/styles';
+import AccountCircleIcon from 'material-ui-icons/AccountCircle';
+
+const DefaultNavigationBar = ({ hasReceivedUserData }) => (
 	<div className="nav-bar">
 		<div id="nav-bar-logo">
 			<span>
@@ -16,11 +18,28 @@ const DefaultNavigationBar = () => (
 					{'Accueil'}
 				</span>
 			</Link>
-			<span className="nav-bar-tab">
-				{'Se connecter'}
-			</span>
+			<Connection hasReceivedUserData={hasReceivedUserData} />
 		</div>
 	</div>
 );
 
-export default DefaultNavigationBar;
+const Connection = withTheme()(({ theme, hasReceivedUserData }) => {
+	if (!hasReceivedUserData) {
+		return (
+			<span className="nav-bar-tab">
+				{'Se connecter'}
+			</span>
+		);
+	}
+	return (
+		<span id="nav-bar-account">
+			<AccountCircleIcon color={theme.palette.primary[600]} />
+		</span>
+	)
+});
+
+const mapStateToProps = state => ({
+	hasReceivedUserData: state.user.hasReceivedUserData
+})
+
+export default connect(mapStateToProps)(DefaultNavigationBar);

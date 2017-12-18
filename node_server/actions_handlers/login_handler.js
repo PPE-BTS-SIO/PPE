@@ -20,7 +20,7 @@ const handleLogin = (data, callback, id) => {
 		`Password (encrypted): ${encryptedPassword.cyan}`
 	);
 	connection.query(
-		'SELECT * FROM Technicien WHERE Matricule = ? AND Password = ?',
+		'SELECT * FROM Employe WHERE Matricule = ? AND Password = ?',
 		[login, encryptedPassword],
 		(error, results) => {
 			if (error) {

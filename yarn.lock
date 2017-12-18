@@ -2342,7 +2342,7 @@ es6-set@~0.1.5:
     es6-symbol "3.1.1"
     event-emitter "~0.3.5"
 
-es6-symbol@3.1.1, es6-symbol@^3.1, es6-symbol@^3.1.1, es6-symbol@~3.1, es6-symbol@~3.1.1:
+es6-symbol@3.1.1, es6-symbol@^3.1, es6-symbol@^3.1.0, es6-symbol@^3.1.1, es6-symbol@~3.1, es6-symbol@~3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/es6-symbol/-/es6-symbol-3.1.1.tgz#bf00ef4fdab6ba1b46ecb7b629b4c7ed5715cc77"
   dependencies:
@@ -4500,6 +4500,14 @@ material-ui-icons@^1.0.0-beta.17:
   dependencies:
     recompose "^0.26.0"
 
+material-ui-pickers@^1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-1.0.0-beta.8.tgz#12f37bd36cc4a2a91b60c67ded5e653da1506ea2"
+  dependencies:
+    babel-helpers "^6.24.1"
+    moment-range "^3.0.3"
+    react-text-mask "^5.0.2"
+
 material-ui@^1.0.0-beta.20:
   version "1.0.0-beta.20"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.20.tgz#b8d9a79f88056cd1226f0b8bd36adfaf9a8d330f"
@@ -4675,6 +4683,16 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment-range@^3.0.3:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/moment-range/-/moment-range-3.1.0.tgz#96ab2245939b1c0991f0e4128079843218415c29"
+  dependencies:
+    es6-symbol "^3.1.0"
+
+moment@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.0.tgz#53396358994dd3a551e966a66af715ecb6c30ad0"
 
 ms@2.0.0:
   version "2.0.0"
@@ -5532,7 +5550,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5825,6 +5843,12 @@ react-scrollbar-size@^2.0.2:
     babel-runtime "^6.23.0"
     prop-types "^15.5.10"
     react-event-listener "^0.5.0"
+
+react-text-mask@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.0.2.tgz#09bce3f94ac244c11932082e42328cb455b73aa6"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-transition-group@^2.2.1:
   version "2.2.1"

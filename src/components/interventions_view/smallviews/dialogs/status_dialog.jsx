@@ -9,13 +9,13 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 
-const LocationDialog = ({ open, handleClose }) => (
+const StatusDialog = ({ open, handleClose }) => (
 	<Dialog
 		open={open}
 		onRequestClose={handleClose}
 	>
 		<DialogTitle>
-			{'Filtrer par location'}
+			{'Filtrer par status'}
 		</DialogTitle>
 		<DialogContent>
 			<DialogContentText>
@@ -34,4 +34,4 @@ const LocationDialog = ({ open, handleClose }) => (
 	</Dialog>
 );
 
-export default LocationDialog;
+export default StatusDialog;
