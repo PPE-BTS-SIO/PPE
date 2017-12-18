@@ -1,0 +1,31 @@
+#login-rectangle{
+  width: 330px;
+  height: 407px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px 3px rgba(170,170,170,1);
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+#belly{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height:88vh;
+}
+#imageUser{
+  margin-top: 100px;
+  height: 80px;
+  width: 80px;
+}
+#form {
+  width: 100%;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
