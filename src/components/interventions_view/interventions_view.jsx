@@ -39,6 +39,13 @@ class InterventionsView extends Component {
 
 	setInterventionsInput = input => this.setState({ interventionsInput: input });
 
+	setPreciseFilter = (filter) => {
+		const { preciseFilters } = this.state;
+		this.setState({
+			preciseFilters: Object.assign({}, preciseFilters, filter)
+		});
+	}
+
 	handleContentScroll = (event) => {
 		const { scrollTop } = event.target;
 		const { shouldStick } = this.state;
@@ -61,13 +68,6 @@ class InterventionsView extends Component {
 		});
 	}
 
-	setPreciseFilter = (filter) => {
-		const { preciseFilters } = this.state;
-		this.setState({
-			preciseFilters: Object.assign({}, preciseFilters, filter)
-		});
-	}
-
 	handleOptionBarClick = (elementClicked) => {
 		if (!elementClicked) return false;
 		const dialogOpenState = this.state.dialogsOpenState[elementClicked];
@@ -79,14 +79,17 @@ class InterventionsView extends Component {
 		const {
 			shouldStick,
 			isAdding,
+			preciseFilters,
 			dialogsOpenState
 		} = this.state;
 		return (
 			<div id="interventions-view-wrapper">
 				<NavigationBar />
 				<Dialogs
-					dialogsOpenState={this.state.dialogsOpenState}
+					dialogsOpenState={dialogsOpenState}
 					changeDialogsOpenState={this.changeDialogsOpenState}
+					preciseFilters={preciseFilters}
+					setPreciseFilter={this.setPreciseFilter}
 				/>
 				<SidePanel setCustomerInput={this.setCustomerInput} />
 				<div
@@ -100,6 +103,7 @@ class InterventionsView extends Component {
 					<OptionsBar
 						shouldStick={this.state.shouldStick}
 						onClick={this.handleOptionBarClick}
+						preciseFilters={preciseFilters}
 					/>
 					<InterventionsContent
 						shouldAddPadding={shouldStick}
@@ -156,19 +160,28 @@ const InterventionsContent = ({ shouldAddPadding, isAdding }) => (
 	</div>
 );
 
-const Dialogs = ({ dialogsOpenState, changeDialogsOpenState }) => (
+const Dialogs = ({
+	dialogsOpenState,
+	changeDialogsOpenState,
+	preciseFilters,
+	setPreciseFilter
+}) => (
 	<div>
 		<LocationDialog
 			open={dialogsOpenState.location}
 			handleClose={() => changeDialogsOpenState({ location: false })}
+			setPreciseFilter={setPreciseFilter}
 		/>
 		<StatusDialog
 			open={dialogsOpenState.status}
 			handleClose={() => changeDialogsOpenState({ status: false })}
+			setPreciseFilter={setPreciseFilter}
 		/>
 		<DateDialog
 			open={dialogsOpenState.date}
 			handleClose={() => changeDialogsOpenState({ date: false })}
+			selectedDate={preciseFilters.date || new Date()}
+			setPreciseFilter={setPreciseFilter}
 		/>
 	</div>
 );

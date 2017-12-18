@@ -2,17 +2,47 @@ import React from 'react';
 
 import { DatePicker } from 'material-ui-pickers';
 
-const DateDialog = ({ isOpen, selectedDate, handleClose }) => {
-	if (!isOpen) {
+import Button from 'material-ui/Button';
+import Dialog, {
+	DialogActions,
+	DialogContent,
+	DialogTitle
+} from 'material-ui/Dialog';
+
+const DateDialog = ({
+	open,
+	selectedDate,
+	handleClose,
+	setPreciseFilter
+}) => {
+	if (!open) {
 		return null;
 	}
 	return (
-		<DatePicker
-			keyboard
-			value={selectedDate}
-			onChange={this.handleDateChange}
-			animateYearScrolling={false}
-		/>
+		<Dialog
+			open={open}
+			onRequestClose={handleClose}
+		>
+			<DialogTitle>
+				{'Filtrer par location'}
+			</DialogTitle>
+			<DialogContent>
+				<DatePicker
+					keyboard
+					value={selectedDate}
+					onChange={date => setPreciseFilter({ date })}
+				/>
+			</DialogContent>
+			<DialogActions>
+				<Button
+					autoFocus
+					color="primary"
+					onClick={handleClose}
+				>
+					{'Confirmer'}
+				</Button>
+			</DialogActions>
+		</Dialog>
 	);
 }
 
