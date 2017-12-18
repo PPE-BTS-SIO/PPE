@@ -52,7 +52,7 @@ class Login extends Component {
           <div id="form">
             <TextField
             label="Username"
-            onChange={e => this.setState({ username: e.target.value })}
+            onChange={e => this.setState({ login: e.target.value })}
             margin="normal"
 
             />
@@ -66,6 +66,12 @@ class Login extends Component {
             type="password"
 
           />
+          <Button id="buttonLogin"
+					raised
+					onClick={() => this.handleLogin(login, password)}
+				      >
+					{'Login'}
+				</Button>
           </div>
         </div>
     </div>
