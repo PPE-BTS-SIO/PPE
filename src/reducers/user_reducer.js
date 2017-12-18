@@ -1,13 +1,12 @@
 import {
 
-	CREATE_USER_STARTED,
-	CREATE_USER_RECEIVED_DATA,
-	REQUEST_USER_STARTED,
-	REQUEST_USER_RECEIVED_DATA
+	LOGIN_USER_STARTED,
+	LOGIN_USER_RECEIVED_DATA
 
 } from '../actions/types';
 
 const initialState = {
+	hasReceivedLoginCallback: false,
 	hasReceivedUserData: false,
 
 	informations: {},
@@ -18,19 +17,26 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-	case CREATE_USER_STARTED: return Object.assign({}, state, {
-		hasReceivedUserData: null
-	});
+	case LOGIN_USER_STARTED:
+		return Object.assign({}, state, {
+			hasReceivedLoginCallback: null
+		});
 
-	case CREATE_USER_RECEIVED_DATA: {
-		const newState = JSON.parse(JSON.stringify(state));
-		newState.hasReceivedUserData = true;
-		if (action.isValid && action.user) {
-			const { user } = action;
-			newState.informations = user.informations;
-			newState.role = user.role;
+	case LOGIN_USER_RECEIVED_DATA: {
+		const { response } = action;
+		let { hasReceivedUserData, informations } = state;
+		if (response) {
+			const { status, data } = response;
+			if (status && status === 'success' && data) {
+				hasReceivedUserData = true;
+				informations = data;
+			}
 		}
-		return newState;
+		return Object.assign({}, state, {
+			hasReceivedLoginCallback: true,
+			hasReceivedUserData,
+			informations
+		})
 	}
 
 	default: return state;

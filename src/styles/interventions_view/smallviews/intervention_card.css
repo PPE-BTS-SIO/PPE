@@ -1,0 +1,182 @@
+.intervention-card {
+
+	height: 200px;
+	width: 100%;
+
+	padding: 20px;
+
+	background-color: #FFF;
+	border-top: 1px solid #E2E2E2;
+	border-radius: 3px;
+
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+	position: relative;
+
+	margin-bottom: 20px;
+
+	-webkit-transform: none;
+	transform: none;
+	transition: transform 300ms linear;
+
+}
+
+.intervention-card:last-child {
+
+	margin-bottom: 0;
+
+}
+
+.ic-id {
+
+	height: 40px;
+	width: 60px;
+
+	border-radius: 100px;
+
+	border: 1px solid #E2E2E2;
+
+	box-shadow: 0 10px 20px rgba(0,0,0,0.14), 0 6px 6px rgba(0,0,0,0.17);
+
+	position: absolute;
+	top: 20px;
+	right: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 20px;
+	font-family: "Roboto", "open sans", "sans serif";
+	color: rgba(0, 0, 0, .4);
+	font-weight: bolder;
+
+}
+
+.ic-buttons-container {
+
+	position: absolute;
+
+	right: 20px;
+	bottom: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.ic-buttons-container > div {
+
+	height: 40px;
+	width: 40px;
+
+	border-radius: 100px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.ic-status-button {
+
+	border: 1px dashed lightgray;
+
+	margin-left: 20px;
+
+}
+
+.ic-assign-technician-button {
+
+	border: 1px solid lightgray;
+
+	transition: .4s;
+
+}
+
+.ic-assign-technician-button:hover {
+
+	background-color: #7F7F7F;
+	border: none;
+	cursor: pointer;
+
+}
+
+.ic-assign-technician-button:hover svg {
+
+	fill: #FFF;
+
+}
+
+.ic-content {
+
+	height: 100%;
+	width: calc(100% - (40px * 2 + 20px) - 10px);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	font-family: "Roboto", "open sans", "sans serif";
+	color: rgba(0, 0, 0, .4);
+	font-size: 14px;
+
+}
+
+.ic-content-row {
+
+	display: flex;
+	align-items: center;
+
+	margin-bottom: 18px;
+
+}
+
+.ic-content-row:last-child {
+
+	margin: 0;
+
+}
+
+.ic-content-row > * {
+
+	float: left;
+
+	margin-right: 10px;
+
+}
+
+.ic-content-row > *:last-child {
+
+	margin: 0;
+
+}
+
+.ic-content-icon {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.ic-content-icon svg {
+
+	min-height: 20px;
+	max-height: 20px;
+
+}
+
+.ic-content-parameter {
+
+	text-transform: uppercase;
+
+}
+
+.ic-content-value {
+
+	white-space: nowrap;
+	font-weight: bolder;
+
+}

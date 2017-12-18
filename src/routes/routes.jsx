@@ -2,23 +2,35 @@ import React from 'react';
 
 import {
 	BrowserRouter as Router,
-	Route
+	Switch,
+	Route,
+	Redirect
 } from 'react-router-dom';
 
 /*
-'Home' is the component which will display the home page.
+'Login' is the component which will display the login page.
 */
 import Login from '../components/login/login';
+import InterventionsView from '../components/interventions_view/interventions_view';
 
 const Routes = () => (
 	<Router>
-		<div id="routes-container">
+		<Switch>
 			<Route
 				exact
 				path="/"
 				component={Login}
 			/>
-		</div>
+			<Route
+				exact
+				path="/interventions"
+				component={InterventionsView}
+			/>
+			<Redirect
+				from="*"
+				to="/"
+			/>
+		</Switch>
 	</Router>
 );
 

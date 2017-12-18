@@ -1,0 +1,31 @@
+.interventions-options-bar {
+
+	height: 50px;
+	width: 100%;
+
+	border-top: 1px solid lightgray;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.13), 0 3px 6px rgba(0,0,0,0.20);
+
+	background-color: white;
+
+	position: relative;
+
+	z-index: 1;
+
+}
+
+.interventions-options-bar > * {
+
+	float: left;
+
+}
+
+.iob-sticky {
+
+	position: fixed;
+
+	top: 70px;
+	left: 300px;
+
+}

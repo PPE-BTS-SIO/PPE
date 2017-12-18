@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import { createUser } from '../../../actions/user_actions';
+import { withTheme } from 'material-ui/styles';
+import AccountCircleIcon from 'material-ui-icons/AccountCircle';
 
-const DefaultNavigationBar = ({ socket, requestCreateUser }) => (
+const DefaultNavigationBar = ({ hasReceivedUserData }) => (
 	<div className="nav-bar">
 		<div id="nav-bar-logo">
 			<span>
@@ -18,22 +18,28 @@ const DefaultNavigationBar = ({ socket, requestCreateUser }) => (
 					{'Accueil'}
 				</span>
 			</Link>
-			<span
-				className="nav-bar-tab"
-				onClick={() => {
-					requestCreateUser(socket, 'yo', 'test');
-				}}
-			>
-				{'Se connecter'}
-			</span>
+			<Connection hasReceivedUserData={hasReceivedUserData} />
 		</div>
 	</div>
 );
 
-const mapStateToProps = state => ({
-	socket: state.nodeServer.socket
+const Connection = withTheme()(({ theme, hasReceivedUserData }) => {
+	if (!hasReceivedUserData) {
+		return (
+			<span className="nav-bar-tab">
+				{'Se connecter'}
+			</span>
+		);
+	}
+	return (
+		<span id="nav-bar-account">
+			<AccountCircleIcon color={theme.palette.primary[600]} />
+		</span>
+	)
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ requestCreateUser: createUser }, dispatch);
+const mapStateToProps = state => ({
+	hasReceivedUserData: state.user.hasReceivedUserData
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultNavigationBar);
+export default connect(mapStateToProps)(DefaultNavigationBar);

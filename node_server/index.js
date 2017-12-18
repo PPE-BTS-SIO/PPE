@@ -1,30 +1,29 @@
-const socketio = require('socket.io');
+require('colors');
+const socketio = require('socket.io')();
+const { connection } = require('./utils/sql');
+const {
+	socketIO,
+	mysql
+} = require('./utils/prefixes');
+const {
+	handleLogin
+} = require('./actions_handlers');
 
-const port = 8000;
+const socketPort = 8000;
+
+connection.connect(() => {
+	console.log(mysql, 'Successfuly connected!'.green);
+})
+
+const handleClientRequests = (client) => {
+	const { id } = client;
+	client.on('client/login', (data, callback) => handleLogin(data, callback, id));
+}
 
 socketio.on('connection', (client) => {
-	console.log(`Client wants to establish connection! user_id = ${client.id}`);
+	console.log(socketIO, `Client wants to establish connection! ID = ${client.id}`);
 	handleClientRequests(client);
 });
 
-handleClientRequests = (client) => {
-	client.on('client/send-chat-message', message => console.log(message));
-	client.on('client/create-user', (username, password) => {
-		console.log(`Got login request with login : ${username} and psw : ${password} !`);
-		client.emit('server/create-user', {
-			isValid: true,
-			user: {
-				role: 'client',
-				informations: {
-					username,
-					password,
-					firstName: 'Thomas',
-					lastName: 'Hey'
-				}
-			}
-		});
-	});
-}
-
-socketio.listen(port);
-console.log(`[Socket.io] Now listening on port ${port} !`);
+socketio.listen(socketPort);
+console.log(socketIO, `Now listening on port ${socketPort} !`.green);

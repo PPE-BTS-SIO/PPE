@@ -1,0 +1,32 @@
+#ib-add-button {
+
+	height: 50px;
+	width: 50px;
+
+	margin-left: 25px;
+
+	border: 1px solid lightgray;
+	border-radius: 100px;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.13), 0 3px 6px rgba(0,0,0,0.20);
+
+	background-color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#ib-add-button:hover {
+
+	cursor: pointer;
+
+}
+
+#ib-add-button svg {
+
+	max-height: 25px !important;
+	max-width: 25px !important;
+
+}

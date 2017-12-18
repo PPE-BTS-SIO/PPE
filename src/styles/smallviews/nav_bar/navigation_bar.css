@@ -88,3 +88,26 @@
 	color: white;
 
 }
+
+#nav-bar-account {
+
+	margin-left: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#nav-bar-account:hover {
+
+	cursor: pointer;
+
+}
+
+#nav-bar-account svg {
+
+	min-height: 35px !important;
+	min-width: 35px !important;
+
+}
