@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 import Button from 'material-ui/Button';
-import TextField from "material-ui/TextField";
+import TextField from 'material-ui/TextField';
 import { CircularProgress } from 'material-ui/Progress';
 
 import usericon from './usericon.png'
@@ -46,35 +46,36 @@ class Login extends Component {
 		const { login, password, message } = this.state;
 		const { hasReceivedLoginCallback } = this.props;
 		return (
-			<div id='belly'>
-        <div id="login-rectangle">
-          <img id="imageUser" src={usericon} />
-          <div id="form">
-            <TextField
-            label="Username"
-            onChange={e => this.setState({ login: e.target.value })}
-            margin="normal"
+			<div id="belly">
+				<div id="login-rectangle">
+					<img id="imageUser" src={usericon} />
+					<div id="form">
+						<TextField
+							label="Username"
+							onChange={e => this.setState({ login: e.target.value })}
+							margin="normal"
 
-            />
-          <br></br>
+						/>
+						<br />
 
-          <TextField
-            label="Password"
-            hintText="Password Field"
-            floatingLabelText="Password"
-            onChange={e => this.setState({ password: e.target.value })}
-            type="password"
+						<TextField
+							label="Password"
+							hintText="Password Field"
+							floatingLabelText="Password"
+							onChange={e => this.setState({ password: e.target.value })}
+							type="password"
 
-          />
-          <Button id="buttonLogin"
-					raised
-					onClick={() => this.handleLogin(login, password)}
-				      >
-					{'Login'}
-				</Button>
-          </div>
-        </div>
-    </div>
+						/>
+						<Button
+							id="buttonLogin"
+							raised
+							onClick={() => this.handleLogin(login, password)}
+						>
+							{'Login'}
+						</Button>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }
