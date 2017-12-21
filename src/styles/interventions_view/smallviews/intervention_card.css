@@ -106,7 +106,7 @@
 
 .ic-assign-technician-button:hover svg {
 
-	fill: #FFF;
+	fill: #FFF !important;
 
 }
 

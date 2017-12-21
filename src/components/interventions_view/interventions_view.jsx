@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import classnames from 'classnames';
 
-import NavigationBar from '../smallviews/nav_bar/navigation_bar';
+import NavigationBar from '../smallviews/top_bar/top_bar';
 import SidePanel from './smallviews/side_panel';
 import Banner from './smallviews/banner';
 import OptionsBar from './smallviews/options_bar';

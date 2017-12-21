@@ -17,7 +17,7 @@ const InterventionsBanner = ({ setInterventionsInput, handleAddClick }) => (
 const InterventionsSearchbox = ({ setInterventionsInput }) => (
 	<div id="ib-searchbox">
 		<div id="ib-searchbox-icon-container">
-			<Search color="rgba(0, 0, 0, .4)" />
+			<Search style={{ fill: 'rgba(0, 0, 0, .4)' }} />
 		</div>
 		<input
 			type="text"
@@ -31,7 +31,7 @@ const AddButton = ({ handleAddClick }) => (
 		id="ib-add-button"
 		onClick={handleAddClick}
 	>
-		<Add color="rgba(0, 0, 0, .4)" />
+		<Add style={{ fill: 'rgba(0, 0, 0, .4)' }} />
 	</div>
 );
 

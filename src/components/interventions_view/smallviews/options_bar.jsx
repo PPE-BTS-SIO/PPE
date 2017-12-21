@@ -53,7 +53,11 @@ const Option = withTheme()(({
 		<div className="iob-option-icon-container">
 			{React.cloneElement(
 				icon,
-				{ color: hightlighted ? theme.palette.primary[600] : '#7F7F7F' }
+				{
+					style: {
+						fill: hightlighted ? theme.palette.primary[600] : '#7F7F7F'
+					}
+				}
 			)}
 		</div>
 		<div className="iob-option-label-container">

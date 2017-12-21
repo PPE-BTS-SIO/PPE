@@ -12,7 +12,7 @@ import Dialog, {
 const StatusDialog = ({ open, handleClose }) => (
 	<Dialog
 		open={open}
-		onRequestClose={handleClose}
+		onClose={handleClose}
 	>
 		<DialogTitle>
 			{'Filtrer par status'}

@@ -23,7 +23,7 @@ const CustomerSearchbox = ({ setCustomerInput }) => (
 	<div id="isp-customerSearchbox-section">
 		<div id="isp-customerSearchbox-container">
 			<div id="isp-customerSearchbox-icon-container">
-				<Search color="rgba(0, 0, 0, .4)" />
+				<Search style={{ fill: 'rgba(0, 0, 0, .4)' }} />
 			</div>
 			<input
 				type="text"

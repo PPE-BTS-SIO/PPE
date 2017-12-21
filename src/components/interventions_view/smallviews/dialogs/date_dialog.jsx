@@ -21,7 +21,7 @@ const DateDialog = ({
 	return (
 		<Dialog
 			open={open}
-			onRequestClose={handleClose}
+			onClose={handleClose}
 		>
 			<DialogTitle>
 				{'Filtrer par date'}

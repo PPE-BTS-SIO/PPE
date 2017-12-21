@@ -7,7 +7,7 @@ import {
 
 const initialState = {
 	hasReceivedLoginCallback: false,
-	hasReceivedUserData: false,
+	hasReceivedUserData: true,
 
 	informations: {},
 

@@ -52,14 +52,14 @@ const AssignTechnicianButton = () => (
 		}}
 	>
 		<div className="ic-assign-technician-button">
-			<Person color="#7F7F7F" />
+			<Person style={{ fill: '#7F7F7F' }} />
 		</div>
 	</Tooltip>
 );
 
 const StatusButton = () => (
 	<div className="ic-status-button">
-		<CheckIcon color="#7F7F7F" />
+		<CheckIcon style={{ fill: '#7F7F7F' }} />
 	</div>
 );
 
@@ -79,7 +79,7 @@ const ContentRow = ({ icon, parameter, value }) => (
 
 const CustomerId = ({ customerId }) => (
 	<ContentRow
-		icon={<AccountBoxIcon color="#7F7F7F" />}
+		icon={<AccountBoxIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Identifiant du client"
 		value={customerId}
 	/>
@@ -87,7 +87,7 @@ const CustomerId = ({ customerId }) => (
 
 const PlannedDate = ({ date }) => (
 	<ContentRow
-		icon={<DateRangeIcon color="#7F7F7F" />}
+		icon={<DateRangeIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Date prévue"
 		value={date}
 	/>
@@ -95,7 +95,7 @@ const PlannedDate = ({ date }) => (
 
 const Location = ({ location }) => (
 	<ContentRow
-		icon={<LocationOnIcon color="#7F7F7F" />}
+		icon={<LocationOnIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Localisation"
 		value={location}
 	/>
@@ -103,7 +103,7 @@ const Location = ({ location }) => (
 
 const Comment = ({ comment }) => (
 	<ContentRow
-		icon={<CommentIcon color="#7F7F7F" />}
+		icon={<CommentIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Commentaire"
 		value={comment}
 	/>
