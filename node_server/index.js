@@ -6,18 +6,20 @@ const {
 	mysql
 } = require('./utils/prefixes');
 const {
-	handleLogin
+	handleLogin,
+	handleInterventionsRequest
 } = require('./actions_handlers');
 
 const socketPort = 8000;
 
 connection.connect(() => {
 	console.log(mysql, 'Successfuly connected!'.green);
-})
+});
 
 const handleClientRequests = (client) => {
 	const { id } = client;
 	client.on('client/login', (data, callback) => handleLogin(data, callback, id));
+	client.on('client/request-interventions', (data, callback) => handleInterventionsRequest(callback, id));
 }
 
 socketio.on('connection', (client) => {

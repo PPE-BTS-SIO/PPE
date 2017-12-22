@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import classnames from 'classnames';
 
@@ -11,6 +12,10 @@ import LocationDialog from './smallviews/dialogs/location_dialog';
 import StatusDialog from './smallviews/dialogs/status_dialog';
 import DateDialog from './smallviews/dialogs/date_dialog';
 import Wrapper from './smallviews/wrapper';
+
+import {
+	requestInterventions as requestInterventionsAction
+} from '../../actions/main_actions';
 
 import '../../styles/interventions_view/interventions_view.css';
 import '../../styles/interventions_view/smallviews/interventions_content.css';
@@ -37,6 +42,14 @@ class InterventionsView extends Component {
 			drawersOpenState: {
 				interventionsSidePanel: false // Only useful when window's width < 980px !
 			}
+		}
+	}
+
+	componentWillMount() {
+		const { hasReceivedInterventionsData } = this.props;
+		if (hasReceivedInterventionsData === false) {
+			const { requestInterventions } = this.props;
+			requestInterventions();
 		}
 	}
 
@@ -183,6 +196,13 @@ const Dialogs = ({
 	</div>
 );
 
-const mapStateToProps = state => ({ windowWidth: state.utils.windowWidth });
+const mapStateToProps = state => ({
+	windowWidth: state.utils.windowWidth,
+	hasReceivedInterventionsData: state.main.hasReceivedInterventionsData
+});
 
-export default connect(mapStateToProps)(InterventionsView);
+const mapDispatchToProps = dispatch => bindActionCreators({
+	requestInterventions: requestInterventionsAction
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(InterventionsView);
