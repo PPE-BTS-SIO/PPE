@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-import classnames from 'classnames';
-
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import { FormControl } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
 
 import AccountBoxIcon from 'material-ui-icons/AccountBox';

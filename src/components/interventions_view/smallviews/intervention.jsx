@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Dotdotdot from 'react-dotdotdot';
+import classnames from 'classnames';
 
 import Tooltip from 'material-ui/Tooltip';
 
@@ -14,6 +14,7 @@ import CommentIcon from 'material-ui-icons/Comment';
 import '../../../styles/interventions_view/smallviews/intervention_card.css';
 
 const InterventionsCard = ({
+	useMobileLayout,
 	id = '?',
 	customerId = '?',
 	plannedDate = 'Date inconnue',
@@ -22,17 +23,35 @@ const InterventionsCard = ({
 	assignedTechnician = null,
 	status = 'planned'
 }) => (
-	<div className="intervention-card">
+	<div className={
+		classnames(
+			'intervention-card',
+			{ 'intervention-card-mobile': useMobileLayout }
+		)
+	}
+	>
 		<InterventionId id={id} />
 		<div className="ic-buttons-container">
 			<AssignTechnicianButton />
 			<StatusButton />
 		</div>
 		<div className="ic-content">
-			<CustomerId customerId={customerId} />
-			<PlannedDate date={plannedDate} />
-			<Location location={location} />
-			<Comment comment={comment} />
+			<CustomerId
+				customerId={customerId}
+				useMobileLayout={useMobileLayout}
+			/>
+			<PlannedDate
+				date={plannedDate}
+				useMobileLayout={useMobileLayout}
+			/>
+			<Location
+				location={location}
+				useMobileLayout={useMobileLayout}
+			/>
+			<Comment
+				comment={comment}
+				useMobileLayout={useMobileLayout}
+			/>
 		</div>
 	</div>
 );
@@ -63,50 +82,66 @@ const StatusButton = () => (
 	</div>
 );
 
-const ContentRow = ({ icon, parameter, value }) => (
-	<div className="ic-content-row">
-		<div className="ic-content-icon">
-			{icon}
-		</div>
+const ContentRow = ({
+	useMobileLayout,
+	icon,
+	parameter,
+	value
+}) => {
+	const parameterToRender = useMobileLayout ? null : (
 		<span className="ic-content-parameter">
 			{`${parameter} : `}
 		</span>
-		<span className="ic-content-value">
-			{value}
-		</span>
-	</div>
-);
+	);
+	return (
+		<div className="ic-content-row">
+			<div className="ic-content-icon">
+				{icon}
+			</div>
+			{parameterToRender}
+			<span className="ic-content-value">
+				{value}
+			</span>
+		</div>
+	);
+};
 
-const CustomerId = ({ customerId }) => (
+const CustomerId = ({ customerId, useMobileLayout }) => (
 	<ContentRow
+		useMobileLayout={useMobileLayout}
 		icon={<AccountBoxIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Identifiant du client"
 		value={customerId}
 	/>
 );
 
-const PlannedDate = ({ date }) => (
+const PlannedDate = ({ date, useMobileLayout }) => (
 	<ContentRow
+		useMobileLayout={useMobileLayout}
 		icon={<DateRangeIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Date prévue"
 		value={date}
 	/>
 );
 
-const Location = ({ location }) => (
+const Location = ({ location, useMobileLayout }) => (
 	<ContentRow
+		useMobileLayout={useMobileLayout}
 		icon={<LocationOnIcon style={{ fill: '#7F7F7F' }} />}
 		parameter="Localisation"
 		value={location}
 	/>
 );
 
-const Comment = ({ comment }) => (
-	<ContentRow
-		icon={<CommentIcon style={{ fill: '#7F7F7F' }} />}
-		parameter="Commentaire"
-		value={comment}
-	/>
-);
+const Comment = ({ comment, useMobileLayout }) => {
+	if (useMobileLayout) return null;
+	return (
+		<ContentRow
+			icon={<CommentIcon style={{ fill: '#7F7F7F' }} />}
+			parameter="Commentaire"
+			value={comment}
+		/>
+	);
+};
 
 export default InterventionsCard;

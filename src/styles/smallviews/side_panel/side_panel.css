@@ -18,3 +18,16 @@
 	z-index: 2
 
 }
+
+.side-panel-in-drawer {
+
+	height: 100%;
+
+	margin-top: 0;
+	padding-top: 0;
+
+	box-shadow: none;
+
+	border-right: none;
+
+}

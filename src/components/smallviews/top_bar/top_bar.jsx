@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { withTheme } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import AccountCircleIcon from 'material-ui-icons/AccountCircle';
 import MenuIcon from 'material-ui-icons/Menu';
+import HomeIcon from 'material-ui-icons/Home';
+import Person from 'material-ui-icons/Person';
+
+import AtomicButton from '../../smallviews/buttons/atomic_button';
 
 import '../../../styles/smallviews/top_bar/top_bar.css';
 
@@ -21,7 +24,7 @@ class TopBar extends Component {
 
 	render() {
 		const { windowWidth, hasReceivedUserData } = this.props;
-		if (!windowWidth || windowWidth >= 700) {
+		if (!windowWidth || windowWidth > 700) {
 			return <DesktopTopBar hasReceivedUserData={hasReceivedUserData} />
 		}
 		return (
@@ -65,9 +68,10 @@ const Logo = () => (
 const Content = ({ hasReceivedUserData }) => (
 	<div id="nav-bar-navigation">
 		<Link to="/">
-			<span className="nav-bar-tab nav-bar-tab-active">
-				{'Accueil'}
-			</span>
+			<AtomicButton
+				icon={<HomeIcon style={{ fill: '#7F7F7F' }} />}
+				label="Accueil"
+			/>
 		</Link>
 		<Connection hasReceivedUserData={hasReceivedUserData} />
 	</div>
@@ -82,7 +86,7 @@ const DrawerToggler = ({ setDrawerOpenState }) => (
 	</div>
 );
 
-const Connection = withTheme()(({ theme, hasReceivedUserData }) => {
+const Connection = withTheme()(({ hasReceivedUserData }) => {
 	if (!hasReceivedUserData) {
 		return (
 			<span className="nav-bar-tab">
@@ -91,9 +95,10 @@ const Connection = withTheme()(({ theme, hasReceivedUserData }) => {
 		);
 	}
 	return (
-		<span id="nav-bar-account">
-			<AccountCircleIcon style={{ fill: '#7F7F7F' }} />
-		</span>
+		<AtomicButton
+			icon={<Person style={{ fill: '#7F7F7F' }} />}
+			label="Mon compte"
+		/>
 	)
 });
 

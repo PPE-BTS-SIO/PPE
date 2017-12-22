@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import classnames from 'classnames';
 
@@ -6,14 +7,15 @@ import NavigationBar from '../smallviews/top_bar/top_bar';
 import SidePanel from './smallviews/side_panel';
 import Banner from './smallviews/banner';
 import OptionsBar from './smallviews/options_bar';
-import AddCard from './smallviews/add_card';
-import Intervention from './smallviews/intervention';
 import LocationDialog from './smallviews/dialogs/location_dialog';
 import StatusDialog from './smallviews/dialogs/status_dialog';
 import DateDialog from './smallviews/dialogs/date_dialog';
+import Wrapper from './smallviews/wrapper';
 
 import '../../styles/interventions_view/interventions_view.css';
 import '../../styles/interventions_view/smallviews/interventions_content.css';
+
+const breakpoints = [980, 600];
 
 class InterventionsView extends Component {
 	constructor(props) {
@@ -31,8 +33,24 @@ class InterventionsView extends Component {
 				location: false,
 				status: false,
 				date: false
+			},
+			drawersOpenState: {
+				interventionsSidePanel: false // Only useful when window's width < 980px !
 			}
 		}
+	}
+
+	shouldComponentUpdate(nextProps) {
+		const oldWindowWidth = this.props.windowWidth;
+		const newWindowWidth = nextProps.windowWidth;
+		if (oldWindowWidth !== newWindowWidth) {
+			if (!newWindowWidth) return false;
+			if (!oldWindowWidth && newWindowWidth) return true;
+			return breakpoints.some(breakpoint =>
+				(oldWindowWidth > breakpoint && newWindowWidth <= breakpoint)
+					|| (oldWindowWidth <= breakpoint && newWindowWidth > breakpoint));
+		}
+		return true;
 	}
 
 	setCustomerInput = input => this.setState({ customerInput: input });
@@ -68,6 +86,13 @@ class InterventionsView extends Component {
 		});
 	}
 
+	changeDrawersOpenState = (drawersOpened) => {
+		const { drawersOpenState } = this.state;
+		this.setState({
+			drawersOpenState: Object.assign({}, drawersOpenState, drawersOpened)
+		});
+	}
+
 	handleOptionBarClick = (elementClicked) => {
 		if (!elementClicked) return false;
 		const dialogOpenState = this.state.dialogsOpenState[elementClicked];
@@ -80,8 +105,11 @@ class InterventionsView extends Component {
 			shouldStick,
 			isAdding,
 			preciseFilters,
-			dialogsOpenState
+			dialogsOpenState,
+			drawersOpenState
 		} = this.state;
+		const { windowWidth } = this.props;
+		const shouldUseMobileLayout = windowWidth <= 980;
 		return (
 			<div id="interventions-view-wrapper">
 				<NavigationBar />
@@ -91,9 +119,20 @@ class InterventionsView extends Component {
 					preciseFilters={preciseFilters}
 					setPreciseFilter={this.setPreciseFilter}
 				/>
-				<SidePanel setCustomerInput={this.setCustomerInput} />
+				<SidePanel
+					useMobileLayout={shouldUseMobileLayout}
+					setCustomerInput={this.setCustomerInput}
+					openDrawer={drawersOpenState.interventionsSidePanel}
+					changeDrawersOpenState={this.changeDrawersOpenState}
+				/>
 				<div
-					id="interventions-view-content-wrapper"
+					className={classnames(
+						'interventions-view-content-wrapper',
+						{
+							'interventions-view-content-wrapper-mobile': shouldUseMobileLayout
+						}
+					)
+					}
 					onScroll={this.handleContentScroll}
 				>
 					<Banner
@@ -101,11 +140,14 @@ class InterventionsView extends Component {
 						handleAddClick={this.handleAddClick}
 					/>
 					<OptionsBar
+						windowWidth={windowWidth}
 						shouldStick={this.state.shouldStick}
 						onClick={this.handleOptionBarClick}
 						preciseFilters={preciseFilters}
+						changeDrawersOpenState={this.changeDrawersOpenState}
 					/>
-					<InterventionsContent
+					<Wrapper
+						useMobileLayout={windowWidth <= 600}
 						shouldAddPadding={shouldStick}
 						isAdding={isAdding}
 					/>
@@ -114,51 +156,6 @@ class InterventionsView extends Component {
 		)
 	}
 }
-
-const InterventionsContent = ({ shouldAddPadding, isAdding }) => (
-	<div className={
-		classnames('interventions-content', {
-			'interventions-content-with-extra-padding': shouldAddPadding
-		})
-	}
-	>
-		<div className={classnames(
-			'interventions-content-wrapper',
-			{ 'interventions-content-wrapper-translated': isAdding }
-		)}
-		>
-			<AddCard isAdding={isAdding} />
-			<Intervention
-				id="1"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-			<Intervention
-				id="2"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-			<Intervention
-				id="3"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-			<Intervention
-				id="4"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-		</div>
-	</div>
-);
 
 const Dialogs = ({
 	dialogsOpenState,
@@ -186,4 +183,6 @@ const Dialogs = ({
 	</div>
 );
 
-export default InterventionsView;
+const mapStateToProps = state => ({ windowWidth: state.utils.windowWidth });
+
+export default connect(mapStateToProps)(InterventionsView);

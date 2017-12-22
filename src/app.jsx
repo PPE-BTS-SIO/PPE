@@ -101,7 +101,7 @@ class App extends Component {
 						}}
 						message="Vous êtes désormais connecté"
 						autoHideDuration={4000}
-						onRequestClose={() => this.setState({ openConnected: false })}
+						onClose={() => this.setState({ openConnected: false })}
 					/>
 				</div>
 			</MuiThemeProvider>

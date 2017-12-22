@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui-icons/Search';
 
 import SidePanel from '../../smallviews/side_panel/side_panel';
@@ -8,8 +9,42 @@ import '../../../styles/interventions_view/smallviews/interventions_side_panel.c
 import '../../../styles/interventions_view/smallviews/customer_searchbox.css';
 import '../../../styles/interventions_view/smallviews/customer_section.css';
 
-const InterventionsSidePanel = ({ setCustomerInput }) => (
-	<SidePanel>
+const InterventionsSidePanel = ({
+	useMobileLayout,
+	setCustomerInput,
+	openDrawer,
+	changeDrawersOpenState
+}) => {
+	if (useMobileLayout) {
+		return (
+			<MobileSidePanel
+				openDrawer={openDrawer}
+				changeDrawersOpenState={changeDrawersOpenState}
+				setCustomerInput={setCustomerInput}
+			/>
+		);
+	}
+	return <Content setCustomerInput={setCustomerInput} />
+}
+
+const MobileSidePanel = ({
+	openDrawer,
+	changeDrawersOpenState,
+	setCustomerInput
+}) => (
+	<Drawer
+		open={openDrawer}
+		onClose={() => changeDrawersOpenState({ interventionsSidePanel: false })}
+	>
+		<Content
+			setCustomerInput={setCustomerInput}
+			useMobileLayout
+		/>
+	</Drawer>
+);
+
+const Content = ({ setCustomerInput, useMobileLayout }) => (
+	<SidePanel isInDrawer={useMobileLayout} >
 		<CustomerSearchbox setCustomerInput={setCustomerInput} />
 		<CustomerSection />
 		<CustomerSection />

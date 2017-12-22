@@ -3,8 +3,6 @@
 	height: 100%;
 	width: 220px;
 
-	border-right: 1px solid lightgray;
-
 }
 
 .iob-option:hover {
@@ -52,5 +50,13 @@
 	font-family: "Roboto", "open sans", "sans serif";
 	font-weight: bolder;
 	text-transform: uppercase;
+
+}
+
+/* Style used only when browsing on device with window's width <= 980 */
+
+.iob-option-mobile {
+
+	width: auto;
 
 }

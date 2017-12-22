@@ -9,15 +9,36 @@
 
 	background-color: white;
 
+	display: flex;
+	justify-content: space-between;
+
 	position: relative;
 
 	z-index: 1;
 
 }
 
-.interventions-options-bar > * {
+.interventions-options-bar > div {
+
+	height: inherit;
+
+}
+
+.interventions-options-bar > div > * {
 
 	float: left;
+
+}
+
+.interventions-options-bar > div:first-child > * {
+
+	border-right: 1px solid lightgray;
+
+}
+
+.interventions-options-bar > div:last-child > * {
+
+	border-left: 1px solid lightgray;
 
 }
 
@@ -27,5 +48,11 @@
 
 	top: 70px;
 	left: 300px;
+
+}
+
+.iob-sticky-mobile {
+
+	left: 0;
 
 }

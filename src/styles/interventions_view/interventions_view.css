@@ -11,12 +11,18 @@
 
 }
 
-#interventions-view-content-wrapper {
+.interventions-view-content-wrapper {
 
 	height: auto;
 	max-height: calc(100% - 70px);
 	width: calc(100% - 300px);
 
 	overflow: auto;
+
+}
+
+.interventions-view-content-wrapper-mobile {
+
+	width: 100%;
 
 }

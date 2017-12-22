@@ -26,10 +26,10 @@ connection.connect(() => {
 		const picture = user.picture.large;
 		first = first.charAt(0).toUpperCase() + first.slice(1);
 		last = last.charAt(0).toUpperCase() + last.slice(1);
-		console.log(`${matricule} : ${first} : ${last} : ${location} : ${date} : ${mail} : ${password}\n`);
 		connection.query(
 			'INSERT INTO `Employe` (`Matricule`, `Nom`, `Prenom`, `Adresse`, `DateEmbauche`, `Password`, `Mail`, `ImageProfil`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-			[matricule, last, first, location, date, password, mail, picture]
+			[matricule, last, first, location, date, password, mail, picture],
+			() => console.log(`${matricule} : ${first} : ${last} : ${location} : ${date} : ${mail} : ${password}\n`)
 		);
 	});
 });

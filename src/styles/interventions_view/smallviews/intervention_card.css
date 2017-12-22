@@ -21,6 +21,12 @@
 
 }
 
+.intervention-card-mobile {
+
+	height: 150px;
+
+}
+
 .intervention-card:last-child {
 
 	margin-bottom: 0;

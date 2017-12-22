@@ -46,36 +46,12 @@ const AssistantRoutes = () => (
 	<Switch>
 		<Route
 			exact
-			path="/"
-			component={Login}
-		/>
-		<Route
-			exact
 			path="/interventions"
 			component={InterventionsView}
 		/>
 		<Redirect
 			from="*"
-			to="/"
-		/>
-	</Switch>
-);
-
-const TechnicianRoutes = () => (
-	<Switch>
-		<Route
-			exact
-			path="/"
-			component={Login}
-		/>
-		<Route
-			exact
-			path="/interventions"
-			component={InterventionsView}
-		/>
-		<Redirect
-			from="*"
-			to="/"
+			to="/interventions"
 		/>
 	</Switch>
 );

@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 import { withTheme } from 'material-ui/styles';
 
+import Search from 'material-ui-icons/Search';
 import LocationOn from 'material-ui-icons/LocationOn';
 import Check from 'material-ui-icons/Check';
 import DateRange from 'material-ui-icons/DateRange';
@@ -11,59 +12,103 @@ import DateRange from 'material-ui-icons/DateRange';
 import '../../../styles/interventions_view/smallviews/interventions_options_bar.css';
 import '../../../styles/interventions_view/smallviews/interventions_option.css';
 
-const InterventionsOptionsBar = ({ shouldStick, onClick, preciseFilters }) => (
-	<div className={
-		classnames('interventions-options-bar', {
-			'iob-sticky': shouldStick
-		})
-	}
-	>
-		<Option
-			icon={<LocationOn />}
-			label="ville"
-			hightlighted={preciseFilters.location}
-			onClick={() => onClick('location')}
-		/>
-		<Option
-			icon={<Check />}
-			label="status"
-			hightlighted={preciseFilters.status}
-			onClick={() => onClick('status')}
-		/>
-		<Option
-			icon={<DateRange />}
-			label="date"
-			hightlighted={preciseFilters.date}
-			onClick={() => onClick('date')}
-		/>
-	</div>
-);
+const InterventionsOptionsBar = ({
+	windowWidth,
+	shouldStick,
+	onClick,
+	preciseFilters,
+	changeDrawersOpenState
+}) => {
+	const useMobileLayout = windowWidth <= 980;
+	return (
+		<div className={
+			classnames('interventions-options-bar', {
+				'iob-sticky': shouldStick,
+				'iob-sticky-mobile': shouldStick && useMobileLayout
+			})
+		}
+		>
+			<SearchCustomers
+				show={useMobileLayout}
+				changeDrawersOpenState={changeDrawersOpenState}
+			/>
+			<div>
+				<Option
+					useMobileLayout={useMobileLayout}
+					icon={<LocationOn />}
+					label="ville"
+					hightlighted={preciseFilters.location}
+					onClick={() => onClick('location')}
+				/>
+				<Option
+					useMobileLayout={useMobileLayout}
+					icon={<Check />}
+					label="status"
+					hightlighted={preciseFilters.status}
+					onClick={() => onClick('status')}
+				/>
+				<Option
+					useMobileLayout={useMobileLayout}
+					icon={<DateRange />}
+					label="date"
+					hightlighted={preciseFilters.date}
+					onClick={() => onClick('date')}
+				/>
+			</div>
+		</div>
+	);
+};
+
+const SearchCustomers = ({ show, changeDrawersOpenState }) => {
+	if (!show) return null;
+	return (
+		<div>
+			<Option
+				useMobileLayout
+				icon={<Search />}
+				label="client"
+				onClick={() => changeDrawersOpenState({ interventionsSidePanel: true })}
+			/>
+		</div>
+	);
+}
 
 const Option = withTheme()(({
 	theme,
+	useMobileLayout,
 	icon,
 	label,
 	onClick,
 	hightlighted
-}) => (
-	<div
-		className="iob-option"
-		onClick={onClick}
-	>
-		<div className="iob-option-icon-container">
-			{React.cloneElement(
-				icon,
-				{
-					style: {
-						fill: hightlighted ? theme.palette.primary[600] : '#7F7F7F'
-					}
-				}
-			)}
-		</div>
+}) => {
+	const text = useMobileLayout ? null : (
 		<div className="iob-option-label-container">
 			{`${hightlighted ? 'Filtré' : 'Filtrer'} par ${label}`}
 		</div>
-	</div>
-));
+	);
+	return (
+		<div
+			className={
+				classnames(
+					'iob-option',
+					{ 'iob-option-mobile': useMobileLayout }
+				)
+			}
+			onClick={onClick}
+		>
+			<div className="iob-option-icon-container">
+				{React.cloneElement(
+					icon,
+					{
+						style: {
+							fill: hightlighted ? theme.palette.primary[600] : '#7F7F7F'
+						}
+					}
+				)}
+			</div>
+			{text}
+		</div>
+	);
+});
 
 export default InterventionsOptionsBar;

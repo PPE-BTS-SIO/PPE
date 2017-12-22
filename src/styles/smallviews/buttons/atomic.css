@@ -1,4 +1,5 @@
-.atomic-button-container, .atomic-button-label {
+.atomic-button-container,
+.atomic-button-label {
 
 	transition: .3s;
 
@@ -6,15 +7,30 @@
 
 .atomic-button-container {
 
-	padding: 10px 25px;
+	padding: 8px 15px;
 
-	border: 1px solid lightgray;
-	border-radius: 100px;
+	border: 1.5px solid rgba(0, 0, 0, .4);
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+
+}
+
+.atomic-button-container > div {
+
+	margin-right: 10px;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
+
+}
+
+.atomic-button-container > div:last-child {
+
+	margin: 0;
 
 }
 
@@ -22,13 +38,19 @@
 
 	cursor: pointer;
 
-	background-color: white;
+	background-color: rgba(0, 0, 0, .8);
 
 }
 
 .atomic-button-container:hover > .atomic-button-label {
 
-	color: rgba(0, 0, 0, .8) !important;
+	color: #FFF !important;
+
+}
+
+.atomic-button-container:hover svg {
+
+	fill: #FFF !important;
 
 }
 
@@ -36,6 +58,6 @@
 
 	font-family: 'Roboto', 'open sans', 'sans serif', 'Raleway';
 
-	color: white;
+	color: rgba(0, 0, 0, .8);
 
 }
