@@ -23,15 +23,18 @@ const InterventionsOptionsBar = ({
 	return (
 		<div className={
 			classnames('interventions-options-bar', {
+				'interventions-options-bar-mobile': useMobileLayout,
 				'iob-sticky': shouldStick,
 				'iob-sticky-mobile': shouldStick && useMobileLayout
 			})
 		}
 		>
-			<SearchCustomers
-				show={useMobileLayout}
-				changeDrawersOpenState={changeDrawersOpenState}
-			/>
+			<div>
+				<SearchCustomers
+					show={useMobileLayout}
+					changeDrawersOpenState={changeDrawersOpenState}
+				/>
+			</div>
 			<div>
 				<Option
 					useMobileLayout={useMobileLayout}
@@ -62,14 +65,12 @@ const InterventionsOptionsBar = ({
 const SearchCustomers = ({ show, changeDrawersOpenState }) => {
 	if (!show) return null;
 	return (
-		<div>
-			<Option
-				useMobileLayout
-				icon={<Search />}
-				label="client"
-				onClick={() => changeDrawersOpenState({ interventionsSidePanel: true })}
-			/>
-		</div>
+		<Option
+			useMobileLayout
+			icon={<Search />}
+			label="client"
+			onClick={() => changeDrawersOpenState({ interventionsSidePanel: true })}
+		/>
 	);
 }
 

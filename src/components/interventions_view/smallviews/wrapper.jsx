@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import classnames from 'classnames';
+
+import { CircularProgress } from 'material-ui/Progress';
 
 import AddCard from './add_card';
 import Intervention from './intervention';
@@ -8,7 +10,9 @@ import Intervention from './intervention';
 const InterventionsContent = ({
 	useMobileLayout,
 	shouldAddPadding,
-	isAdding
+	isAdding,
+	hasReceivedInterventionsData,
+	interventions
 }) => (
 	<div className={
 		classnames('interventions-content', {
@@ -24,41 +28,43 @@ const InterventionsContent = ({
 			}
 		)}
 		>
-			<AddCard isAdding={isAdding} />
-			<Intervention
+			<Content
+				hasReceivedInterventionsData={hasReceivedInterventionsData}
+				interventions={interventions}
+				isAdding={isAdding}
 				useMobileLayout={useMobileLayout}
-				id="1"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-			<Intervention
-				useMobileLayout={useMobileLayout}
-				id="2"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-			<Intervention
-				useMobileLayout={useMobileLayout}
-				id="3"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
-			/>
-			<Intervention
-				useMobileLayout={useMobileLayout}
-				id="4"
-				customerId="C1"
-				plannedDate="20/11/2017"
-				location="Lille"
-				comment="Aute veniam magna vet elit."
 			/>
 		</div>
 	</div>
 );
+
+const Content = ({
+	hasReceivedInterventionsData,
+	interventions,
+	isAdding,
+	useMobileLayout
+}) => {
+	if (hasReceivedInterventionsData === false) {
+		return "Il n'y pas encore d'interventions !"
+	} else if (hasReceivedInterventionsData === null) {
+		return <CircularProgress />
+	}
+	return (
+		<Fragment>
+			<AddCard isAdding={isAdding} />
+			{interventions.map(intervention => (
+				<Intervention
+					useMobileLayout={useMobileLayout}
+					id={intervention.id}
+					key={`intervention_${intervention.id}`}
+					customerId={intervention.customerId}
+					plannedDate={intervention.date}
+					location="Lille"
+					comment={intervention.comment}
+				/>
+			))}
+		</Fragment>
+	);
+}
 
 export default InterventionsContent;

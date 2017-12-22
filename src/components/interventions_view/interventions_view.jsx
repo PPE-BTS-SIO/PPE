@@ -121,7 +121,11 @@ class InterventionsView extends Component {
 			dialogsOpenState,
 			drawersOpenState
 		} = this.state;
-		const { windowWidth } = this.props;
+		const {
+			windowWidth,
+			hasReceivedInterventionsData,
+			interventions
+		} = this.props;
 		const shouldUseMobileLayout = windowWidth <= 980;
 		return (
 			<div id="interventions-view-wrapper">
@@ -163,6 +167,8 @@ class InterventionsView extends Component {
 						useMobileLayout={windowWidth <= 600}
 						shouldAddPadding={shouldStick}
 						isAdding={isAdding}
+						hasReceivedInterventionsData={hasReceivedInterventionsData}
+						interventions={interventions}
 					/>
 				</div>
 			</div>
@@ -198,7 +204,8 @@ const Dialogs = ({
 
 const mapStateToProps = state => ({
 	windowWidth: state.utils.windowWidth,
-	hasReceivedInterventionsData: state.main.hasReceivedInterventionsData
+	hasReceivedInterventionsData: state.main.hasReceivedInterventionsData,
+	interventions: state.main.interventions
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

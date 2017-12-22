@@ -1,3 +1,4 @@
+const Moment = require('moment');
 const { connection } = require('../utils/sql');
 const {
 	socketIO,
@@ -25,7 +26,7 @@ const handleInterventionsRequest = (callback, id) => {
 		}
 		const interventions = results.map((result) => {
 			const interventionId = result.Numero_Intervention;
-			const date = result.Date_Intervention;
+			const date = new Moment(result.Date_Intervention).format('YYYY-MM-DD');
 			const comment = result.Comment;
 			const assignedTechnican = result.Matricule;
 			const customerId = result.NumeroClient;

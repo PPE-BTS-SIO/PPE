@@ -10,11 +10,18 @@
 	background-color: white;
 
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 
 	position: relative;
+	overflow: hidden;
 
 	z-index: 1;
+
+}
+
+.interventions-options-bar-mobile {
+
+	justify-content: space-between;
 
 }
 

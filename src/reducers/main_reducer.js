@@ -17,7 +17,10 @@ export default (state = initialState, action) => {
 		return Object.assign({}, state, { hasReceivedInterventionsData: null });
 
 	case REQUEST_INTERVENTIONS_RECEIVED_DATA:
-		return console.log(action) || state;
+		return Object.assign({}, state, {
+			hasReceivedInterventionsData: true,
+			interventions: action.data.interventions
+		});
 
 	default: return state;
 	}
