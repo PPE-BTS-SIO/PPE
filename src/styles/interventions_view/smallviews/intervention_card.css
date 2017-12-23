@@ -1,7 +1,7 @@
 .intervention-card {
 
 	height: 200px;
-	width: 100%;
+	width: 500px;
 
 	padding: 20px;
 
@@ -13,11 +13,19 @@
 
 	position: relative;
 
-	margin-bottom: 20px;
+	margin: 0px 10px 20px 10px;
 
 	-webkit-transform: none;
 	transform: none;
 	transition: transform 300ms linear;
+
+}
+
+.intervention-card-full-width {
+
+	width: 100%;
+
+	margin-bottom: 15px;
 
 }
 

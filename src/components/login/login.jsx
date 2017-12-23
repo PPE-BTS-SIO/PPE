@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import { CircularProgress } from 'material-ui/Progress';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
 import usericon from './usericon.png'
@@ -81,7 +82,7 @@ class Login extends Component {
 					<img id="imageUser" src={usericon} />
 					<div id="form">
 						<TextField
-							label="Username"
+							label="Matricule"
 							onChange={e => this.setState({ login: e.target.value })}
 							margin="normal"
 						/>
@@ -94,14 +95,20 @@ class Login extends Component {
 							type="password"
 						/>
 						<p>{message}</p>
-						<Checkbox
-							checked={shouldRemember}
-							onChange={() => this.setState({ shouldRemember: !shouldRemember })}
+						<FormControlLabel
+							control={
+								<Checkbox
+									checked={shouldRemember}
+									onChange={() => this.setState({ shouldRemember: !shouldRemember })}
+								/>
+							}
+							label="Se souvenir de moi"
 						/>
 						<Button
 							id="buttonLogin"
 							raised
 							onClick={() => this.handleLogin(login, password, shouldRemember)}
+							color="primary"
 						>
 							{'Login'}
 						</Button>

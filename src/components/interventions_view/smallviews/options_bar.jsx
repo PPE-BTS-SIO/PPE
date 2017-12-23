@@ -8,6 +8,7 @@ import Search from 'material-ui-icons/Search';
 import LocationOn from 'material-ui-icons/LocationOn';
 import Check from 'material-ui-icons/Check';
 import DateRange from 'material-ui-icons/DateRange';
+import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
 
 import '../../../styles/interventions_view/smallviews/interventions_options_bar.css';
 import '../../../styles/interventions_view/smallviews/interventions_option.css';
@@ -17,7 +18,8 @@ const InterventionsOptionsBar = ({
 	shouldStick,
 	onClick,
 	preciseFilters,
-	changeDrawersOpenState
+	changeDrawersOpenState,
+	changeInterventionsPerRow
 }) => {
 	const useMobileLayout = windowWidth <= 980;
 	return (
@@ -29,12 +31,10 @@ const InterventionsOptionsBar = ({
 			})
 		}
 		>
-			<div>
-				<SearchCustomers
-					show={useMobileLayout}
-					changeDrawersOpenState={changeDrawersOpenState}
-				/>
-			</div>
+			<SearchCustomers
+				show={useMobileLayout}
+				changeDrawersOpenState={changeDrawersOpenState}
+			/>
 			<div>
 				<Option
 					useMobileLayout={useMobileLayout}
@@ -58,6 +58,10 @@ const InterventionsOptionsBar = ({
 					onClick={() => onClick('date')}
 				/>
 			</div>
+			<ChangeView
+				show={windowWidth > 1380}
+				changeInterventionsPerRow={changeInterventionsPerRow}
+			/>
 		</div>
 	);
 };
@@ -65,11 +69,25 @@ const InterventionsOptionsBar = ({
 const SearchCustomers = ({ show, changeDrawersOpenState }) => {
 	if (!show) return null;
 	return (
+		<div>
+			<Option
+				useMobileLayout
+				icon={<Search />}
+				label="client"
+				onClick={() => changeDrawersOpenState({ interventionsSidePanel: true })}
+			/>
+		</div>
+	);
+}
+
+const ChangeView = ({ show, changeInterventionsPerRow }) => {
+	if (!show) return null;
+	return (
 		<Option
 			useMobileLayout
-			icon={<Search />}
-			label="client"
-			onClick={() => changeDrawersOpenState({ interventionsSidePanel: true })}
+			icon={<RemoveRedEye />}
+			label="vue"
+			onClick={() => changeInterventionsPerRow()}
 		/>
 	);
 }

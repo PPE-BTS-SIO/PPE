@@ -40,7 +40,7 @@ const handleInterventionsRequest = (callback, id) => {
 		});
 		console.log(mysql, 'Got interventions!');
 		console.log(socketIO, 'Sending interventions to client...');
-		callback({ interventions });
+		setTimeout(() => callback({ interventions }), 3000);
 	});
 	return true;
 }

@@ -14,7 +14,8 @@ import CommentIcon from 'material-ui-icons/Comment';
 import '../../../styles/interventions_view/smallviews/intervention_card.css';
 
 const InterventionsCard = ({
-	useMobileLayout,
+	windowWidth,
+	interventionsPerRow,
 	id = '?',
 	customerId = '?',
 	plannedDate = 'Date inconnue',
@@ -22,39 +23,45 @@ const InterventionsCard = ({
 	comment = 'Commentaire inconnu',
 	assignedTechnician = null,
 	status = 'planned'
-}) => (
-	<div className={
-		classnames(
-			'intervention-card',
-			{ 'intervention-card-mobile': useMobileLayout }
-		)
-	}
-	>
-		<InterventionId id={id} />
-		<div className="ic-buttons-container">
-			<AssignTechnicianButton />
-			<StatusButton />
+}) => {
+	const useMobileLayout = windowWidth <= 600;
+	return (
+		<div className={
+			classnames(
+				'intervention-card',
+				{
+					'intervention-card-mobile': windowWidth <= 600,
+					'intervention-card-full-width': interventionsPerRow === 'one' || windowWidth <= 1380
+				}
+			)
+		}
+		>
+			<InterventionId id={id} />
+			<div className="ic-buttons-container">
+				<AssignTechnicianButton />
+				<StatusButton />
+			</div>
+			<div className="ic-content">
+				<CustomerId
+					customerId={customerId}
+					useMobileLayout={useMobileLayout}
+				/>
+				<PlannedDate
+					date={plannedDate}
+					useMobileLayout={useMobileLayout}
+				/>
+				<Location
+					location={location}
+					useMobileLayout={useMobileLayout}
+				/>
+				<Comment
+					comment={comment}
+					useMobileLayout={useMobileLayout}
+				/>
+			</div>
 		</div>
-		<div className="ic-content">
-			<CustomerId
-				customerId={customerId}
-				useMobileLayout={useMobileLayout}
-			/>
-			<PlannedDate
-				date={plannedDate}
-				useMobileLayout={useMobileLayout}
-			/>
-			<Location
-				location={location}
-				useMobileLayout={useMobileLayout}
-			/>
-			<Comment
-				comment={comment}
-				useMobileLayout={useMobileLayout}
-			/>
-		</div>
-	</div>
-);
+	)
+};
 
 const InterventionId = ({ id }) => (
 	<div className="ic-id">

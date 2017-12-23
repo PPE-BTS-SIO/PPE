@@ -8,15 +8,16 @@ import AddCard from './add_card';
 import Intervention from './intervention';
 
 const InterventionsContent = ({
-	useMobileLayout,
+	windowWidth,
 	shouldAddPadding,
 	isAdding,
 	hasReceivedInterventionsData,
-	interventions
+	interventions,
+	interventionsPerRow
 }) => (
 	<div className={
 		classnames('interventions-content', {
-			'interventions-content-mobile': useMobileLayout,
+			'interventions-content-mobile': windowWidth <= 600,
 			'interventions-content-with-extra-padding': shouldAddPadding
 		})
 	}
@@ -34,7 +35,8 @@ const InterventionsContent = ({
 				hasReceivedInterventionsData={hasReceivedInterventionsData}
 				interventions={interventions}
 				isAdding={isAdding}
-				useMobileLayout={useMobileLayout}
+				windowWidth={windowWidth}
+				interventionsPerRow={interventionsPerRow}
 			/>
 		</div>
 	</div>
@@ -44,7 +46,8 @@ const Content = ({
 	hasReceivedInterventionsData,
 	interventions,
 	isAdding,
-	useMobileLayout
+	windowWidth,
+	interventionsPerRow
 }) => {
 	if (hasReceivedInterventionsData === false) {
 		return "Il n'y pas encore d'interventions !"
@@ -56,7 +59,8 @@ const Content = ({
 			<AddCard isAdding={isAdding} />
 			{interventions.map(intervention => (
 				<Intervention
-					useMobileLayout={useMobileLayout}
+					windowWidth={windowWidth}
+					interventionsPerRow={interventionsPerRow}
 					id={intervention.id}
 					key={`intervention_${intervention.id}`}
 					customerId={intervention.customerId}

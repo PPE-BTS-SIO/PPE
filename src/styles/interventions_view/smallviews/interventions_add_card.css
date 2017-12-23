@@ -1,3 +1,13 @@
+#interventions-add-card-container {
+
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
 .interventions-add-card {
 
 	height: 400px;

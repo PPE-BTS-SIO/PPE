@@ -20,7 +20,7 @@ import {
 import '../../styles/interventions_view/interventions_view.css';
 import '../../styles/interventions_view/smallviews/interventions_content.css';
 
-const breakpoints = [980, 600];
+const breakpoints = [1380, 980, 600];
 
 class InterventionsView extends Component {
 	constructor(props) {
@@ -29,6 +29,7 @@ class InterventionsView extends Component {
 			customerInput: null,
 			interventionsInput: null,
 			isAdding: false,
+			interventionsPerRow: 'multiple',
 			preciseFilters: {
 				location: null,
 				status: null,
@@ -52,6 +53,17 @@ class InterventionsView extends Component {
 			requestInterventions();
 		}
 	}
+
+	/* componentDidMount() {
+		Notification.requestPermission((permission) => {
+			if (permission === 'granted') {
+				new Notification('Nouvelle intervention !', {
+					icon: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/Attention-512.png',
+					body: "Au travail Thomas ! L'intervention n° 42 attend d'être assignée !"
+				});
+			}
+		})
+	} */
 
 	shouldComponentUpdate(nextProps) {
 		const oldWindowWidth = this.props.windowWidth;
@@ -113,13 +125,21 @@ class InterventionsView extends Component {
 		return true;
 	}
 
+	changeInterventionsPerRow = (interventionsPerRow) => {
+		this.setState({
+			interventionsPerRow:
+				this.state.interventionsPerRow === 'multiple' ? 'one' : 'multiple'
+		})
+	}
+
 	render() {
 		const {
 			shouldStick,
 			isAdding,
 			preciseFilters,
 			dialogsOpenState,
-			drawersOpenState
+			drawersOpenState,
+			interventionsPerRow
 		} = this.state;
 		const {
 			windowWidth,
@@ -162,13 +182,15 @@ class InterventionsView extends Component {
 						onClick={this.handleOptionBarClick}
 						preciseFilters={preciseFilters}
 						changeDrawersOpenState={this.changeDrawersOpenState}
+						changeInterventionsPerRow={this.changeInterventionsPerRow}
 					/>
 					<Wrapper
-						useMobileLayout={windowWidth <= 600}
+						windowWidth={windowWidth}
 						shouldAddPadding={shouldStick}
 						isAdding={isAdding}
 						hasReceivedInterventionsData={hasReceivedInterventionsData}
 						interventions={interventions}
+						interventionsPerRow={interventionsPerRow}
 					/>
 				</div>
 			</div>

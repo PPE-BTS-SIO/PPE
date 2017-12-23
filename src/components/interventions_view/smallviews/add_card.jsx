@@ -39,15 +39,17 @@ class InterventionAddCard extends Component {
 			comment
 		} = this.state;
 		return (
-			<div className="interventions-add-card">
-				<Title />
-				<Content
-					customerId={customerId}
-					location={location}
-					date={date}
-					comment={comment}
-					handleChange={this.handleChange}
-				/>
+			<div id="interventions-add-card-container">
+				<div className="interventions-add-card">
+					<Title />
+					<Content
+						customerId={customerId}
+						location={location}
+						date={date}
+						comment={comment}
+						handleChange={this.handleChange}
+					/>
+				</div>
 			</div>
 		);
 	}
