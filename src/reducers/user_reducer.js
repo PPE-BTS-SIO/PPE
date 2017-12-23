@@ -7,7 +7,7 @@ import {
 
 const initialState = {
 	hasReceivedLoginCallback: false,
-	hasReceivedUserData: true,
+	hasReceivedUserData: false,
 
 	informations: {},
 
@@ -30,6 +30,10 @@ export default (state = initialState, action) => {
 			if (status && status === 'success' && data) {
 				hasReceivedUserData = true;
 				informations = data;
+				const { secretKey } = response;
+				if (secretKey) {
+					localStorage.setItem('cashcash_secret_key', secretKey);
+				}
 			}
 		}
 		return Object.assign({}, state, {

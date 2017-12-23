@@ -10,7 +10,7 @@ import {
 import { dispatchQueuedActions } from './utils_actions';
 
 export const connectToServer = () => (dispatch) => {
-	const socket = openSocket('192.168.43.204:8000');
+	const socket = openSocket('78.237.195.145:8000');
 	dispatch({
 		type: CONNECTION_TO_NODE_SERVER_STARTED,
 		socket

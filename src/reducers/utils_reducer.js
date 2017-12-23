@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
 		return Object.assign({}, state, { windowWidth: action.width });
 
 	case QUEUE_ACTION: {
-		const { queuedActions } = state;
+		const queuedActions = state.queuedActions;
 		queuedActions.push(action.toDispatch);
 		return Object.assign({}, state, queuedActions);
 	}

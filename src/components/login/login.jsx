@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import { CircularProgress } from 'material-ui/Progress';
+import Checkbox from 'material-ui/Checkbox';
 
 import usericon from './usericon.png'
 
@@ -20,18 +21,26 @@ class Login extends Component {
 		this.state = {
 			login: null,
 			password: null,
+			shouldRemember: false,
 			message: null
 		}
 	}
 
-	handleLogin = (login, password) => {
+	componentDidMount() {
+		const secretKey = localStorage.getItem('cashcash_secret_key');
+		if (secretKey) {
+			this.handleLoginWithSecretKey(secretKey);
+		}
+	}
+
+	handleLogin = (login, password, shouldRemember) => {
 		if (!login || !password) {
 			this.setState({ message: 'Veuillez entrer une combinaison valide' });
 			return false;
 		}
 		const { loginUser, history } = this.props;
 		if (!loginUser) return false;
-		loginUser(login, password)
+		loginUser({ login, password, shouldRemember })
 			.then((status) => {
 				if (!status || !history) return false;
 				history.push('/interventions');
@@ -42,8 +51,28 @@ class Login extends Component {
 		return true;
 	}
 
+	handleLoginWithSecretKey = (secretKey) => {
+		const { loginUser, history } = this.props;
+		if (!loginUser) return false;
+		loginUser({ secretKey })
+			.then((status) => {
+				if (!status || !history) return false;
+				history.push('/interventions');
+				return true;
+			}).catch((error) => {
+				console.log(error);
+				this.setState({ message: errors[error] || `Erreur inconnue : ${error}` });
+			});
+		return true;
+	}
+
 	render() {
-		const { login, password, message } = this.state;
+		const {
+			login,
+			password,
+			shouldRemember,
+			message
+		} = this.state;
 		const { hasReceivedLoginCallback } = this.props;
 
 		return (
@@ -57,7 +86,6 @@ class Login extends Component {
 							margin="normal"
 						/>
 						<br />
-
 						<TextField
 							label="Password"
 							hintText="Password Field"
@@ -66,10 +94,14 @@ class Login extends Component {
 							type="password"
 						/>
 						<p>{message}</p>
+						<Checkbox
+							checked={shouldRemember}
+							onChange={() => this.setState({ shouldRemember: !shouldRemember })}
+						/>
 						<Button
 							id="buttonLogin"
 							raised
-							onClick={() => this.handleLogin(login, password)}
+							onClick={() => this.handleLogin(login, password, shouldRemember)}
 						>
 							{'Login'}
 						</Button>

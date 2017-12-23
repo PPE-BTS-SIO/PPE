@@ -24,7 +24,9 @@ const InterventionsContent = ({
 		<div className={classnames(
 			'interventions-content-wrapper',
 			{
-				'interventions-content-wrapper-translated': isAdding
+				'interventions-content-wrapper-translated': isAdding,
+				'interventions-content-wrapper-no-interventions':
+					hasReceivedInterventionsData === null || !interventions
 			}
 		)}
 		>
@@ -47,7 +49,7 @@ const Content = ({
 	if (hasReceivedInterventionsData === false) {
 		return "Il n'y pas encore d'interventions !"
 	} else if (hasReceivedInterventionsData === null) {
-		return <CircularProgress />
+		return <CircularProgress size={50} />
 	}
 	return (
 		<Fragment>
