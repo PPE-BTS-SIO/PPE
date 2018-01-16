@@ -1,11 +1,12 @@
-const { connection } = require('../utils/sql');
+const { getConnection } = require('../utils/sql');
 const { socketIO } = require('../utils/prefixes');
 
 const loginFromSecretKey = require('./login/login_secret_key');
 const loginFromLoginAndPassword = require('./login/login_default');
 
 const handleLogin = (data, callback, id) => {
-	if (connection.state !== 'authenticated') {
+	const connection = getConnection();
+	if (!connection || connection.state !== 'authenticated') {
 		callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
 		return false;
 	}

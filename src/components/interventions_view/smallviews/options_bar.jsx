@@ -59,7 +59,7 @@ const InterventionsOptionsBar = ({
 				/>
 			</div>
 			<ChangeView
-				show={windowWidth > 1380}
+				show={windowWidth > 1400}
 				changeInterventionsPerRow={changeInterventionsPerRow}
 			/>
 		</div>
@@ -83,12 +83,14 @@ const SearchCustomers = ({ show, changeDrawersOpenState }) => {
 const ChangeView = ({ show, changeInterventionsPerRow }) => {
 	if (!show) return null;
 	return (
-		<Option
-			useMobileLayout
-			icon={<RemoveRedEye />}
-			label="vue"
-			onClick={() => changeInterventionsPerRow()}
-		/>
+		<div>
+			<Option
+				useMobileLayout
+				icon={<RemoveRedEye />}
+				label="vue"
+				onClick={() => changeInterventionsPerRow()}
+			/>
+		</div>
 	);
 }
 

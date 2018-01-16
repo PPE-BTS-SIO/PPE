@@ -49,7 +49,9 @@ const Content = ({
 	windowWidth,
 	interventionsPerRow
 }) => {
-	if (hasReceivedInterventionsData === false) {
+	if (hasReceivedInterventionsData === false
+		|| (hasReceivedInterventionsData &&
+			(!interventions || Object.keys(interventions).length < 1))) {
 		return "Il n'y pas encore d'interventions !"
 	} else if (hasReceivedInterventionsData === null) {
 		return <CircularProgress size={50} />

@@ -1,12 +1,13 @@
 const Moment = require('moment');
-const { connection } = require('../utils/sql');
+const { getConnection } = require('../utils/sql');
 const {
 	socketIO,
 	mysql
 } = require('../utils/prefixes');
 
 const handleInterventionsRequest = (callback, id) => {
-	if (connection.state !== 'authenticated') {
+	const connection = getConnection();
+	if (!connection || connection.state !== 'authenticated') {
 		callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
 		return false;
 	}
@@ -20,7 +21,7 @@ const handleInterventionsRequest = (callback, id) => {
 		if (!results || results.length < 1) {
 			console.log(mysql, 'Request failed: Request returned nothing!');
 			callback({
-				error: 'NO_INTERVENTIONS'
+				error: 'NO_DATA'
 			});
 			return false;
 		}
@@ -40,7 +41,7 @@ const handleInterventionsRequest = (callback, id) => {
 		});
 		console.log(mysql, 'Got interventions!');
 		console.log(socketIO, 'Sending interventions to client...');
-		setTimeout(() => callback({ interventions }), 3000);
+		return setTimeout(() => callback({ interventions }), 3000);
 	});
 	return true;
 }

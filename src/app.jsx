@@ -99,7 +99,7 @@ class App extends Component {
 							vertical: 'bottom',
 							horizontal: 'left'
 						}}
-						message="Vous êtes désormais connecté"
+						message="Connecté au serveur"
 						autoHideDuration={4000}
 						onClose={() => this.setState({ openConnected: false })}
 					/>

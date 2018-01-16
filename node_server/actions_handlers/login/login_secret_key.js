@@ -1,10 +1,11 @@
-const { connection } = require('../../utils/sql');
+const { getConnection } = require('../../utils/sql');
 const {
 	socketIO,
 	mysql
 } = require('../../utils/prefixes');
 
 const handleLoginFromSecretKey = (secretKey, callback) => {
+	const connection = getConnection();
 	connection.query(
 		'SELECT `login` FROM `Secret_Keys` WHERE `secret_key` LIKE ?',
 		[secretKey],

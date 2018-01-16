@@ -1,20 +1,15 @@
 require('colors');
 const socketio = require('socket.io')();
-const { connection } = require('./utils/sql');
-const {
-	socketIO,
-	mysql
-} = require('./utils/prefixes');
+const { handleConnect } = require('./utils/sql');
+const { socketIO } = require('./utils/prefixes');
 const {
 	handleLogin,
 	handleInterventionsRequest
 } = require('./actions_handlers');
 
-const socketPort = 8000;
+handleConnect();
 
-connection.connect(() => {
-	console.log(mysql, 'Successfuly connected!'.green);
-});
+const socketPort = 8000;
 
 const handleClientRequests = (client) => {
 	const { id } = client;

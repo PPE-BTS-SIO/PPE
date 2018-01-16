@@ -1,12 +1,13 @@
 const crypto = require('crypto');
 const { keccak512 } = require('js-sha3');
-const { connection } = require('../../utils/sql');
+const { getConnection } = require('../../utils/sql');
 const {
 	socketIO,
 	mysql
 } = require('../../utils/prefixes');
 
 const handleLoginFromLoginAndPassword = (data, callback) => {
+	const connection = getConnection();
 	const { login, password, shouldRemember } = data;
 	if (!login || !password) return false;
 	const encryptedPassword = keccak512(password);
