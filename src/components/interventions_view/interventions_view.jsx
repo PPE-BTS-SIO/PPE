@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import classnames from 'classnames';
 
 import NavigationBar from '../smallviews/top_bar/top_bar';
-import SidePanel from './smallviews/side_panel';
+import SidePanel from './smallviews/side_panel/side_panel';
 import Banner from './smallviews/banner';
 import OptionsBar from './smallviews/options_bar';
 import LocationDialog from './smallviews/dialogs/location_dialog';

@@ -95,3 +95,15 @@ a {
 	display: block;
 
 }
+
+@keyframes animateLeft {
+	0% {
+		transform: translateX(-300px);
+  	opacity: 0;
+	}
+
+	100% {
+    transform: translateX(0px);
+    opacity: 1;
+	}
+}

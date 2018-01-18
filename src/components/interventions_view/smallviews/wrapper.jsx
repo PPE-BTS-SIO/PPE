@@ -49,28 +49,39 @@ const Content = ({
 	windowWidth,
 	interventionsPerRow
 }) => {
+	let content = null;
 	if (hasReceivedInterventionsData === false
 		|| (hasReceivedInterventionsData &&
-			(!interventions || Object.keys(interventions).length < 1))) {
-		return "Il n'y pas encore d'interventions !"
+			(!interventions || interventions.length < 1))) {
+		content = (
+			<div id="icw-no-intervention">
+				{"Il n'y pas encore d'interventions !"}
+			</div>
+		);
 	} else if (hasReceivedInterventionsData === null) {
-		return <CircularProgress size={50} />
+		content = (
+			<div id="icw-no-intervention">
+				<CircularProgress size={50} />
+			</div>
+		);
+	} else {
+		content = interventions.map(intervention => (
+			<Intervention
+				windowWidth={windowWidth}
+				interventionsPerRow={interventionsPerRow}
+				id={intervention.id}
+				key={`intervention_${intervention.id}`}
+				customerId={intervention.customerId}
+				plannedDate={intervention.date}
+				location="Lille"
+				comment={intervention.comment}
+			/>
+		))
 	}
 	return (
 		<Fragment>
 			<AddCard isAdding={isAdding} />
-			{interventions.map(intervention => (
-				<Intervention
-					windowWidth={windowWidth}
-					interventionsPerRow={interventionsPerRow}
-					id={intervention.id}
-					key={`intervention_${intervention.id}`}
-					customerId={intervention.customerId}
-					plannedDate={intervention.date}
-					location="Lille"
-					comment={intervention.comment}
-				/>
-			))}
+			{content}
 		</Fragment>
 	);
 }

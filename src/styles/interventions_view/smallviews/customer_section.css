@@ -6,9 +6,17 @@
 	border-bottom: 1px solid lightgray;
 
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 
-	padding: 0 25px;
+	opacity: 0;
+	transform: translateX(-300px);
+
+	padding: 0 20px;
+
+	will-change: transform;
+	animation: animateLeft 1s ease-out;
+	animation-fill-mode: forwards;
 
 }
 
@@ -17,9 +25,37 @@
 	height: 60px;
 	width: 60px;
 
-	border: 1px solid lightgray;
+	border-top: 1px solid #E2E2E2;
 	border-radius: 100px;
 
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+
 	box-shadow: 0 3px 6px rgba(0,0,0,0.13), 0 3px 6px rgba(0,0,0,0.20);
+
+}
+
+.isp-customer-section-name-container {
+
+	width: calc(100% - 140px);
+
+	font-size: 14px;
+	font-weight: 700;
+	color: #8F8F8F;
+
+	overflow: hidden;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.isp-customer-section-icon-container {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 }

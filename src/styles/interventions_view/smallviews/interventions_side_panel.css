@@ -1,1 +1,13 @@
+#isp-content-loading {
 
+	height: 100%;
+	width: 100%;
+
+	font-style: italic;
+	font-family: 'Roboto', 'open sans', 'sans serif';
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}

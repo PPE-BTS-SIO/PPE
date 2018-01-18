@@ -4,7 +4,8 @@ const { handleConnect } = require('./utils/sql');
 const { socketIO } = require('./utils/prefixes');
 const {
 	handleLogin,
-	handleInterventionsRequest
+	handleInterventionsRequest,
+	handleCustomersRequest
 } = require('./actions_handlers');
 
 handleConnect();
@@ -15,6 +16,7 @@ const handleClientRequests = (client) => {
 	const { id } = client;
 	client.on('client/login', (data, callback) => handleLogin(data, callback, id));
 	client.on('client/request-interventions', (data, callback) => handleInterventionsRequest(callback, id));
+	client.on('client/request-customers', (data, callback) => handleCustomersRequest(callback, id))
 }
 
 socketio.on('connection', (client) => {
@@ -23,4 +25,4 @@ socketio.on('connection', (client) => {
 });
 
 socketio.listen(socketPort);
-console.log(socketIO, `Now listening on port ${socketPort} !`.green);
+console.log(socketIO, `Now listening on port ${socketPort}!`.green);

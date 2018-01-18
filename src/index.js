@@ -5,15 +5,15 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './app';
-
 import reducers from './reducers';
-
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
 	reducers,
 	applyMiddleware(thunkMiddleware)
 );
+
+window.store = store;
 
 const Application = () => (
 	<Provider store={store}>

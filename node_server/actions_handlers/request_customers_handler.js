@@ -1,18 +1,17 @@
-const Moment = require('moment');
 const { getConnection } = require('../utils/sql');
 const {
 	socketIO,
 	mysql
 } = require('../utils/prefixes');
 
-const handleInterventionsRequest = (callback, id) => {
+const handleCustomersRequest = (callback, id) => {
 	const connection = getConnection();
 	if (!connection || connection.state !== 'authenticated') {
 		callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
 		return false;
 	}
 	console.log(socketIO, `Got customers' request from ${id}!`);
-	connection.query('SELECT * FROM `Cient` WHERE 1', (error, results) => {
+	connection.query('SELECT * FROM `Client` WHERE 1', (error, results) => {
 		if (error) {
 			console.log(mysql, 'Request failed: ', error);
 			callback({ error });
@@ -63,4 +62,4 @@ const handleInterventionsRequest = (callback, id) => {
 	return true;
 }
 
-module.exports = handleInterventionsRequest;
+module.exports = handleCustomersRequest;
