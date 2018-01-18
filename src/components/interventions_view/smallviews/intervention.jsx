@@ -53,6 +53,7 @@ class InterventionCard extends PureComponent {
 			}
 			>
 				<EmployeesDialog
+					title="Assigner un technicien"
 					open={employeesDialogOpenState}
 					onClose={() => this.setEmployeesDialogOpenState(false)}
 				/>

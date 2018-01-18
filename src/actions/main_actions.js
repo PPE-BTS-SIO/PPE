@@ -65,6 +65,7 @@ export const requestEmployees = () => (dispatch, getState) => {
 	const { socket } = nodeServer;
 	console.log("Employees' request sent, waiting for callback...");
 	return socket.emit('client/request-employees', null, (receivedData) => {
+		console.log(receivedData);
 		console.log('Received callback!');
 		dispatch({
 			type: REQUEST_EMPLOYEES_RECEIVED_DATA,

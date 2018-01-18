@@ -57,7 +57,7 @@ const handleCustomersRequest = (callback, id) => {
 		});
 		console.log(mysql, 'Got customers!');
 		console.log(socketIO, 'Sending customers to client...');
-		return setTimeout(() => callback({ customers }), 3000);
+		return callback({ customers });
 	});
 	return true;
 }

@@ -9,6 +9,8 @@ import Dialog, {
 	DialogActions
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
+import Avatar from 'material-ui/Avatar';
+import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
 import { CircularProgress } from 'material-ui/Progress';
 
 import {
@@ -18,7 +20,7 @@ import {
 import '../../../../styles/interventions_view/smallviews/dialogs/employees_dialog.css';
 
 class EmployeesDialog extends PureComponent {
-	componentWillReceivedProps(nextProps) {
+	componentWillReceiveProps(nextProps) {
 		if (nextProps.open !== this.props.open && nextProps.open) {
 			const { hasReceivedEmployees } = this.props;
 			if (hasReceivedEmployees === false) {
@@ -34,12 +36,30 @@ class EmployeesDialog extends PureComponent {
 			onSelected,
 			onClose,
 			employees,
-			hasReceivedEmployees
+			hasReceivedEmployees,
+			title
 		} = this.props;
 
 		let content = null;
-		if (!hasReceivedEmployees) {
+		if (!hasReceivedEmployees || !employees || Object.keys(employees).length < 1 || employees.error) {
 			content = <Loading />
+		} else {
+			content = (
+				<List>
+					{employees.map(employee => (
+						<ListItem
+							button
+							onClick={() => onSelected(employee)}
+							key={`ed-employee-item-${employee.matricule}`}
+						>
+							<ListItemAvatar>
+								<Avatar alt={`Employé ${employee.matricule}`} src={employee.profilePicture} />
+							</ListItemAvatar>
+							<ListItemText primary={`${employee.firstName} ${employee.lastName}`} />
+						</ListItem>
+					))}
+				</List>
+			)
 		}
 
 		return (
@@ -48,9 +68,15 @@ class EmployeesDialog extends PureComponent {
 				onClose={onClose}
 			>
 				<DialogTitle>
-					{'Séléctionner un employé'}
+					{title || 'Séléctionnez un employé'}
 				</DialogTitle>
-				<DialogContent>
+				<DialogContent
+					className="ed-dialog-content"
+					onScroll={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
+					}}
+				>
 					{content}
 				</DialogContent>
 				<DialogActions>
@@ -66,8 +92,14 @@ class EmployeesDialog extends PureComponent {
 	}
 }
 
+const NoEmployee = () => (
+	<DialogContentText>
+		{"Il n'y a pas encore d'employé !"}
+	</DialogContentText>
+)
+
 const Loading = () => (
-	<div className="ed-loading-container">
+	<div className="ed-no-employee-container">
 		<CircularProgress />
 	</div>
 );

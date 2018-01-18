@@ -1,9 +1,15 @@
-.ed-loading-container {
+.ed-no-employee-container {
 
 	width: 100%;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+}
+
+.ed-dialog-content {
+
+	max-height: 300px;
 
 }
