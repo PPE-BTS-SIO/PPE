@@ -6,7 +6,8 @@ const {
 	handleLogin,
 	handleInterventionsRequest,
 	handleCustomersRequest,
-	handleEmployeesRequest
+	handleEmployeesRequest,
+	handleInterventionCreation
 } = require('./actions_handlers');
 
 handleConnect();
@@ -19,6 +20,7 @@ const handleClientRequests = (client) => {
 	client.on('client/request-interventions', (data, callback) => handleInterventionsRequest(callback, id));
 	client.on('client/request-customers', (data, callback) => handleCustomersRequest(callback, id))
 	client.on('client/request-employees', (data, callback) => handleEmployeesRequest(callback, id));
+	client.on('client/create-intervention', (data, callback) => handleInterventionCreation(callback, id, data));
 }
 
 socketio.on('connection', (client) => {

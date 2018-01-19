@@ -48,17 +48,6 @@ class App extends Component {
 		window.addEventListener('resize', this.handleWindowResize);
 	}
 
-	componentWillUnmount() {
-		window.removeEventListener('resize', this.handleWindowResize);
-	}
-
-	handleWindowResize = () => {
-		const { changeWindowWidth } = this.props;
-		if (!changeWindowWidth) return false;
-		changeWindowWidth(window.innerWidth);
-		return true;
-	}
-
 	componentWillReceiveProps(props) {
 		if (props.nodeStatus !== 'connected' && !this.state.openNotConnected) {
 			this.setState({
@@ -71,6 +60,17 @@ class App extends Component {
 				openConnected: true
 			});
 		}
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.handleWindowResize);
+	}
+
+	handleWindowResize = () => {
+		const { changeWindowWidth } = this.props;
+		if (!changeWindowWidth) return false;
+		changeWindowWidth(window.innerWidth);
+		return true;
 	}
 
 	/*
@@ -88,7 +88,7 @@ class App extends Component {
 						open={this.state.openNotConnected}
 						anchorOrigin={{
 							vertical: 'bottom',
-							horizontal: 'right'
+							horizontal: 'left'
 						}}
 						message="Vous n'êtes pas connecté au serveur"
 						action={<SnackbarAction />}
@@ -97,7 +97,7 @@ class App extends Component {
 						open={this.state.openConnected}
 						anchorOrigin={{
 							vertical: 'bottom',
-							horizontal: 'right'
+							horizontal: 'left'
 						}}
 						message="Connecté au serveur"
 						autoHideDuration={4000}

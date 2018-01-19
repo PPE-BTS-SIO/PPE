@@ -11,7 +11,7 @@
 
 .interventions-add-card {
 
-	height: 400px;
+	height: 440px;
 	width: 300px;
 
 	background-color: #FFF;
@@ -53,5 +53,25 @@
 	justify-content: center;
 	align-items: space-between;
 	flex-wrap: wrap;
+
+}
+
+.iac-buttons {
+
+	width: 100%;
+
+	margin-top: 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.iac-buttons > * {
+
+	width: 45%;
+
+	margin: 0 5px;
 
 }

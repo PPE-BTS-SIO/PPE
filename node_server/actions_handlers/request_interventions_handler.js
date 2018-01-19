@@ -29,12 +29,14 @@ const handleInterventionsRequest = (callback, id) => {
 			const interventionId = result.Numero_Intervention;
 			const date = new Moment(result.Date_Intervention).format('YYYY-MM-DD');
 			const comment = result.Commentaire;
+			const location = result.Localisation;
 			const assignedTechnican = result.Matricule;
 			const customerId = result.NumeroClient;
 			return {
 				id: interventionId,
 				date,
 				comment,
+				location,
 				assignedTechnican,
 				customerId
 			}

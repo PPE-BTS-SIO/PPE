@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 
 import AccountBoxIcon from 'material-ui-icons/AccountBox';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 import DateRangeIcon from 'material-ui-icons/DateRange';
 import CommentIcon from 'material-ui-icons/Comment';
+
+import EmployeesDialog from './dialogs/employees_dialog';
 
 import '../../../styles/interventions_view/smallviews/interventions_add_card.css';
 
@@ -18,9 +22,15 @@ class InterventionAddCard extends Component {
 			customerId: '',
 			location: '',
 			date: '',
-			comment: ''
+			comment: '',
+			technicianId: '',
+			openEmployeesDialog: false
 		}
 	}
+
+	setTechnicianId = technicianId => this.setState({ technicianId });
+
+	setEmployeesDialogOpenState = openEmployeesDialog => this.setState({ openEmployeesDialog });
 
 	handleChange = concernedElement => (event) => {
 		const input = event.target.value;
@@ -36,10 +46,22 @@ class InterventionAddCard extends Component {
 			customerId,
 			location,
 			date,
-			comment
+			comment,
+			technicianId,
+			openEmployeesDialog
 		} = this.state;
+
 		return (
 			<div id="interventions-add-card-container">
+				<EmployeesDialog
+					open={openEmployeesDialog}
+					onSelected={employee =>
+						this.setState({
+							openEmployeesDialog: false,
+							technicianId: employee.matricule
+						})
+					}
+				/>
 				<div className="interventions-add-card">
 					<Title />
 					<Content
@@ -47,7 +69,9 @@ class InterventionAddCard extends Component {
 						location={location}
 						date={date}
 						comment={comment}
+						technicianId={technicianId}
 						handleChange={this.handleChange}
+						setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
 					/>
 				</div>
 			</div>
@@ -68,7 +92,9 @@ const Content = ({
 	location,
 	date,
 	comment,
-	handleChange
+	technicianId,
+	handleChange,
+	setEmployeesDialogOpenState
 }) => (
 	<div className="iac-content">
 		<FormControl>
@@ -143,6 +169,45 @@ const Content = ({
 				}
 			/>
 		</FormControl>
+		<Buttons
+			customerId={customerId}
+			date={date}
+			location={location}
+			comment={comment}
+			technicianId={technicianId}
+			setEmployeesDialogOpenState={setEmployeesDialogOpenState}
+		/>
+	</div>
+);
+
+const Buttons = ({
+	customerId,
+	date,
+	location,
+	comment,
+	technicianId,
+	setEmployeesDialogOpenState
+}) => (
+	<div className="iac-buttons">
+		<Button
+			raised
+			color="accent"
+			onClick={() => setEmployeesDialogOpenState(true)}
+		>
+			{technicianId || 'Technicien'}
+		</Button>
+		<Button
+			raised
+			color="primary"
+			disabled={
+				!customerId
+				|| !date
+				|| !location
+				|| !comment
+			}
+		>
+			{'Terminer'}
+		</Button>
 	</div>
 );
 

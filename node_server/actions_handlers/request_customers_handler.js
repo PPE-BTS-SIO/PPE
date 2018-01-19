@@ -7,8 +7,7 @@ const {
 const handleCustomersRequest = (callback, id) => {
 	const connection = getConnection();
 	if (!connection || connection.state !== 'authenticated') {
-		callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
-		return false;
+		return callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
 	}
 	console.log(socketIO, `Got customers' request from ${id}!`);
 	connection.query('SELECT * FROM `Client` WHERE 1', (error, results) => {

@@ -29,7 +29,7 @@
 	height: auto;
 	width: 100%;
 
-	margin-top: -470px;
+	margin-top: -510px;
 
 	display: flex;
 	justify-content: center;
@@ -48,8 +48,8 @@
 
 .interventions-content-wrapper-translated {
 
-	-webkit-transform: translateY(470px);
-	transform: translateY(470px);
+	-webkit-transform: translateY(490px);
+	transform: translateY(490px);
 
 }
 
