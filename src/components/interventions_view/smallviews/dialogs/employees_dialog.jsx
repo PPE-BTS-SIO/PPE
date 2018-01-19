@@ -33,7 +33,7 @@ class EmployeesDialog extends PureComponent {
 	render() {
 		const {
 			open,
-			onSelected,
+			onSelected = () => {},
 			onClose,
 			employees,
 			hasReceivedEmployees,

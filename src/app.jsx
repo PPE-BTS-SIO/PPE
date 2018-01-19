@@ -88,7 +88,7 @@ class App extends Component {
 						open={this.state.openNotConnected}
 						anchorOrigin={{
 							vertical: 'bottom',
-							horizontal: 'left'
+							horizontal: 'right'
 						}}
 						message="Vous n'êtes pas connecté au serveur"
 						action={<SnackbarAction />}
@@ -97,7 +97,7 @@ class App extends Component {
 						open={this.state.openConnected}
 						anchorOrigin={{
 							vertical: 'bottom',
-							horizontal: 'left'
+							horizontal: 'right'
 						}}
 						message="Connecté au serveur"
 						autoHideDuration={4000}
