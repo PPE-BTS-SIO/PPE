@@ -51,6 +51,11 @@ class InterventionAddCard extends Component {
 			openEmployeesDialog
 		} = this.state;
 
+		const {
+			socket,
+			socketStatus
+		} = this.props;
+
 		return (
 			<div id="interventions-add-card-container">
 				<EmployeesDialog
@@ -72,6 +77,8 @@ class InterventionAddCard extends Component {
 						technicianId={technicianId}
 						handleChange={this.handleChange}
 						setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
+						socket={socket}
+						socketStatus={socketStatus}
 					/>
 				</div>
 			</div>
@@ -94,7 +101,9 @@ const Content = ({
 	comment,
 	technicianId,
 	handleChange,
-	setEmployeesDialogOpenState
+	setEmployeesDialogOpenState,
+	socket,
+	socketStatus
 }) => (
 	<div className="iac-content">
 		<FormControl>
@@ -176,6 +185,8 @@ const Content = ({
 			comment={comment}
 			technicianId={technicianId}
 			setEmployeesDialogOpenState={setEmployeesDialogOpenState}
+			socket={socket}
+			socketStatus={socketStatus}
 		/>
 	</div>
 );
@@ -186,29 +197,50 @@ const Buttons = ({
 	location,
 	comment,
 	technicianId,
-	setEmployeesDialogOpenState
-}) => (
-	<div className="iac-buttons">
-		<Button
-			raised
-			color="accent"
-			onClick={() => setEmployeesDialogOpenState(true)}
-		>
-			{technicianId || 'Technicien'}
-		</Button>
-		<Button
-			raised
-			color="primary"
-			disabled={
-				!customerId
-				|| !date
-				|| !location
-				|| !comment
-			}
-		>
-			{'Terminer'}
-		</Button>
-	</div>
-);
+	setEmployeesDialogOpenState,
+	socket,
+	socketStatus
+}) => {
+	const disabled = !customerId
+	|| !date
+	|| !location
+	|| !comment
+	|| !technicianId
+	|| socketStatus !== 'connected';
+	return (
+		<div className="iac-buttons">
+			<Button
+				raised
+				color="accent"
+				onClick={() => setEmployeesDialogOpenState(true)}
+			>
+				{technicianId || 'Technicien'}
+			</Button>
+			<Button
+				raised
+				color="primary"
+				disabled={disabled}
+				onClick={() => {
+					if (!disabled) {
+						socket.emit('client/create-intervention', {
+							customerId,
+							plannedDate: date,
+							location,
+							comment,
+							assignedTechnician: technicianId
+						})
+					}
+				}}
+			>
+				{'Terminer'}
+			</Button>
+		</div>
+	)
+};
 
-export default InterventionAddCard;
+const mapStateToProps = state => ({
+	socket: state.nodeServer.socket,
+	socketStatus: state.nodeServer.status
+});
+
+export default connect(mapStateToProps)(InterventionAddCard);
