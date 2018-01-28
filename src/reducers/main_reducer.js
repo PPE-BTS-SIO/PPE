@@ -7,18 +7,20 @@ import {
 	REQUEST_CUSTOMERS_RECEIVED_DATA,
 
 	REQUEST_EMPLOYEES_STARTED,
-	REQUEST_EMPLOYEES_RECEIVED_DATA
+	REQUEST_EMPLOYEES_RECEIVED_DATA,
+
+	RECEIVED_NEW_INTERVENTION
 
 } from '../actions/types';
 
 const initialState = {
-	interventions: {},
+	interventions: [],
 	hasReceivedInterventionsData: false,
 
-	customers: {},
+	customers: [],
 	hasReceivedCustomersData: false,
 
-	employees: {},
+	employees: [],
 	hasReceivedEmployeesData: false
 
 }
@@ -51,6 +53,12 @@ export default (state = initialState, action) => {
 			hasReceivedEmployeesData: true,
 			employees: action.data.employees
 		});
+
+	case RECEIVED_NEW_INTERVENTION: {
+		const newInterventions = state.interventions || [];
+		newInterventions.push({ ...action.intervention, id: newInterventions.length + 1 });
+		return Object.assign({}, state, { interventions: newInterventions });
+	}
 
 	default: return state;
 	}

@@ -37,16 +37,22 @@ class EmployeesDialog extends PureComponent {
 			onClose,
 			employees,
 			hasReceivedEmployees,
-			title
+			title,
+			typeToShow
 		} = this.props;
 
 		let content = null;
 		if (!hasReceivedEmployees || !employees || Object.keys(employees).length < 1 || employees.error) {
 			content = <Loading />
 		} else {
+			let filteredEmployees = employees;
+			if (typeToShow) {
+				filteredEmployees = filteredEmployees.filter(e => e.type === typeToShow.toUpperCase());
+			}
+			filteredEmployees = filteredEmployees.slice(0, 100);
 			content = (
 				<List>
-					{employees.map(employee => (
+					{filteredEmployees.map(employee => (
 						<ListItem
 							button
 							onClick={() => onSelected(employee)}

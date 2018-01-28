@@ -59,7 +59,9 @@ class InterventionAddCard extends Component {
 		return (
 			<div id="interventions-add-card-container">
 				<EmployeesDialog
+					typeToShow="T"
 					open={openEmployeesDialog}
+					onClose={() => this.setEmployeesDialogOpenState(false)}
 					onSelected={employee =>
 						this.setState({
 							openEmployeesDialog: false,

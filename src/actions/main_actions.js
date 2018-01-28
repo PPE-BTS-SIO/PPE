@@ -7,7 +7,9 @@ import {
 	REQUEST_CUSTOMERS_RECEIVED_DATA,
 
 	REQUEST_EMPLOYEES_STARTED,
-	REQUEST_EMPLOYEES_RECEIVED_DATA
+	REQUEST_EMPLOYEES_RECEIVED_DATA,
+
+	RECEIVED_NEW_INTERVENTION
 
 } from './types';
 
@@ -70,5 +72,15 @@ export const requestEmployees = () => (dispatch, getState) => {
 			type: REQUEST_EMPLOYEES_RECEIVED_DATA,
 			data: receivedData
 		})
+	});
+}
+
+export const handleReceivedNewIntervention = data => (dispatch) => {
+	if (!data || !data.intervention) return null;
+	const { intervention } = data;
+	console.log('Received new intervention!');
+	return dispatch({
+		type: RECEIVED_NEW_INTERVENTION,
+		intervention
 	});
 }

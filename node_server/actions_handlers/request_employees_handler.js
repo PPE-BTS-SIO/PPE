@@ -11,7 +11,7 @@ const handleEmployeesRequest = (callback, id) => {
 		return false;
 	}
 	console.log(socketIO, `Got employees' request from ${id}!`);
-	connection.query('SELECT * FROM `Employe` WHERE 1 LIMIT 100', (error, results) => {
+	connection.query('SELECT * FROM `Employe` WHERE 1', (error, results) => {
 		if (error) {
 			console.log(mysql, 'Request failed: ', error);
 			callback({ error });
@@ -26,6 +26,7 @@ const handleEmployeesRequest = (callback, id) => {
 		}
 		const employees = results.map((result) => {
 			const matricule = result.Matricule;
+			const type = result.Type;
 			const lastName = result.Nom;
 			const firstName = result.Prenom;
 			const address = result.Adresse;
@@ -35,6 +36,7 @@ const handleEmployeesRequest = (callback, id) => {
 
 			return ({
 				matricule,
+				type,
 				lastName,
 				firstName,
 				address,

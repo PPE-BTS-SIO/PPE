@@ -3,8 +3,9 @@ const {
 	socketIO,
 	mysql
 } = require('../utils/prefixes');
+const { broadcastToEmployees } = require('../utils/clients_tools');
 
-const handleInterventionCreation = (callback, id, data) => {
+const handleInterventionCreation = (callback = () => {}, id, data) => {
 	const connection = getConnection();
 	if (!connection || connection.state !== 'authenticated') {
 		return callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
@@ -27,7 +28,8 @@ const handleInterventionCreation = (callback, id, data) => {
 			}
 			console.log(mysql, 'Created intervention!');
 			console.log(socketIO, 'Sending callback...');
-			return ({ success: true });
+			callback({ success: true });
+			return broadcastToEmployees('server/intervention-created', ({ intervention: data }));
 		}
 	);
 }

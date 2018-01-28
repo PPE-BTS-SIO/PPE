@@ -4,36 +4,34 @@ const {
 	mysql
 } = require('../../utils/prefixes');
 
-const handleLoginFromSecretKey = (secretKey, callback) => {
+const handleLoginFromSecretKey = (secretKey, callback) => new Promise((resolve, reject) => {
 	const connection = getConnection();
-	connection.query(
+	return connection.query(
 		'SELECT `login` FROM `Secret_Keys` WHERE `secret_key` LIKE ?',
 		[secretKey],
 		(error, results) => {
 			if (error) {
 				console.log(mysql, `Login failed: ${error}`);
 				callback({ error });
-				return false;
+				return reject();
 			}
 			if (!results || results.length < 1 || !results[0] || !results[0].login) {
 				console.log(mysql, 'Login failed: Invalid secret key!');
 				callback({ error: 'INVALID_SECRET_KEY' });
-				return false;
+				return reject();
 			}
 			const { login } = results[0];
-			connection.query(
+			return connection.query(
 				'SELECT * FROM Employe WHERE Matricule = ?',
 				[login],
 				(e, r) => {
 					if (e) {
 						console.error(mysql, `Login failed: ${e}`);
-						callback({ error });
-						return false;
+						return callback({ error });
 					}
 					if (!r || r < 1) {
 						console.log(mysql, 'Login failed: No column match!');
-						callback({ error: 'INVALID_LOGIN_OR_PASSWORD' });
-						return false;
+						return callback({ error: 'INVALID_LOGIN_OR_PASSWORD' });
 					}
 					const receivedData = r[0];
 					if (!receivedData) return false;
@@ -43,12 +41,11 @@ const handleLoginFromSecretKey = (secretKey, callback) => {
 						status: 'success',
 						data: receivedData
 					});
-					return true;
+					return resolve(receivedData);
 				}
 			);
-			return true;
 		}
 	)
-}
+});
 
 module.exports = handleLoginFromSecretKey;

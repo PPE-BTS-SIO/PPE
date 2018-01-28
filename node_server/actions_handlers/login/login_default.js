@@ -6,26 +6,26 @@ const {
 	mysql
 } = require('../../utils/prefixes');
 
-const handleLoginFromLoginAndPassword = (data, callback) => {
+const handleLoginFromLoginAndPassword = (data, callback) => new Promise((resolve, reject) => {
 	const connection = getConnection();
 	const { login, password, shouldRemember } = data;
 	if (!login || !password) return false;
 	const encryptedPassword = keccak512(password);
-	connection.query(
+	return connection.query(
 		'SELECT * FROM Employe WHERE Matricule = ? AND Password = ?',
 		[login, encryptedPassword],
 		(error, results) => {
 			if (error) {
 				console.error(mysql, `Login failed: ${error}`);
 				callback({ error });
-				return false;
+				return reject();
 			}
 			if (!results || results.length < 1) {
 				console.log(mysql, 'Login failed: No column match!');
 				callback({
 					error: 'INVALID_LOGIN_OR_PASSWORD'
 				});
-				return false;
+				return reject();
 			}
 			const receivedData = results[0];
 			if (!receivedData) return false;
@@ -36,7 +36,7 @@ const handleLoginFromLoginAndPassword = (data, callback) => {
 					if (err) return false;
 					const token = buffer.toString('hex');
 					console.log(mysql, 'Storing secret key...');
-					connection.query(
+					return connection.query(
 						'INSERT INTO `Secret_Keys`(`secret_key`, `login`) VALUES (?, ?)',
 						[token, login],
 						(e) => {
@@ -47,21 +47,19 @@ const handleLoginFromLoginAndPassword = (data, callback) => {
 								data: receivedData,
 								secretKey: token
 							});
-							return true;
+							return resolve(receivedData)
 						}
 					);
-					return true;
 				});
 			} else {
 				callback({
 					status: 'success',
 					data: receivedData
 				});
+				return resolve(receivedData)
 			}
-			return true;
 		}
 	);
-	return true;
-}
+});
 
 module.exports = handleLoginFromLoginAndPassword;

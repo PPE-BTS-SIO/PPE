@@ -120,6 +120,7 @@ const SnackbarAction = () => (
 
 const mapStateToProps = state => ({
 	nodeStatus: state.nodeServer.status,
+	socket: state.nodeServer.socket,
 	role: state.user.role
 });
 

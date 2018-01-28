@@ -1,10 +1,12 @@
 const { getConnection } = require('../utils/sql');
 const { socketIO } = require('../utils/prefixes');
 
+const { addConnectedEmployee } = require('../utils/clients_tools');
+
 const loginFromSecretKey = require('./login/login_secret_key');
 const loginFromLoginAndPassword = require('./login/login_default');
 
-const handleLogin = (data, callback, id) => {
+const handleLogin = (data, callback, id, client) => {
 	const connection = getConnection();
 	if (!connection || connection.state !== 'authenticated') {
 		callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
@@ -13,12 +15,12 @@ const handleLogin = (data, callback, id) => {
 	console.log(socketIO, `Got login request from ${id.cyan}!`);
 	if (data.secretKey) {
 		console.log(socketIO, `Handling login using ${'secret key'.cyan} !`);
-		loginFromSecretKey(data.secretKey, callback);
-		return true;
+		return loginFromSecretKey(data.secretKey, callback)
+			.then(employee => addConnectedEmployee(client, employee));
 	}
 	console.log(socketIO, `Handling login using ${'login & password'.cyan} !`);
-	loginFromLoginAndPassword(data, callback);
-	return true;
+	return loginFromLoginAndPassword(data, callback)
+		.then(employee => addConnectedEmployee(client, employee));
 }
 
 module.exports = handleLogin;
