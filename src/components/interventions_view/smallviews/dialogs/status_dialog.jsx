@@ -9,13 +9,13 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 
-const StatusDialog = ({ open, handleClose }) => (
+const StatusDialog = ({ open, onClose }) => (
 	<Dialog
 		open={open}
-		onClose={handleClose}
+		onClose={onClose}
 	>
 		<DialogTitle>
-			{'Filtrer par status'}
+			{'Sélectionnez un status'}
 		</DialogTitle>
 		<DialogContent>
 			<DialogContentText>
@@ -26,7 +26,7 @@ const StatusDialog = ({ open, handleClose }) => (
 			<Button
 				autoFocus
 				color="primary"
-				onClick={handleClose}
+				onClick={onClose}
 			>
 				{'Confirmer'}
 			</Button>

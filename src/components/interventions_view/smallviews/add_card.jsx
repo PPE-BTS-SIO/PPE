@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
@@ -8,10 +8,15 @@ import Button from 'material-ui/Button';
 
 import AccountBoxIcon from 'material-ui-icons/AccountBox';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
-import DateRangeIcon from 'material-ui-icons/DateRange';
 import CommentIcon from 'material-ui-icons/Comment';
 
+import { DatePicker } from 'material-ui-pickers';
+
+import LocationPicker from '../../smallviews/location_picker';
+
+import CustomersDialog from './dialogs/customers_dialog';
 import EmployeesDialog from './dialogs/employees_dialog';
+import LocationDialog from './dialogs/location_dialog';
 
 import '../../../styles/interventions_view/smallviews/interventions_add_card.css';
 
@@ -21,16 +26,15 @@ class InterventionAddCard extends Component {
 		this.state = {
 			customerId: '',
 			location: '',
-			date: '',
+			date: new Date(),
 			comment: '',
 			technicianId: '',
-			openEmployeesDialog: false
+			openEmployeesDialog: false,
+			openCustomersDialog: false
 		}
 	}
 
 	setTechnicianId = technicianId => this.setState({ technicianId });
-
-	setEmployeesDialogOpenState = openEmployeesDialog => this.setState({ openEmployeesDialog });
 
 	handleChange = concernedElement => (event) => {
 		const input = event.target.value;
@@ -48,7 +52,9 @@ class InterventionAddCard extends Component {
 			date,
 			comment,
 			technicianId,
-			openEmployeesDialog
+			openEmployeesDialog,
+			openCustomersDialog,
+			openLocationDialog
 		} = this.state;
 
 		const {
@@ -58,16 +64,13 @@ class InterventionAddCard extends Component {
 
 		return (
 			<div id="interventions-add-card-container">
-				<EmployeesDialog
-					typeToShow="T"
-					open={openEmployeesDialog}
-					onClose={() => this.setEmployeesDialogOpenState(false)}
-					onSelected={employee =>
-						this.setState({
-							openEmployeesDialog: false,
-							technicianId: employee.matricule
-						})
-					}
+				<Dialogs
+					dialogsOpenState={{
+						employees: openEmployeesDialog,
+						customers: openCustomersDialog,
+						location: openLocationDialog
+					}}
+					setState={state => this.setState(state)}
 				/>
 				<div className="interventions-add-card">
 					<Title />
@@ -78,9 +81,9 @@ class InterventionAddCard extends Component {
 						comment={comment}
 						technicianId={technicianId}
 						handleChange={this.handleChange}
-						setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
 						socket={socket}
 						socketStatus={socketStatus}
+						setState={state => this.setState(state)}
 					/>
 				</div>
 			</div>
@@ -103,9 +106,9 @@ const Content = ({
 	comment,
 	technicianId,
 	handleChange,
-	setEmployeesDialogOpenState,
 	socket,
-	socketStatus
+	socketStatus,
+	setState
 }) => (
 	<div className="iac-content">
 		<FormControl>
@@ -119,49 +122,19 @@ const Content = ({
 				onChange={handleChange('customerId')}
 				endAdornment={
 					<InputAdornment position="end">
-						<IconButton>
+						<IconButton onClick={() => setState({ openCustomersDialog: true })}>
 							<AccountBoxIcon />
 						</IconButton>
 					</InputAdornment>
 				}
 			/>
 		</FormControl>
-		<FormControl>
-			<InputLabel htmlFor="newIntervention_plannedDate">
-				{'Date prevue'}
-			</InputLabel>
-			<Input
-				id="newIntervention_plannedDate"
-				type="text"
-				value={date}
-				onChange={handleChange('date')}
-				endAdornment={
-					<InputAdornment position="end">
-						<IconButton>
-							<DateRangeIcon />
-						</IconButton>
-					</InputAdornment>
-				}
-			/>
-		</FormControl>
-		<FormControl>
-			<InputLabel htmlFor="newIntervention_location">
-				{'Localisation'}
-			</InputLabel>
-			<Input
-				id="newIntervention_location"
-				type="text"
-				value={location}
-				onChange={handleChange('location')}
-				endAdornment={
-					<InputAdornment position="end">
-						<IconButton>
-							<LocationOnIcon />
-						</IconButton>
-					</InputAdornment>
-				}
-			/>
-		</FormControl>
+		<DatePicker
+			keyboard
+			value={date}
+			onChange={d => setState({ date: d })}
+		/>
+		<LocationPicker />
 		<FormControl>
 			<InputLabel htmlFor="newIntervention_comment">
 				{'Commentaire'}
@@ -186,9 +159,9 @@ const Content = ({
 			location={location}
 			comment={comment}
 			technicianId={technicianId}
-			setEmployeesDialogOpenState={setEmployeesDialogOpenState}
 			socket={socket}
 			socketStatus={socketStatus}
+			setState={setState}
 		/>
 	</div>
 );
@@ -199,9 +172,9 @@ const Buttons = ({
 	location,
 	comment,
 	technicianId,
-	setEmployeesDialogOpenState,
 	socket,
-	socketStatus
+	socketStatus,
+	setState
 }) => {
 	const disabled = !customerId
 	|| !date
@@ -214,7 +187,7 @@ const Buttons = ({
 			<Button
 				raised
 				color="accent"
-				onClick={() => setEmployeesDialogOpenState(true)}
+				onClick={() => setState({ openEmployeesDialog: true })}
 			>
 				{technicianId || 'Technicien'}
 			</Button>
@@ -239,6 +212,35 @@ const Buttons = ({
 		</div>
 	)
 };
+
+const Dialogs = ({
+	dialogsOpenState,
+	setState
+}) => (
+	<Fragment>
+		<CustomersDialog
+			open={dialogsOpenState.customers}
+			onClose={() => setState({ openCustomersDialog: false })}
+			onSelected={customer => setState({ customerId: customer.customerId })}
+		/>
+		<LocationDialog
+			open={dialogsOpenState.location}
+			onClose={() => setState({ openLocationDialog: false })}
+			onSelected={location => setState({ location })}
+		/>
+		<EmployeesDialog
+			typeToShow="T"
+			open={dialogsOpenState.employees}
+			onClose={() => setState({ openEmployeesDialog: false })}
+			onSelected={employee =>
+				setState({
+					openEmployeesDialog: false,
+					technicianId: employee.matricule
+				})
+			}
+		/>
+	</Fragment>
+);
 
 const mapStateToProps = state => ({
 	socket: state.nodeServer.socket,

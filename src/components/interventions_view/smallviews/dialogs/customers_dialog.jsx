@@ -6,12 +6,16 @@ import Dialog, {
 	DialogTitle,
 	DialogContent,
 	DialogContentText
-}  from 'material-ui/Dialog';
+} from 'material-ui/Dialog';
 import { CircleProgress } from 'material-ui/Progress';
+import Avatar from 'material-ui/Avatar';
+import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
 
 import {
 	requestCustomers as requestCustomersAction
 } from '../../../../actions/main_actions';
+
+import '../../../../styles/interventions_view/smallviews/dialogs/customers_dialog.css';
 
 class CustomersDialog extends PureComponent {
 	componentDidMount() {
@@ -24,7 +28,15 @@ class CustomersDialog extends PureComponent {
 
 	render() {
 		let content = null;
-		const { hasReceivedCustomers, customers } = this.props;
+
+		const {
+			hasReceivedCustomers,
+			customers,
+			open,
+			onClose,
+			onSelected
+		} = this.props;
+
 		if (hasReceivedCustomers === null) {
 			content = <CircleProgress />
 		} else if (hasReceivedCustomers && (!customers || Object.keys(customers).length < 1)) {
@@ -33,19 +45,56 @@ class CustomersDialog extends PureComponent {
 					{"Il n'y a pas de client."}
 				</DialogContentText>
 			);
+		} else {
+			content = (
+				<Customers
+					customers={customers}
+					onClose={onClose}
+					onSelected={onSelected}
+				/>
+			)
 		}
 		return (
-			<Dialog>
+			<Dialog
+				open={open}
+				onClose={onClose}
+			>
 				<DialogTitle>
 					{'Sélectionnez un client'}
 				</DialogTitle>
-				<DialogContent>
+				<DialogContent
+					className="cd-dialog-content"
+					onScroll={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
+					}}
+				>
 					{content}
 				</DialogContent>
 			</Dialog>
 		);
 	}
 }
+
+const Customers = ({ customers, onClose, onSelected }) => (
+	<List>
+		{customers.map(customer => (
+			<ListItem
+				button
+				onClick={() => {
+					onClose();
+					onSelected(customer);
+				}}
+				key={`ed-employee-item-${customer.customerId}`}
+			>
+				<ListItemAvatar>
+					<Avatar alt={`Client ${customer.customerId}`} src={customer.logo} />
+				</ListItemAvatar>
+				<ListItemText primary={customer.name} />
+			</ListItem>
+		))}
+	</List>
+);
 
 const mapStateToProps = state => ({
 	hasReceivedCustomers: state.main.hasReceivedCustomersData,

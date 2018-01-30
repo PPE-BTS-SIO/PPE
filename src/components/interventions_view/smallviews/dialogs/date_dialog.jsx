@@ -12,7 +12,7 @@ import Dialog, {
 const DateDialog = ({
 	open,
 	selectedDate,
-	handleClose,
+	onClose,
 	setPreciseFilter
 }) => {
 	if (!open) {
@@ -21,10 +21,10 @@ const DateDialog = ({
 	return (
 		<Dialog
 			open={open}
-			onClose={handleClose}
+			onClose={onClose}
 		>
 			<DialogTitle>
-				{'Filtrer par date'}
+				{'Sélectionnez une date'}
 			</DialogTitle>
 			<DialogContent>
 				<DatePicker
@@ -37,7 +37,7 @@ const DateDialog = ({
 				<Button
 					autoFocus
 					color="primary"
-					onClick={handleClose}
+					onClick={onClose}
 				>
 					{'Confirmer'}
 				</Button>

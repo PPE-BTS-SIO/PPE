@@ -175,6 +175,7 @@ class InterventionsView extends Component {
 					<Banner
 						setInterventionsInput={this.setInterventionsInput}
 						handleAddClick={this.handleAddClick}
+						isAdding={isAdding}
 					/>
 					<OptionsBar
 						windowWidth={windowWidth}
@@ -207,17 +208,17 @@ const Dialogs = ({
 	<div>
 		<LocationDialog
 			open={dialogsOpenState.location}
-			handleClose={() => changeDialogsOpenState({ location: false })}
+			onClose={() => changeDialogsOpenState({ location: false })}
 			setPreciseFilter={setPreciseFilter}
 		/>
 		<StatusDialog
 			open={dialogsOpenState.status}
-			handleClose={() => changeDialogsOpenState({ status: false })}
+			onClose={() => changeDialogsOpenState({ status: false })}
 			setPreciseFilter={setPreciseFilter}
 		/>
 		<DateDialog
 			open={dialogsOpenState.date}
-			handleClose={() => changeDialogsOpenState({ date: false })}
+			onClose={() => changeDialogsOpenState({ date: false })}
 			selectedDate={preciseFilters.date || new Date()}
 			setPreciseFilter={setPreciseFilter}
 		/>
