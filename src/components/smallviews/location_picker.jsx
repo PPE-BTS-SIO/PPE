@@ -1,8 +1,6 @@
 /* eslint no-undef: 0 */
 import React, { Component } from 'react';
 
-import Truncate from 'react-truncate';
-
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
@@ -25,6 +23,12 @@ class LocationPicker extends Component {
 		}
 	}
 
+	changeInput = (value) => {
+		const { onChange } = this.props;
+		if (onChange) onChange(value);
+		this.setState({ value });
+	}
+
 	retrievePredictions = (predictions, status) => {
 		if (status !== google.maps.places.PlacesServiceStatus.OK) {
 			return this.setState({ predictions: null });
@@ -33,15 +37,18 @@ class LocationPicker extends Component {
 	}
 
 	handleChange = (e) => {
-		const input = e.target.value
-		this.setState({ value: input });
+		const input = e.target.value;
+		this.changeInput(input);
 		if (!input) {
 			return this.setState({ predictions: null });
 		}
 		return service.getPlacePredictions({ input }, this.retrievePredictions);
 	}
 
-	handleSelection = (value) => this.setState({ value, predictions: null });
+	handleSelection = (value) => {
+		this.changeInput(value);
+		this.setState({ predictions: null })
+	};
 
 	handleClickAway = () => this.setState({ predictions: null });
 

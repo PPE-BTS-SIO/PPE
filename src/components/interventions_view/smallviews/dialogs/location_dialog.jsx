@@ -4,23 +4,26 @@ import Button from 'material-ui/Button';
 import Dialog, {
 	DialogActions,
 	DialogContent,
-	DialogContentText,
 	DialogTitle
 } from 'material-ui/Dialog';
 
+import LocationPicker from '../../../smallviews/location_picker';
+
+import '../../../../styles/interventions_view/smallviews/dialogs/location_dialog.css';
 
 const LocationDialog = ({ open, onClose }) => (
 	<Dialog
 		open={open}
 		onClose={onClose}
+		classes={{
+			paper: 'ld-paper'
+		}}
 	>
 		<DialogTitle>
 			{'Sélectionnez une location'}
 		</DialogTitle>
-		<DialogContent>
-			<DialogContentText>
-				{'Velit est est in et excepteur deserunt amet dolor mollit aliqua in non et consectetur consequat.'}
-			</DialogContentText>
+		<DialogContent classes={{ root: 'ld-content' }}>
+			<LocationPicker />
 		</DialogContent>
 		<DialogActions>
 			<Button

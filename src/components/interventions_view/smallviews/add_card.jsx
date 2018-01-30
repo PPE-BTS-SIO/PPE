@@ -134,7 +134,7 @@ const Content = ({
 			value={date}
 			onChange={d => setState({ date: d })}
 		/>
-		<LocationPicker />
+		<LocationPicker onChange={value => setState({ location: value })} />
 		<FormControl>
 			<InputLabel htmlFor="newIntervention_comment">
 				{'Commentaire'}
