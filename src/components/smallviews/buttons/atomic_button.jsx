@@ -8,9 +8,15 @@ It is basically a label with a rounded lightgray border and a transparent backgr
 On hover, the background turns black and the label turns white.
 The style can be edited either in the stylesheet file or directly inline.
 */
-const AtomicButton = ({ label, icon, style }) => (
+const AtomicButton = ({
+	label,
+	icon,
+	onClick,
+	style
+}) => (
 	<div
 		className="atomic-button-container"
+		onClick={onClick}
 		style={style}
 	>
 		<div className="atomic-button-icon">

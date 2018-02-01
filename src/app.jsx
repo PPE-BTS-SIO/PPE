@@ -10,6 +10,8 @@ import { blue } from 'material-ui/colors';
 import { connectToServer as connectToServerAction } from './actions/node_server_actions';
 import { changeWindowWidth as changeWindowWidthAction } from './actions/utils_actions';
 
+import UserSidePanel from './components/smallviews/user_side_panel/user_side_panel';
+
 import Routes from './routes/routes';
 
 /*
@@ -84,6 +86,7 @@ class App extends Component {
 			<MuiThemeProvider theme={theme}>
 				<div id="container">
 					<Routes />
+					<UserSidePanel />
 					<Snackbar
 						open={this.state.openNotConnected}
 						anchorOrigin={{

@@ -20,18 +20,20 @@ import LocationDialog from './dialogs/location_dialog';
 
 import '../../../styles/interventions_view/smallviews/interventions_add_card.css';
 
+const initialState = {
+	customerId: '',
+	location: '',
+	date: new Date(),
+	comment: '',
+	technicianId: '',
+	openEmployeesDialog: false,
+	openCustomersDialog: false
+};
+
 class InterventionAddCard extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			customerId: '',
-			location: '',
-			date: new Date(),
-			comment: '',
-			technicianId: '',
-			openEmployeesDialog: false,
-			openCustomersDialog: false
-		}
+		this.state = initialState;
 	}
 
 	setTechnicianId = technicianId => this.setState({ technicianId });
@@ -203,6 +205,10 @@ const Buttons = ({
 							location,
 							comment,
 							assignedTechnician: technicianId
+						}, (answer) => {
+							if (answer && answer.success) {
+								setState(initialState);
+							}
 						})
 					}
 				}}

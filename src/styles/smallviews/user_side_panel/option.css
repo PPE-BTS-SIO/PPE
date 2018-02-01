@@ -1,0 +1,38 @@
+.option-container {
+
+	height: 50px;
+	width: 50px;
+
+	background-color: #FFF;
+	border-radius: 100px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+	animation: showOption .3s;
+	animation-fill-mode: forwards;
+
+	will-change: transform;
+
+}
+
+.option-container svg {
+
+	fill: #7F7F7F !important;
+
+}
+
+@keyframes showOption {
+	0% {
+		transform: scale(.5);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}

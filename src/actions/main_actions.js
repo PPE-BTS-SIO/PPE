@@ -9,7 +9,9 @@ import {
 	REQUEST_EMPLOYEES_STARTED,
 	REQUEST_EMPLOYEES_RECEIVED_DATA,
 
-	RECEIVED_NEW_INTERVENTION
+	RECEIVED_NEW_INTERVENTION,
+
+	SET_USER_SIDE_PANEL_OPEN_STATE
 
 } from './types';
 
@@ -84,3 +86,11 @@ export const handleReceivedNewIntervention = data => (dispatch) => {
 		intervention
 	});
 }
+
+export const setUserSidePanelOpenState = state => (dispatch) => {
+	if (state !== true && state !== false) return null;
+	return dispatch({
+		type: SET_USER_SIDE_PANEL_OPEN_STATE,
+		state
+	})
+};

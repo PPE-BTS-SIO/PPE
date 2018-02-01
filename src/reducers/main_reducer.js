@@ -9,7 +9,9 @@ import {
 	REQUEST_EMPLOYEES_STARTED,
 	REQUEST_EMPLOYEES_RECEIVED_DATA,
 
-	RECEIVED_NEW_INTERVENTION
+	RECEIVED_NEW_INTERVENTION,
+
+	SET_USER_SIDE_PANEL_OPEN_STATE
 
 } from '../actions/types';
 
@@ -21,7 +23,9 @@ const initialState = {
 	hasReceivedCustomersData: false,
 
 	employees: [],
-	hasReceivedEmployeesData: false
+	hasReceivedEmployeesData: false,
+
+	userSidePanelOpenState: false
 
 }
 
@@ -59,6 +63,11 @@ export default (state = initialState, action) => {
 		newInterventions.push({ ...action.intervention, id: newInterventions.length + 1 });
 		return Object.assign({}, state, { interventions: newInterventions });
 	}
+
+	case SET_USER_SIDE_PANEL_OPEN_STATE:
+		return Object.assign({}, state, {
+			userSidePanelOpenState: action.state
+		});
 
 	default: return state;
 	}

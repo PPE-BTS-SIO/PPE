@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import { withTheme } from 'material-ui/styles';
@@ -9,6 +10,10 @@ import HomeIcon from 'material-ui-icons/Home';
 import Person from 'material-ui-icons/Person';
 
 import AtomicButton from '../../smallviews/buttons/atomic_button';
+
+import {
+	setUserSidePanelOpenState as setUserSidePanelOpenStateAction
+} from '../../../actions/main_actions';
 
 import '../../../styles/smallviews/top_bar/top_bar.css';
 
@@ -86,7 +91,11 @@ const DrawerToggler = ({ setDrawerOpenState }) => (
 	</div>
 );
 
-const Connection = withTheme()(({ hasReceivedUserData }) => {
+const mapDispatchToProps = dispatch => bindActionCreators({
+	setUserSidePanelOpenState: setUserSidePanelOpenStateAction
+}, dispatch);
+
+const Connection = connect(undefined, mapDispatchToProps)(({ hasReceivedUserData, setUserSidePanelOpenState }) => {
 	if (!hasReceivedUserData) {
 		return (
 			<span className="nav-bar-tab">
@@ -98,6 +107,7 @@ const Connection = withTheme()(({ hasReceivedUserData }) => {
 		<AtomicButton
 			icon={<Person style={{ fill: '#7F7F7F' }} />}
 			label="Mon compte"
+			onClick={() => setUserSidePanelOpenState(true)}
 		/>
 	)
 });
@@ -105,6 +115,6 @@ const Connection = withTheme()(({ hasReceivedUserData }) => {
 const mapStateToProps = state => ({
 	hasReceivedUserData: state.user.hasReceivedUserData,
 	windowWidth: state.utils.windowWidth
-})
+});
 
 export default connect(mapStateToProps)(TopBar);

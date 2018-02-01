@@ -1,0 +1,105 @@
+.usp-user-section-container {
+
+	height: 150px;
+	width: 250px;
+
+	padding: 15px;
+
+	background-color: #E8E8E8;
+	border-bottom: 1px solid lightgray;
+
+	transition: height .3s;
+	will-change: height;
+
+	position: relative;
+
+}
+
+.usp-user-section-container:hover {
+
+	cursor: pointer;
+
+}
+
+.usp-user-section-container-extended {
+
+	height: 250px;
+
+}
+
+.usp-user-section-container-extended #usp-user-section-icon {
+
+	transform: rotate(180deg);
+
+}
+
+#usp-user-section-picture {
+
+	height: 60px;
+	width: 60px;
+
+	background-color: #FFF;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 105%;
+
+	border: 1px solid lightgray;
+	border-radius: 100px;
+
+	margin-bottom: 20px;
+
+}
+
+#usp-user-section-name, #usp-user-section-mail {
+
+	font-family: "Roboto", "open sans", "sans serif";
+
+}
+
+#usp-user-section-name {
+
+	color: #5F5F5F;
+	font-weight: 500;
+
+	font-size: 14px;
+
+	margin-bottom: 5px;
+
+}
+
+#usp-user-section-mail {
+
+	color: #6F6F6F;
+
+	font-size: 13px;
+
+}
+
+#usp-user-section-icon {
+
+	position: absolute;
+
+	top: 110px;
+	right: 16px;
+
+	transition: transform .3s;
+	will-change: transform;
+
+}
+
+#usp-user-section-option {
+
+	height: 100px;
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#usp-user-section-option > div:first-child {
+
+	margin-right: 25px;
+
+}
