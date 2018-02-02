@@ -12,7 +12,7 @@ const handleLoginFromLoginAndPassword = (data, callback) => new Promise((resolve
 	if (!login || !password) return false;
 	const encryptedPassword = keccak512(password);
 	return connection.query(
-		'SELECT * FROM Employe WHERE Matricule = ? AND Password = ?',
+		'SELECT * FROM employe WHERE Matricule = ? AND Password = ?',
 		[login, encryptedPassword],
 		(error, results) => {
 			if (error) {
@@ -37,7 +37,7 @@ const handleLoginFromLoginAndPassword = (data, callback) => new Promise((resolve
 					const token = buffer.toString('hex');
 					console.log(mysql, 'Storing secret key...');
 					return connection.query(
-						'INSERT INTO `Secret_Keys`(`secret_key`, `login`) VALUES (?, ?)',
+						'INSERT INTO `secret_keys`(`secret_key`, `login`) VALUES (?, ?)',
 						[token, login],
 						(e) => {
 							if (e) return false;

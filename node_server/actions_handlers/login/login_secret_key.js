@@ -7,7 +7,7 @@ const {
 const handleLoginFromSecretKey = (secretKey, callback) => new Promise((resolve, reject) => {
 	const connection = getConnection();
 	return connection.query(
-		'SELECT `login` FROM `Secret_Keys` WHERE `secret_key` LIKE ?',
+		'SELECT `login` FROM `secret_keys` WHERE `secret_key` LIKE ?',
 		[secretKey],
 		(error, results) => {
 			if (error) {
@@ -22,7 +22,7 @@ const handleLoginFromSecretKey = (secretKey, callback) => new Promise((resolve, 
 			}
 			const { login } = results[0];
 			return connection.query(
-				'SELECT * FROM Employe WHERE Matricule = ?',
+				'SELECT * FROM employe WHERE Matricule = ?',
 				[login],
 				(e, r) => {
 					if (e) {

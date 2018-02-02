@@ -19,6 +19,9 @@
 	transform: none;
 	transition: transform 300ms linear;
 
+	animation: fadeIn .3s;
+	willChange: opacity;
+
 }
 
 .intervention-card-full-width {
