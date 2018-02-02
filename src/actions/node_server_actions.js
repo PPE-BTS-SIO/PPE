@@ -4,7 +4,7 @@ import openSocket from 'socket.io-client'
 import {
 
 	CONNECTION_TO_NODE_SERVER_STARTED,
-	CONNECTION_TO_NODE_SERVER_CHANGED_STATUS,
+	CONNECTION_TO_NODE_SERVER_CHANGED_STATUS
 
 } from './types';
 

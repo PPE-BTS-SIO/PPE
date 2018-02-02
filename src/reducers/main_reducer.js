@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
 		});
 
 	case RECEIVED_NEW_INTERVENTION: {
-		const newInterventions = state.interventions || [];
+		const newInterventions = JSON.parse(JSON.stringify(state.interventions)) || [];
 		newInterventions.push({ ...action.intervention, id: newInterventions.length + 1 });
 		return Object.assign({}, state, { interventions: newInterventions });
 	}

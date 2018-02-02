@@ -13,14 +13,14 @@ const handleInterventionCreation = (callback = () => {}, id, data) => {
 	console.log(socketIO, `Client ${id} want to create intervention!`);
 	const {
 		customerId,
-		plannedDate,
+		date,
 		location,
 		comment,
 		assignedTechnician
 	} = data;
 	return connection.query(
 		'INSERT INTO `intervention`(`Date_Intervention`, `Commentaire`, `Localisation`, `Matricule`, `NumeroClient`) VALUES (?,?,?,?,?)',
-		[plannedDate, comment, location, assignedTechnician, customerId],
+		[date, comment, location, assignedTechnician, customerId],
 		(error) => {
 			if (error) {
 				console.log(mysql, 'An error happened while adding intervention:'.red, error);

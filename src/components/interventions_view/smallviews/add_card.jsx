@@ -201,7 +201,7 @@ const Buttons = ({
 					if (!disabled) {
 						socket.emit('client/create-intervention', {
 							customerId,
-							plannedDate: date,
+							date,
 							location,
 							comment,
 							assignedTechnician: technicianId
