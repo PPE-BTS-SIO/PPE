@@ -36,6 +36,7 @@ const DateDialog = ({
 			<DialogActions>
 				<Button
 					autoFocus
+					dense
 					color="primary"
 					onClick={onClose}
 				>

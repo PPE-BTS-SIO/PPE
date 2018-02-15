@@ -87,6 +87,7 @@ class EmployeesDialog extends PureComponent {
 				</DialogContent>
 				<DialogActions>
 					<Button
+						dense
 						color="primary"
 						onClick={onClose}
 					>

@@ -25,6 +25,7 @@ const StatusDialog = ({ open, onClose }) => (
 		<DialogActions>
 			<Button
 				autoFocus
+				dense
 				color="primary"
 				onClick={onClose}
 			>
