@@ -19,7 +19,7 @@ class CustomerSection extends PureComponent {
 
 	render() {
 		const { customer, index } = this.props;
-		if (!customer || !index) {
+		if (!customer || index === undefined) {
 			return null;
 		}
 		const { isExtended } = this.state;

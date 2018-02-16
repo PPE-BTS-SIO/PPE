@@ -1,4 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import classnames from 'classnames';
 
@@ -7,40 +9,49 @@ import { CircularProgress } from 'material-ui/Progress';
 import AddCard from './add_card';
 import Intervention from './intervention';
 
-const InterventionsContent = ({
-	windowWidth,
-	shouldAddPadding,
-	isAdding,
-	hasReceivedInterventionsData,
-	interventions,
-	interventionsPerRow
-}) => (
-	<div className={
-		classnames('interventions-content', {
-			'interventions-content-mobile': windowWidth <= 600,
-			'interventions-content-with-extra-padding': shouldAddPadding
-		})
-	}
-	>
-		<div className={classnames(
-			'interventions-content-wrapper',
-			{
-				'interventions-content-wrapper-translated': isAdding,
-				'interventions-content-wrapper-no-interventions':
-					hasReceivedInterventionsData === null || !interventions
+import {
+	requestEmployees as requestEmployeesAction
+} from '../../../actions/main_actions';
+
+class InterventionsContent extends PureComponent {
+	render() {
+		const {
+			windowWidth,
+			shouldAddPadding,
+			isAdding,
+			hasReceivedInterventionsData,
+			interventions,
+			interventionsPerRow
+		} = this.props;
+		return (
+			<div className={
+				classnames('interventions-content', {
+					'interventions-content-mobile': windowWidth <= 600,
+					'interventions-content-with-extra-padding': shouldAddPadding
+				})
 			}
-		)}
-		>
-			<Content
-				hasReceivedInterventionsData={hasReceivedInterventionsData}
-				interventions={interventions}
-				isAdding={isAdding}
-				windowWidth={windowWidth}
-				interventionsPerRow={interventionsPerRow}
-			/>
-		</div>
-	</div>
-);
+			>
+				<div className={classnames(
+					'interventions-content-wrapper',
+					{
+						'interventions-content-wrapper-translated': isAdding,
+						'interventions-content-wrapper-no-interventions':
+							hasReceivedInterventionsData === null || !interventions
+					}
+				)}
+				>
+					<Content
+						hasReceivedInterventionsData={hasReceivedInterventionsData}
+						interventions={interventions}
+						isAdding={isAdding}
+						windowWidth={windowWidth}
+						interventionsPerRow={interventionsPerRow}
+					/>
+				</div>
+			</div>
+		);
+	}
+}
 
 const Content = ({
 	hasReceivedInterventionsData,
@@ -73,8 +84,9 @@ const Content = ({
 				key={`intervention_${intervention.id}`}
 				customerId={intervention.customerId}
 				plannedDate={intervention.date}
-				location="Lille"
+				location={intervention.location}
 				comment={intervention.comment}
+				assignedTechnician={intervention.assignedTechnician}
 			/>
 		))
 	}
@@ -86,4 +98,13 @@ const Content = ({
 	);
 }
 
-export default InterventionsContent;
+const mapStateToProps = state => ({
+	hasReceivedEmployees: state.main.hasReceivedEmployeesData,
+	employees: state.main.employees
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+	requestEmployees: requestEmployeesAction
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(InterventionsContent);

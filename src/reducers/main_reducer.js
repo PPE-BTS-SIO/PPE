@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
 		});
 
 	case REQUEST_EMPLOYEES_STARTED:
-		return Object.assign({}, state, { hasReceivedEmployeesData: true });
+		return Object.assign({}, state, { hasReceivedEmployeesData: null });
 
 	case REQUEST_EMPLOYEES_RECEIVED_DATA:
 		return Object.assign({}, state, {

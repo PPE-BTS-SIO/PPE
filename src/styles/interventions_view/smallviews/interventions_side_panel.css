@@ -1,6 +1,6 @@
 #isp-content-loading {
 
-	height: 100%;
+	height: calc(100% - 100px);
 	width: 100%;
 
 	font-style: italic;

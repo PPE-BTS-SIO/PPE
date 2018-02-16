@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import Drawer from 'material-ui/Drawer';
 import { CircularProgress } from 'material-ui/Progress';
-import Search from 'material-ui-icons/Search';
+import Search
+	from 'material-ui-icons/Search';
 
 import SidePanel from '../../../smallviews/side_panel/side_panel';
 import CustomerSection from './customer_section';
@@ -16,23 +17,60 @@ import '../../../../styles/interventions_view/smallviews/customer_searchbox.css'
 import '../../../../styles/interventions_view/smallviews/customer_section.css';
 
 class InterventionsSidePanel extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			filteredCustomers: null
+		}
+	}
+
 	componentDidMount() {
 		const { hasReceivedCustomers } = this.props;
 		if (hasReceivedCustomers === false) {
 			const { requestCustomers } = this.props;
-			requestCustomers();
+			return requestCustomers();
 		}
+		return this.filterCustomers();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const oldCustomers = this.props.customers;
+		const oldInput = this.props.customerInput;
+		const { customers, customerInput } = nextProps;
+		if (JSON.stringify(oldCustomers) !== JSON.stringify(customers)
+			|| oldInput !== customerInput) {
+			this.filterCustomers(nextProps);
+		}
+	}
+
+	filterCustomers = (propsToUse) => {
+		const { hasReceivedCustomers, customers, customerInput } = propsToUse || this.props;
+		if (hasReceivedCustomers === false || !customers || customers.length < 1) {
+			return null;
+		}
+		if (!customerInput) {
+			return this.setState({ filteredCustomers: customers });
+		}
+		const loweredInput = customerInput.toLowerCase();
+		const filteredCustomers = customers.filter((customer) => {
+			const keys = Object.keys(customer);
+			return keys.some(key =>
+				typeof customer[key] === 'string'
+				&& customer[key].toLowerCase().includes(loweredInput))
+		});
+		return this.setState({ filteredCustomers });
 	}
 
 	render() {
 		const {
 			hasReceivedCustomers,
-			customers,
 			useMobileLayout,
 			setCustomerInput,
 			openDrawer,
 			changeDrawersOpenState
 		} = this.props;
+
+		const customers = this.state.filteredCustomers;
 
 		if (useMobileLayout) {
 			return (
@@ -99,7 +137,6 @@ const Content = ({
 	} else {
 		content = (
 			<Fragment>
-				<CustomerSearchbox setCustomerInput={setCustomerInput} />
 				{customers.map((customer, index) => (
 					<CustomerSection
 						customer={customer}
@@ -112,7 +149,8 @@ const Content = ({
 	}
 
 	return (
-		<SidePanel isInDrawer={useMobileLayout} >
+		<SidePanel isInDrawer={useMobileLayout}>
+			<CustomerSearchbox setCustomerInput={setCustomerInput} />
 			{content}
 		</SidePanel>
 	);

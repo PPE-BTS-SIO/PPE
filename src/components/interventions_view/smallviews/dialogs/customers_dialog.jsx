@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -17,7 +17,7 @@ import {
 
 import '../../../../styles/interventions_view/smallviews/dialogs/customers_dialog.css';
 
-class CustomersDialog extends PureComponent {
+class CustomersDialog extends Component {
 	componentDidMount() {
 		const { hasReceivedCustomers } = this.props;
 		if (hasReceivedCustomers === false) {
@@ -96,7 +96,7 @@ const Customers = ({ customers, onClose, onSelected }) => (
 	</List>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => console.log(state) || ({
 	hasReceivedCustomers: state.main.hasReceivedCustomersData,
 	customers: state.main.customers
 });

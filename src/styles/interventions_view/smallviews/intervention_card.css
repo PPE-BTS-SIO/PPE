@@ -83,7 +83,8 @@
 }
 
 .ic-status-button,
-.ic-assign-technician-button {
+.ic-assign-technician-button,
+.ic-assigned-technician-button {
 
 	height: 40px;
 	width: 40px;
@@ -104,11 +105,16 @@
 
 }
 
+.ic-assign-technician-button,
+.ic-assigned-technician-button {
+
+	transition: .4s;
+
+}
+
 .ic-assign-technician-button {
 
 	border: 1px solid lightgray;
-
-	transition: .4s;
 
 }
 
@@ -121,6 +127,25 @@
 }
 
 .ic-assign-technician-button:hover svg {
+
+	fill: #FFF !important;
+
+}
+
+.ic-assigned-technician-button {
+
+	border: 1px solid rgb(30, 136, 229);
+
+}
+
+.ic-assigned-technician-button:hover {
+
+	background-color: rgb(30, 136, 229);
+	cursor: pointer;
+
+}
+
+.ic-assigned-technician-button:hover svg {
 
 	fill: #FFF !important;
 

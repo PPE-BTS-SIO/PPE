@@ -16,7 +16,7 @@
 
 	background-color: #FFF;
 
-	transition: background-color .4s;
+	transition: background-color .4s, height .3s;
 
 }
 

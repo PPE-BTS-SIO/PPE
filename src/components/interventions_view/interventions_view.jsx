@@ -134,6 +134,7 @@ class InterventionsView extends Component {
 
 	render() {
 		const {
+			customerInput,
 			shouldStick,
 			isAdding,
 			preciseFilters,
@@ -157,6 +158,7 @@ class InterventionsView extends Component {
 					setPreciseFilter={this.setPreciseFilter}
 				/>
 				<SidePanel
+					customerInput={customerInput}
 					useMobileLayout={shouldUseMobileLayout}
 					setCustomerInput={this.setCustomerInput}
 					openDrawer={drawersOpenState.interventionsSidePanel}

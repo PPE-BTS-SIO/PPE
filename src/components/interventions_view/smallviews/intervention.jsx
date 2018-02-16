@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import classnames from 'classnames';
 
@@ -15,11 +16,19 @@ import EmployeesDialog from './dialogs/employees_dialog';
 
 import '../../../styles/interventions_view/smallviews/intervention_card.css';
 
-class InterventionCard extends PureComponent {
+class InterventionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			employeesDialogOpenState: false
+		}
+	}
+
+	componentDidMount() {
+		const { hasReceivedEmployees } = this.props;
+		if (hasReceivedEmployees === false) {
+			const { requestEmployees } = this.props;
+			requestEmployees();
 		}
 	}
 
@@ -34,7 +43,7 @@ class InterventionCard extends PureComponent {
 			plannedDate = 'Date inconnue',
 			location = 'Localisation inconnue',
 			comment = 'Commentaire inconnu',
-			assignedTechnician = null,
+			assignedTechnician,
 			status = 'planned'
 		} = this.props;
 
@@ -60,7 +69,10 @@ class InterventionCard extends PureComponent {
 				/>
 				<InterventionId id={id} />
 				<div className="ic-buttons-container">
-					<AssignTechnicianButton setEmployeesDialogOpenState={this.setEmployeesDialogOpenState} />
+					<AssignTechnicianButton
+						assignedTechnician={assignedTechnician}
+						setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
+					/>
 					<StatusButton />
 				</div>
 				<div className="ic-content">
@@ -92,22 +104,39 @@ const InterventionId = ({ id }) => (
 	</div>
 );
 
-const AssignTechnicianButton = ({ setEmployeesDialogOpenState }) => (
-	<Tooltip
-		placement="top"
-		title="Assigner à un techicien"
-		style={{
-			whiteSpace: 'nowrap'
-		}}
-	>
-		<div
-			className="ic-assign-technician-button"
-			onClick={() => setEmployeesDialogOpenState(true)}
+const AssignTechnicianButton = ({ assignedTechnician, setEmployeesDialogOpenState }) => {
+	if (!assignedTechnician) {
+		return (
+			<Tooltip
+				placement="top"
+				title="Assigner à un techicien"
+				style={{
+					whiteSpace: 'nowrap'
+				}}
+			>
+				<div
+					className="ic-assign-technician-button"
+					onClick={() => setEmployeesDialogOpenState(true)}
+				>
+					<Person style={{ fill: '#7F7F7F' }} />
+				</div>
+			</Tooltip>
+		);
+	}
+	return (
+		<Tooltip
+			placement="top"
+			title={`Intervention assigné au technicien ${assignedTechnician}`}
+			style={{
+				whiteSpace: 'nowrap'
+			}}
 		>
-			<Person style={{ fill: '#7F7F7F' }} />
-		</div>
-	</Tooltip>
-);
+			<div className="ic-assigned-technician-button">
+				<Person style={{ fill: 'rgb(30, 136, 229)' }} />
+			</div>
+		</Tooltip>
+	);
+}
 
 const StatusButton = () => (
 	<div className="ic-status-button">
@@ -177,4 +206,6 @@ const Comment = ({ comment, useMobileLayout }) => {
 	);
 };
 
-export default InterventionCard;
+const mapStateToProps = ({ main: { employees } }) => ({ employees });
+
+export default connect(mapStateToProps)(InterventionCard);
