@@ -65,10 +65,6 @@ const Options = ({ isExtended }) => {
 	return (
 		<div id="usp-user-section-option">
 			<Option
-				tooltip="Modifier mon mot de passe"
-				icon={<Lock />}
-			/>
-			<Option
 				tooltip="Se déconnecter"
 				icon={<PowerSettingsNew />}
 				onClick={() => {
