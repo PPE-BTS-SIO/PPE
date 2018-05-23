@@ -34,11 +34,13 @@
     "socket.io-client": "^2.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "ibd": "yarn install && yarn build"
-  },
+                                "start": "react-scripts start",
+                                "build": "react-scripts build",
+                                "test": "react-scripts test --env=jsdom",
+                                "eject": "react-scripts eject",
+                                "ibd": "yarn install && yarn build && firebase deplo$
+                }
+
+,
   "devDependencies": {}
 }

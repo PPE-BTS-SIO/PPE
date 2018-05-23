@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import classnames from 'classnames';
 
+import Truncate from 'react-truncate';
+
 import Tooltip from 'material-ui/Tooltip';
 
 import CheckIcon from 'material-ui-icons/Check';
@@ -151,9 +153,9 @@ const ContentRow = ({
 	value
 }) => {
 	const parameterToRender = useMobileLayout ? null : (
-		<span className="ic-content-parameter">
+		<div className="ic-content-parameter">
 			{`${parameter} : `}
-		</span>
+		</div>
 	);
 	return (
 		<div className="ic-content-row">
@@ -161,9 +163,11 @@ const ContentRow = ({
 				{icon}
 			</div>
 			{parameterToRender}
-			<span className="ic-content-value">
-				{value}
-			</span>
+			<div className="ic-content-value">
+				<Truncate lines={1}>
+					{value}
+				</Truncate>
+			</div>
 		</div>
 	);
 };
