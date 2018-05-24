@@ -53,16 +53,130 @@ class CustomerSection extends PureComponent {
 							<KeyboardArrowDown style={{ fill: '#7F7F7F' }} />
 						</div>
 					</div>
-					<Actions isExtended={isExtended} />
+					<Actions
+						isExtended={isExtended}
+						customer={customer}
+					/>
 				</div>
 			</div>
 		);
 	}
 }
 
-const Actions = ({ isExtended }) => isExtended && (
+const Actions = ({ isExtended, customer }) => isExtended && (
 	<div className="isp-customer-section-actions">
-
+		<div className="isp-customer-section-actions-information-customer">
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"ID Client :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.customerId}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Agence :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.agence}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Localisation :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.location}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Distance :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.distance}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Durée déplacement :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.moveTime}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Téléphone :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.phone}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Fax :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.fax}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Numéro Siren :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.siren}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"APE :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.ape}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Raison Sociale :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<Truncate lines={1}>
+						{customer.social}
+						</Truncate>
+				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element">
+				<div>
+					{"Url Client :"}
+				</div>
+				<div className="isp-customer-section-actions-information-customer-element-value">
+					<a href={`https://${customer.url}`}>
+							{customer.url}
+						</a>
+				</div>
+			</div>
+		</div>
 	</div>
 );
 
