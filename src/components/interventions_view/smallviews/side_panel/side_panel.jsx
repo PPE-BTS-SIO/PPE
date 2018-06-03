@@ -53,6 +53,7 @@ class InterventionsSidePanel extends Component {
 		}
 		const loweredInput = customerInput.toLowerCase();
 		const filteredCustomers = customers.filter((customer) => {
+			console.log(customer);
 			const keys = Object.keys(customer);
 			return keys.some(key =>
 				typeof customer[key] === 'string'
@@ -170,6 +171,8 @@ const CustomerSearchbox = ({ setCustomerInput }) => (
 		</div>
 	</div>
 );
+
+
 
 const mapStateToProps = state => ({
 	hasReceivedCustomers: state.main.hasReceivedCustomersData,
