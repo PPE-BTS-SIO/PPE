@@ -25,9 +25,11 @@ const breakpoints = [1380, 980, 600];
 class InterventionsView extends Component {
 	constructor(props) {
 		super(props);
+		const { interventions } = this.props;
 		this.state = {
 			customerInput: null,
 			interventionsInput: null,
+			filteredInterventions: interventions,
 			isAdding: false,
 			interventionsPerRow: 'multiple',
 			preciseFilters: {
@@ -65,6 +67,14 @@ class InterventionsView extends Component {
 		})
 	} */
 
+	componentWillReceiveProps = (nextProps) => {
+		const { interventions: nextInterventions } = nextProps;
+		const { interventions: oldInterventions } = this.props;
+		if (JSON.stringify(oldInterventions) !== JSON.stringify(nextInterventions)) {
+			this.filterInterventions(nextProps);
+		}
+	}
+
 	shouldComponentUpdate(nextProps) {
 		const oldWindowWidth = this.props.windowWidth;
 		const newWindowWidth = nextProps.windowWidth;
@@ -80,13 +90,20 @@ class InterventionsView extends Component {
 
 	setCustomerInput = input => this.setState({ customerInput: input });
 
-	setInterventionsInput = input => this.setState({ interventionsInput: input });
-
 	setPreciseFilter = (filter) => {
 		const { preciseFilters } = this.state;
 		this.setState({
-			preciseFilters: Object.assign({}, preciseFilters, filter)
+			preciseFilters: { ...preciseFilters, filter }
 		});
+	}
+
+	setInterventionsInput = (e) => {
+		if (!e) {
+			return;
+		}
+		const state = { ...this.state, interventionsInput: e.target.value }
+		this.setState(state);
+		this.filterInterventions(undefined, state);
 	}
 
 	handleContentScroll = (event) => {
@@ -107,14 +124,14 @@ class InterventionsView extends Component {
 	changeDialogsOpenState = (dialogsOpened) => {
 		const { dialogsOpenState } = this.state;
 		this.setState({
-			dialogsOpenState: Object.assign({}, dialogsOpenState, dialogsOpened)
+			dialogsOpenState: { ...dialogsOpenState, ...dialogsOpened }
 		});
 	}
 
 	changeDrawersOpenState = (drawersOpened) => {
 		const { drawersOpenState } = this.state;
 		this.setState({
-			drawersOpenState: Object.assign({}, drawersOpenState, drawersOpened)
+			drawersOpenState: { ...drawersOpenState, ...drawersOpened }
 		});
 	}
 
@@ -125,11 +142,37 @@ class InterventionsView extends Component {
 		return true;
 	}
 
-	changeInterventionsPerRow = (interventionsPerRow) => {
+	changeInterventionsPerRow = () => {
+		const { interventionsPerRow } = this.state;
 		this.setState({
-			interventionsPerRow:
-				this.state.interventionsPerRow === 'multiple' ? 'one' : 'multiple'
-		})
+			interventionsPerRow: interventionsPerRow === 'multiple'
+				? 'one'
+				: 'multiple'
+		});
+	}
+
+	filterInterventions = (props = this.props, state = this.state) => {
+		const { interventions } = props;
+		const { interventionsInput, preciseFilters } = state;
+
+		const newInterventions = [...interventions].filter((intervention) => {
+			console.log(interventionsInput);
+			if (interventionsInput) {
+				if (!Object.values(intervention).some(value =>
+					typeof (value) === 'string' && value.toLowerCase().includes(interventionsInput))) {
+					return false
+				}
+			}
+			return Object.entries(preciseFilters).some(([key, value]) => {
+				if (value) {
+					if (!intervention[key].includes(value)) {
+						return false;
+					}
+				}
+				return true;
+			});
+		});
+		this.setState({ filteredInterventions: newInterventions })
 	}
 
 	render() {
@@ -140,12 +183,12 @@ class InterventionsView extends Component {
 			preciseFilters,
 			dialogsOpenState,
 			drawersOpenState,
-			interventionsPerRow
+			interventionsPerRow,
+			filteredInterventions
 		} = this.state;
 		const {
 			windowWidth,
-			hasReceivedInterventionsData,
-			interventions
+			hasReceivedInterventionsData
 		} = this.props;
 		const shouldUseMobileLayout = windowWidth <= 980;
 		return (
@@ -167,9 +210,7 @@ class InterventionsView extends Component {
 				<div
 					className={classnames(
 						'interventions-view-content-wrapper',
-						{
-							'interventions-view-content-wrapper-mobile': shouldUseMobileLayout
-						}
+						shouldUseMobileLayout && 'interventions-view-content-wrapper-mobile'
 					)
 					}
 					onScroll={this.handleContentScroll}
@@ -192,7 +233,7 @@ class InterventionsView extends Component {
 						shouldAddPadding={shouldStick}
 						isAdding={isAdding}
 						hasReceivedInterventionsData={hasReceivedInterventionsData}
-						interventions={interventions}
+						interventions={filteredInterventions}
 						interventionsPerRow={interventionsPerRow}
 					/>
 				</div>

@@ -1,0 +1,17 @@
+.examples-container {
+	height: 100%;
+	width: 100%;
+	background-color: #f0f0f0;
+
+	padding: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.examples-container > a {
+
+	margin: 5px
+
+}

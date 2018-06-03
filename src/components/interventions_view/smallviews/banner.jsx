@@ -11,7 +11,9 @@ import '../../../styles/interventions_view/smallviews/interventions_add_button.c
 
 const InterventionsBanner = ({ setInterventionsInput, handleAddClick, isAdding }) => (
 	<div id="interventions-banner">
-		<InterventionsSearchbox setInterventionsInput={setInterventionsInput} />
+		<InterventionsSearchbox
+			setInterventionsInput={setInterventionsInput}
+		/>
 		<ActionButton
 			handleAddClick={handleAddClick}
 			isAdding={isAdding}
@@ -26,7 +28,7 @@ const InterventionsSearchbox = ({ setInterventionsInput }) => (
 		</div>
 		<input
 			type="text"
-			onChange={event => setInterventionsInput(event.target.value)}
+			onChange={setInterventionsInput}
 		/>
 	</div>
 );

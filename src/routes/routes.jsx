@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -14,22 +14,49 @@ import {
 import Login from '../components/login/login';
 import InterventionsView from '../components/interventions_view/interventions_view';
 
-const Routes = ({ hasReceivedUserData, role }) => {
+import Examples from '../components/examples/examples';
+import CreateButton from '../components/examples/create_button';
+import CreateInput from '../components/examples/create_input';
+
+const Routes = ({ hasReceivedUserData }) => {
 	let wantedRoutes = null;
 	if (!hasReceivedUserData) {
 		wantedRoutes = <NotLogguedRoutes />
 	} else {
 		wantedRoutes = <AssistantRoutes />
 	}
+	const commonRoutes = [
+		<Route
+			key="examples"
+			exact
+			path="/examples"
+			component={Examples}
+		/>,
+		<Route
+			key="example_create_button"
+			exact
+			path="/examples/create-button"
+			component={CreateButton}
+		/>,
+		<Route
+			key="example_create_input"
+			exact
+			path="/examples/create-input"
+			component={CreateInput}
+		/>
+	];
 	return (
 		<Router>
-			{wantedRoutes}
+			<Switch>
+				{commonRoutes}
+				{wantedRoutes}
+			</Switch>
 		</Router>
 	);
 };
 
 const NotLogguedRoutes = () => (
-	<Switch>
+	<Fragment>
 		<Route
 			exact
 			path="/"
@@ -39,11 +66,11 @@ const NotLogguedRoutes = () => (
 			from="*"
 			to="/"
 		/>
-	</Switch>
+	</Fragment>
 );
 
 const AssistantRoutes = () => (
-	<Switch>
+	<Fragment>
 		<Route
 			exact
 			path="/interventions"
@@ -53,7 +80,7 @@ const AssistantRoutes = () => (
 			from="*"
 			to="/interventions"
 		/>
-	</Switch>
+	</Fragment>
 );
 
 const mapStateToProps = state => ({

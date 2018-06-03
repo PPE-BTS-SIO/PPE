@@ -7,7 +7,7 @@ import Dialog, {
 	DialogContent,
 	DialogContentText
 } from 'material-ui/Dialog';
-import { CircleProgress } from 'material-ui/Progress';
+import { CircularProgress } from 'material-ui/Progress';
 import Avatar from 'material-ui/Avatar';
 import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
 
@@ -38,7 +38,7 @@ class CustomersDialog extends Component {
 		} = this.props;
 
 		if (hasReceivedCustomers === null) {
-			content = <CircleProgress />
+			content = <CircularProgress />
 		} else if (hasReceivedCustomers && (!customers || Object.keys(customers).length < 1)) {
 			content = (
 				<DialogContentText>
@@ -96,7 +96,7 @@ const Customers = ({ customers, onClose, onSelected }) => (
 	</List>
 );
 
-const mapStateToProps = state => console.log(state) || ({
+const mapStateToProps = state => ({
 	hasReceivedCustomers: state.main.hasReceivedCustomersData,
 	customers: state.main.customers
 });
