@@ -1,24 +1,61 @@
-const users = require('./users');
-const { connection } = require('../utils/sql');
+const Moment = require('moment');
+const { handleConnect, getConnection } = require('../utils/sql');
 
-const codes = [
-	'NORD',
-	'NORD-EST',
-	'NORD-OUEST',
-	'SUD',
-	'SUD-EST',
-	'SUD_OUEST'
-];
+const from = new Date(1990);
+const to = new Date();
 
-connection.connect(() => {
+const getRandomDate = (from, to) => {
+	from = from.getTime();
+	to = to.getTime();
+	return new Date(from + (Math.random() * (to - from)));
+}
+
+const addAssistantsFromLastRow = (rows) => {
+	if (!rows || rows.length < 1) {
+		return null;
+	}
+	const newRows = [...rows];
+	const lastRow = newRows.pop();
+
+	const matricule = lastRow.Matricule;
+	let cr = Math.floor(Math.floor(Math.random() * 6) + 1);
+
+	switch (cr) {
+	case 1: cr = 'NORD'; break;
+	case 2: cr = 'NORD-EST'; break;
+	case 3: cr = 'NORD-OUEST'; break;
+	case 4: cr = 'SUD'; break;
+	case 5: cr = 'SUD-EST'; break;
+	default: cr = 'SUD-OUEST';
+	}
+
+	console.log(`\nInserting ${matricule}...`);
+
+	return getConnection().query(
+		'INSERT INTO `Assistant`(`Matricule`, `Code`) VALUES (?, ?)',
+		[matricule, cr],
+		(error) => {
+			if (error) {
+				console.log(error);
+			}
+			setTimeout(() => addAssistantsFromLastRow(newRows), 10);
+		}
+	)
+}
+
+handleConnect().then(() => {
 	console.log('Connected!');
-	Object.keys(users).slice(0, 5000 / 2).forEach((i, index) => {
-		const matricule = `E${index + 1}`;
-		const randomCode = codes[Math.floor(Math.random() * codes.length)];
-		connection.query(
-			'INSERT INTO `Assistant`(`Matricule`, `Code`) VALUES (?, ?)',
-			[matricule, randomCode],
-			() => console.log(`${matricule} - ${randomCode}`)
-		)
+	console.log('Fetching existing employees...');
+
+	const connection = getConnection();
+	return connection.query('SELECT * FROM `Employe` WHERE 1', (error, results) => {
+		if (error) {
+			console.log('A wild error happened!'.red, error);
+		}
+		if (!results || results.length < 1) {
+			console.log('Not enough result!'.red);
+		}
+		const assistants = [...results].filter(result => result.Type === 'A');
+		return addAssistantsFromLastRow(assistants);
 	})
-})
+});
