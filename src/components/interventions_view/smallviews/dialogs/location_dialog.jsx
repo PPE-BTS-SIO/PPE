@@ -27,7 +27,7 @@ const LocationDialog = ({ open, onClose }) => (
 		<DialogActions>
 			<Button
 				autoFocus
-				dense
+				size="small"
 				color="primary"
 				onClick={onClose}
 			>

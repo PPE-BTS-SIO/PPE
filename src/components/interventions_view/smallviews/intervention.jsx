@@ -128,7 +128,7 @@ const AssignTechnicianButton = ({ assignedTechnician, setEmployeesDialogOpenStat
 	return (
 		<Tooltip
 			placement="top"
-			title={`Intervention assigné au technicien ${assignedTechnician}`}
+			title={`Intervention assigné au technicien n° ${assignedTechnician}`}
 			style={{
 				whiteSpace: 'nowrap'
 			}}

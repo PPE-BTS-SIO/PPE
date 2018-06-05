@@ -9,7 +9,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import List, { ListItem, ListItemAvatar, ListItemText } from '@material-ui/core/List';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { requestEmployees as requestEmployeesAction } from '../../../../actions/main_actions';
@@ -84,7 +87,7 @@ class EmployeesDialog extends PureComponent {
 				</DialogContent>
 				<DialogActions>
 					<Button
-						dense
+						size="small"
 						color="primary"
 						onClick={onClose}
 					>

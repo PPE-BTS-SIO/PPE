@@ -27,7 +27,7 @@ const initialState = {
 	location: '',
 	date: new Date(),
 	comment: '',
-	technicianId: '',
+	technicianId: null,
 	openEmployeesDialog: false,
 	openCustomersDialog: false
 };
@@ -193,7 +193,9 @@ const Buttons = ({
 				color="secondary"
 				onClick={() => setState({ openEmployeesDialog: true })}
 			>
-				{technicianId || 'Technicien'}
+				{technicianId !== null
+					? `N° ${technicianId}`
+					: 'Technicien'}
 			</Button>
 			<Button
 				variant="raised"
