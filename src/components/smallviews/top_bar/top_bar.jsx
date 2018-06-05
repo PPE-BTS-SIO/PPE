@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import { withTheme } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import MenuIcon from 'material-ui-icons/Menu';
-import HomeIcon from 'material-ui-icons/Home';
-import Person from 'material-ui-icons/Person';
+import { withTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
+import Person from '@material-ui/icons/Person';
 
 import AtomicButton from '../../smallviews/buttons/atomic_button';
 

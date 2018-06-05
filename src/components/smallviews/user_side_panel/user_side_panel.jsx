@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Drawer from 'material-ui/Drawer';
+import Drawer from '@material-ui/core/Drawer';
 
 import UserSection from './user_section';
 

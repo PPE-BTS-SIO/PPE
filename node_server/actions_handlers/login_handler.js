@@ -16,11 +16,13 @@ const handleLogin = (data, callback, id, client) => {
 	if (data.secretKey) {
 		console.log(socketIO, `Handling login using ${'secret key'.cyan} !`);
 		return loginFromSecretKey(data.secretKey, callback)
-			.then(employee => addConnectedEmployee(client, employee));
+			.then(employee => addConnectedEmployee(client, employee))
+			.catch(error => console.log(error));
 	}
 	console.log(socketIO, `Handling login using ${'login & password'.cyan} !`);
 	return loginFromLoginAndPassword(data, callback)
-		.then(employee => addConnectedEmployee(client, employee));
+		.then(employee => addConnectedEmployee(client, employee))
+		.catch(error => console.log(error));
 }
 
 module.exports = handleLogin;

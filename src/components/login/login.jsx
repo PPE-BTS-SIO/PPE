@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import { CircularProgress } from 'material-ui/Progress';
-import { FormControlLabel } from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import usericon from './usericon.png'
 
@@ -107,7 +107,7 @@ class Login extends Component {
 						/>
 						<Button
 							id="buttonLogin"
-							raised
+							variant="raised"
 							onClick={() => this.handleLogin(login, password, shouldRemember)}
 							color="primary"
 						>

@@ -3,9 +3,9 @@ import React, { PureComponent } from 'react';
 
 import c from 'classnames';
 
-import ArrowDropDown from 'material-ui-icons/ArrowDropDown';
-import Lock from 'material-ui-icons/Lock';
-import PowerSettingsNew from 'material-ui-icons/PowerSettingsNew';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import Lock from '@material-ui/icons/Lock';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
 import Option from './option';
 

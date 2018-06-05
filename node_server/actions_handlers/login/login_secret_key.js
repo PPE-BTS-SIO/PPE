@@ -7,7 +7,7 @@ const {
 const handleLoginFromSecretKey = (secretKey, callback) => new Promise((resolve, reject) => {
 	const connection = getConnection();
 	return connection.query(
-		'SELECT `login` FROM `secret_keys` WHERE `secret_key` LIKE ?',
+		'SELECT `login` FROM `Secret_Keys` WHERE `secret_key` LIKE ?',
 		[secretKey],
 		(error, results) => {
 			if (error) {
@@ -16,22 +16,21 @@ const handleLoginFromSecretKey = (secretKey, callback) => new Promise((resolve, 
 				return reject();
 			}
 			if (!results || results.length < 1 || !results[0] || !results[0].login) {
-				console.log(mysql, 'Login failed: Invalid secret key!');
 				callback({ error: 'INVALID_SECRET_KEY' });
-				return reject();
+				return reject(Error(`${mysql} Login failed: Invalid secret key!`));
 			}
 			const { login } = results[0];
 			return connection.query(
-				'SELECT * FROM employe WHERE Matricule = ?',
+				'SELECT * FROM Employe WHERE Matricule = ?',
 				[login],
 				(e, r) => {
 					if (e) {
-						console.error(mysql, `Login failed: ${e}`);
-						return callback({ error });
+						callback({ error });
+						return reject(Error(`${mysql} Login failed: ${e}`))
 					}
 					if (!r || r < 1) {
-						console.log(mysql, 'Login failed: No column match!');
-						return callback({ error: 'INVALID_LOGIN_OR_PASSWORD' });
+						callback({ error: 'INVALID_LOGIN_OR_PASSWORD' });
+						return reject(Error(`${mysql} Login failed: No column match!`));
 					}
 					const receivedData = r[0];
 					if (!receivedData) return false;

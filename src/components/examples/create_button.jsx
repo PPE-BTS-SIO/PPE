@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 
 // On importe le Button depuis material-ui.
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 // On déclare notre classes contenant notre state.
 class ButtonCreation extends PureComponent {
@@ -36,7 +36,7 @@ class ButtonCreation extends PureComponent {
 				{/* La props 'onClick' va appeler la fonction 'setIteration' qu'on a créée
 					en passant en paramère la valeur de base et en l'incrémentant de 1 */}
 				<Button
-					raised
+					variant="raised"
 					color="primary"
 					onClick={() => this.setIteration(iteration + 1)}
 				>

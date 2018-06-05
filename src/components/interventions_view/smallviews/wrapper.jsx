@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 
 import classnames from 'classnames';
 
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AddCard from './add_card';
 import Intervention from './intervention';
 
-import {
-	requestEmployees as requestEmployeesAction
-} from '../../../actions/main_actions';
+import { requestEmployees as requestEmployeesAction } from '../../../actions/main_actions';
 
 class InterventionsContent extends PureComponent {
 	render() {

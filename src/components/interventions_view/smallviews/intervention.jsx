@@ -5,14 +5,14 @@ import classnames from 'classnames';
 
 import Truncate from 'react-truncate';
 
-import Tooltip from 'material-ui/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
-import CheckIcon from 'material-ui-icons/Check';
-import Person from 'material-ui-icons/Person';
-import AccountBoxIcon from 'material-ui-icons/AccountBox';
-import DateRangeIcon from 'material-ui-icons/DateRange';
-import LocationOnIcon from 'material-ui-icons/LocationOn';
-import CommentIcon from 'material-ui-icons/Comment';
+import CheckIcon from '@material-ui/icons/Check';
+import Person from '@material-ui/icons/Person';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import CommentIcon from '@material-ui/icons/Comment';
 
 import EmployeesDialog from './dialogs/employees_dialog';
 

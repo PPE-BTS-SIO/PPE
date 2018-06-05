@@ -2,13 +2,13 @@ import React from 'react';
 
 import classnames from 'classnames';
 
-import { withTheme } from 'material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
-import Search from 'material-ui-icons/Search';
-import LocationOn from 'material-ui-icons/LocationOn';
-import Check from 'material-ui-icons/Check';
-import DateRange from 'material-ui-icons/DateRange';
-import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
+import Search from '@material-ui/icons/Search';
+import LocationOn from '@material-ui/icons/LocationOn';
+import Check from '@material-ui/icons/Check';
+import DateRange from '@material-ui/icons/DateRange';
+import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
 
 import '../../../styles/interventions_view/smallviews/interventions_options_bar.css';
 import '../../../styles/interventions_view/smallviews/interventions_option.css';

@@ -2,20 +2,17 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Dialog, {
-	DialogTitle,
-	DialogContent,
-	DialogContentText,
-	DialogActions
-} from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
-import Avatar from 'material-ui/Avatar';
-import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
-import { CircularProgress } from 'material-ui/Progress';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import List, { ListItem, ListItemAvatar, ListItemText } from '@material-ui/core/List';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import {
-	requestEmployees as requestEmployeesAction
-} from '../../../../actions/main_actions';
+import { requestEmployees as requestEmployeesAction } from '../../../../actions/main_actions';
 
 import '../../../../styles/interventions_view/smallviews/dialogs/employees_dialog.css';
 

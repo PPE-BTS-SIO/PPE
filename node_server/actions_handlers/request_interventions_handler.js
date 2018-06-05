@@ -12,7 +12,7 @@ const handleInterventionsRequest = (callback, id) => {
 		return false;
 	}
 	console.log(socketIO, `Got interventions' request from ${id}!`);
-	connection.query('SELECT * FROM `intervention` WHERE 1', (error, results) => {
+	connection.query('SELECT * FROM `Intervention` WHERE 1', (error, results) => {
 		if (error) {
 			console.log(mysql, 'Request failed: ', error);
 			callback({ error });

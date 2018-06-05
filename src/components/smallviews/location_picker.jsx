@@ -1,13 +1,15 @@
 /* eslint no-undef: 0 */
 import React, { Component } from 'react';
 
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form';
-import IconButton from 'material-ui/IconButton';
-import { MenuItem } from 'material-ui/Menu';
-import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-import LocationOnIcon from 'material-ui-icons/LocationOn';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 import '../../styles/smallviews/location_picker.css';
 

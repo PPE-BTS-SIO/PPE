@@ -12,20 +12,18 @@ const handleLoginFromLoginAndPassword = (data, callback) => new Promise((resolve
 	if (!login || !password) return false;
 	const encryptedPassword = keccak512(password);
 	return connection.query(
-		'SELECT * FROM employe WHERE Matricule = ? AND Password = ?',
+		'SELECT * FROM Employe WHERE Matricule = ? AND Password = ?',
 		[login, encryptedPassword],
 		(error, results) => {
 			if (error) {
-				console.error(mysql, `Login failed: ${error}`);
 				callback({ error });
-				return reject();
+				return reject(Error(`${mysql} Login failed: ${error}`));
 			}
 			if (!results || results.length < 1) {
-				console.log(mysql, 'Login failed: No column match!');
 				callback({
 					error: 'INVALID_LOGIN_OR_PASSWORD'
 				});
-				return reject();
+				return reject(Error(`${mysql} Login failed: No column match!`));
 			}
 			const receivedData = results[0];
 			if (!receivedData) return false;
@@ -37,7 +35,7 @@ const handleLoginFromLoginAndPassword = (data, callback) => new Promise((resolve
 					const token = buffer.toString('hex');
 					console.log(mysql, 'Storing secret key...');
 					return connection.query(
-						'INSERT INTO `secret_keys`(`secret_key`, `login`) VALUES (?, ?)',
+						'INSERT INTO `Secret_Keys`(`secret_key`, `login`) VALUES (?, ?)',
 						[token, login],
 						(e) => {
 							if (e) return false;
@@ -58,6 +56,7 @@ const handleLoginFromLoginAndPassword = (data, callback) => new Promise((resolve
 				});
 				return resolve(receivedData)
 			}
+			return null;
 		}
 	);
 });

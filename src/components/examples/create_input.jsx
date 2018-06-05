@@ -2,10 +2,10 @@
 import React, { PureComponent } from 'react';
 
 // On importe les composants nécéssaires à ce qu'on veut faire.
-import TextField from 'material-ui/TextField';
-import Checkbox from 'material-ui/Checkbox';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
 // Pas la peine d'utiliser un Tooltip, c'est juste pour l'exemple.
-import Tooltip from 'material-ui/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // On déclare notre classe.
 class CreateInput extends PureComponent {

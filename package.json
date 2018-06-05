@@ -5,10 +5,12 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.2.0",
+    "@material-ui/icons": "^1.1.0",
     "@react-pdf/core": "^0.7.6",
     "@react-pdf/node": "^0.7.6",
-    "add": "^2.0.6",
+    "add": "2.0.6",
     "babel-eslint": "^8.0.1",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "colors": "^1.1.2",
     "eslint": "^4.8.0",
@@ -18,9 +20,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "js-sha3": "^0.7.0",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "material-ui-pickers": "^1.0.0-beta.8",
-    "moment": "^2.20.0",
+    "material-ui-pickers": "^1.0.0-rc.9",
+    "moment": "^2.22.2",
     "mysql": "^2.15.0",
     "node-fetch": "^1.7.3",
     "react": "^16.2.0",
@@ -29,14 +30,15 @@
     "react-redux": "^5.0.6",
     "react-responsive": "^2.0.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "1.1.4",
     "react-truncate": "^2.3.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "socket-io": "^1.0.0",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.4",
-    "yarn": "^1.7.0"
+    "transform-loader": "^0.2.4",
+    "yarn": "1.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,6 +46,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "ibd": "yarn install && yarn build"
-  },
-  "devDependencies": {}
+  }
 }

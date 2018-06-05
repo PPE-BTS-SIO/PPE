@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Drawer from 'material-ui/Drawer';
-import { CircularProgress } from 'material-ui/Progress';
+import Drawer from '@material-ui/core/Drawer';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Search
-	from 'material-ui-icons/Search';
+	from '@material-ui/icons/Search';
 
 import SidePanel from '../../../smallviews/side_panel/side_panel';
 import CustomerSection from './customer_section';

@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 
 import c from 'classnames';
 
-import Button from 'material-ui/Button';
-import KeyboardArrowDown from 'material-ui-icons/KeyboardArrowDown';
+import Button from '@material-ui/core/Button';
+import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 
 import Truncate from 'react-truncate';
 

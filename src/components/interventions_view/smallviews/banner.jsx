@@ -1,9 +1,9 @@
 import React from 'react';
 
-import IconButton from 'material-ui/IconButton';
-import Search from 'material-ui-icons/Search';
-import Add from 'material-ui-icons/Add';
-import Remove from 'material-ui-icons/Remove';
+import IconButton from '@material-ui/core/IconButton';
+import Search from '@material-ui/icons/Search';
+import Add from '@material-ui/icons/Add';
+import Remove from '@material-ui/icons/Remove';
 
 import '../../../styles/interventions_view/smallviews/interventions_banner.css';
 import '../../../styles/interventions_view/smallviews/interventions_searchbox.css';

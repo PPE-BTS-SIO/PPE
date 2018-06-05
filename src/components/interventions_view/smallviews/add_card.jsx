@@ -1,16 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form';
-import IconButton from 'material-ui/IconButton';
-import Button from 'material-ui/Button';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
-import AccountBoxIcon from 'material-ui-icons/AccountBox';
-import LocationOnIcon from 'material-ui-icons/LocationOn';
-import CommentIcon from 'material-ui-icons/Comment';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import CommentIcon from '@material-ui/icons/Comment';
 
-import { DatePicker } from 'material-ui-pickers';
+import DatePicker from 'material-ui-pickers/DatePicker';
 
 import LocationPicker from '../../smallviews/location_picker';
 
@@ -187,14 +189,14 @@ const Buttons = ({
 	return (
 		<div className="iac-buttons">
 			<Button
-				raised
-				color="accent"
+				variant="raised"
+				color="secondary"
 				onClick={() => setState({ openEmployeesDialog: true })}
 			>
 				{technicianId || 'Technicien'}
 			</Button>
 			<Button
-				raised
+				variant="raised"
 				color="primary"
 				disabled={disabled}
 				onClick={() => {

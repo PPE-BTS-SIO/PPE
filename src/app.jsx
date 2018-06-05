@@ -20,10 +20,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Snackbar from 'material-ui/Snackbar';
-import Button from 'material-ui/Button';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { blue } from 'material-ui/colors';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+
+import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blue } from '@material-ui/core/colors';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 import { connectToServer as connectToServerAction } from './actions/node_server_actions';
 import { changeWindowWidth as changeWindowWidthAction } from './actions/utils_actions';
@@ -152,29 +155,31 @@ class App extends Component {
 	render() {
 		return (
 			<MuiThemeProvider theme={theme}>
-				<div id="container">
-					<Routes />
-					<UserSidePanel />
-					<Snackbar
-						open={this.state.openNotConnected}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'left'
-						}}
-						message="Vous n'êtes pas connecté au serveur"
-						action={<SnackbarAction />}
-					/>
-					<Snackbar
-						open={this.state.openConnected}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'left'
-						}}
-						message="Connecté au serveur"
-						autoHideDuration={4000}
-						onClose={() => this.setState({ openConnected: false })}
-					/>
-				</div>
+				<MuiPickersUtilsProvider utils={MomentUtils}>
+					<div id="container">
+						<Routes />
+						<UserSidePanel />
+						<Snackbar
+							open={this.state.openNotConnected}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'left'
+							}}
+							message="Vous n'êtes pas connecté au serveur"
+							action={<SnackbarAction />}
+						/>
+						<Snackbar
+							open={this.state.openConnected}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'left'
+							}}
+							message="Connecté au serveur"
+							autoHideDuration={4000}
+							onClose={() => this.setState({ openConnected: false })}
+						/>
+					</div>
+				</MuiPickersUtilsProvider>
 			</MuiThemeProvider>
 		);
 	}
@@ -189,7 +194,7 @@ plutôt qu'un composant statique.
 const SnackbarAction = () => (
 	<Button
 		onClick={() => window.location.reload()}
-		color="accent"
+		color="secondary"
 	>
 		{'Rafraichir'}
 	</Button>

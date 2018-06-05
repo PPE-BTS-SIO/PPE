@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import 'babel-polyfill';
 
 import App from './app';
 import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
+
 
 const store = createStore(
 	reducers,

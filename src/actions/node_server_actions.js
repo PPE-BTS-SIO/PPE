@@ -9,9 +9,7 @@ import {
 } from './types';
 
 import { dispatchQueuedActions } from './utils_actions';
-import {
-	handleReceivedNewIntervention
-} from './main_actions';
+import { handleReceivedNewIntervention } from './main_actions';
 
 export const connectToServer = () => (dispatch) => {
 	const socket = openSocket('78.237.195.145:8000');

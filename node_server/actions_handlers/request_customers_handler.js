@@ -10,7 +10,7 @@ const handleCustomersRequest = (callback, id) => {
 		return callback({ error: 'SQL_SERVER_NOT_CONNECTED' });
 	}
 	console.log(socketIO, `Got customers' request from ${id}!`);
-	connection.query('SELECT * FROM `client` WHERE 1', (error, results) => {
+	connection.query('SELECT * FROM `Client` WHERE 1', (error, results) => {
 		if (error) {
 			console.log(mysql, 'Request failed: ', error);
 			callback({ error });

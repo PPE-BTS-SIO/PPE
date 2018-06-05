@@ -17,6 +17,7 @@ import InterventionsView from '../components/interventions_view/interventions_vi
 import Examples from '../components/examples/examples';
 import CreateButton from '../components/examples/create_button';
 import CreateInput from '../components/examples/create_input';
+import CreatePdf from '../components/examples/create_pdf';
 
 const Routes = ({ hasReceivedUserData }) => {
 	let wantedRoutes = null;
@@ -43,6 +44,12 @@ const Routes = ({ hasReceivedUserData }) => {
 			exact
 			path="/examples/create-input"
 			component={CreateInput}
+		/>,
+		<Route
+			key="example_create_pdf"
+			exact
+			path="/examples/create-pdf"
+			component={CreatePdf}
 		/>
 	];
 	return (
