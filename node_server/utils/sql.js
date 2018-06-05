@@ -8,7 +8,7 @@ const handleConnect = () => new Promise((resolve, reject) => {
 		host: 'localhost',
 		user: 'ppe',
 		password: 'ppe123JRT',
-		database: 'PPE'
+		database: 'FINAL_PPE'
 	});
 
 	connection.connect((error) => {

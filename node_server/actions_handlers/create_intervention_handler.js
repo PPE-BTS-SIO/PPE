@@ -19,7 +19,7 @@ const handleInterventionCreation = (callback = () => {}, id, data) => {
 		assignedTechnician
 	} = data;
 	return connection.query(
-		'INSERT INTO `intervention`(`Date_Intervention`, `Commentaire`, `Localisation`, `Matricule`, `NumeroClient`) VALUES (?,?,?,?,?)',
+		'INSERT INTO `Intervention` (`Date_Intervention`, `Commentaire`, `Localisation`, `Matricule`, `NumeroClient`) VALUES (?,?,?,?,?)',
 		[date, comment, location, assignedTechnician, customerId],
 		(error) => {
 			if (error) {

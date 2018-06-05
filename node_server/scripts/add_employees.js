@@ -1,7 +1,7 @@
 const users = require('./users');
 const Moment = require('moment');
 const { sha3_512, keccak512 } = require('js-sha3');
-const { connection } = require('../utils/sql');
+const { handleConnect, getConnection } = require('../utils/sql');
 
 const from = new Date(1980);
 const to = new Date();
@@ -12,11 +12,11 @@ const getRandomDate = (from, to) => {
 	return new Date(from + (Math.random() * (to - from)));
 }
 
-connection.connect(() => {
-	console.log('connected');
+handleConnect().then(() => {
+	console.log('Connected!');
 	Object.keys(users).forEach((i, index) => {
 		const user = users[i];
-		const matricule = `E${index + 1}`;
+		const matricule = index + 1;
 		const { name = {} } = user;
 		let { first = '?', last = '?' } = name;
 		const mail = `${first}.${last}@cashcash.fr`;
@@ -26,10 +26,19 @@ connection.connect(() => {
 		const picture = user.picture.large;
 		first = first.charAt(0).toUpperCase() + first.slice(1);
 		last = last.charAt(0).toUpperCase() + last.slice(1);
-		connection.query(
-			'INSERT INTO `Employe` (`Matricule`, `Nom`, `Prenom`, `Adresse`, `DateEmbauche`, `Password`, `Mail`, `ImageProfil`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-			[matricule, last, first, location, date, password, mail, picture],
-			() => console.log(`${matricule} : ${first} : ${last} : ${location} : ${date} : ${mail} : ${password}\n`)
+		const type = (Math.floor(Math.random() * 2) + 1) === 1
+			? 'A'
+			: 'T';
+		getConnection().query(
+			'INSERT INTO `Employe` (`Matricule`, `Type`, `Nom`, `Prenom`, `Adresse`, `Date_Embauche`, `Password`, `Mail`, `ImageProfil`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+			[matricule, type, last, first, location, date, password, mail, picture],
+			(error) => {
+				if (error) {
+					console.log(error);
+				} else {
+					console.log(`${matricule} : ${type} : ${first} : ${last} : ${location} : ${date} : ${mail} : ${password}\n`)
+				}
+			}
 		);
 	});
 });
