@@ -74,6 +74,11 @@ class InterventionCard extends Component {
 							socket.emit('client/assign-technician', {
 								matricule,
 								interventionId: id
+							}, (response) => {
+								if (response && response.error) {
+									console.log(response);
+									alert(response.error);
+								}
 							});
 							this.setEmployeesDialogOpenState(false);
 						}

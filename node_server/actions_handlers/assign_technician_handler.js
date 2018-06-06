@@ -19,20 +19,30 @@ const handleTechnicianAssignation = (callback = () => {}, id, data) => {
 		return callback({ error: 'NO_DATA' });
 	}
 	return connection.query(
-		'UPDATE `Intervention` SET `Matricule` = ? WHERE Numero_Intervention = ?',
+		'SELECT * FROM Technicien T, Intervention I, Client C WHERE T.Matricule = ? AND I.Numero_Intervention = ? AND I.NumeroClient = C.NumeroClient AND T.Num_Agence = C.Num_Agence',
 		[matricule, interventionId],
-		(error) => {
-			if (error) {
-				console.log(mysql, 'An error happened while assigning technician:'.red, error);
-				return callback({ error });
+		(error, result) => {
+			if (error || !result || result.length < 1) {
+				if (error) console.log(error);
+				return callback({ error: 'NOT_SAME_AGENCE' });
 			}
-			console.log(mysql, 'Assigned technician!');
-			console.log(socketIO, 'Sending callback...');
-			callback({ success: true });
-			return broadcastToEmployees('server/technician_assigned', ({
-				interventionId,
-				matricule
-			}));
+			return connection.query(
+				'UPDATE `Intervention` SET `Matricule` = ? WHERE Numero_Intervention = ?',
+				[matricule, interventionId],
+				(e) => {
+					if (e) {
+						console.log(mysql, 'An error happened while assigning technician:'.red, error);
+						return callback({ error: e });
+					}
+					console.log(mysql, 'Assigned technician!');
+					console.log(socketIO, 'Sending callback...');
+					callback({ success: true });
+					return broadcastToEmployees('server/technician_assigned', ({
+						interventionId,
+						matricule
+					}));
+				}
+			);
 		}
 	);
 }

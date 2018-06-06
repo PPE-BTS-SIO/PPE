@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 
-import c from 'classnames';
+import cs from 'classnames';
 
 import Button from '@material-ui/core/Button';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
@@ -26,7 +26,7 @@ class CustomerSection extends PureComponent {
 		return (
 			<div
 				className={
-					c(
+					cs(
 						'isp-customer-section',
 						isExtended && 'isp-customer-section-extended'
 					)
@@ -68,113 +68,121 @@ const Actions = ({ isExtended, customer }) => isExtended && (
 		<div className="isp-customer-section-actions-information-customer">
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"ID Client :"}
+					{'ID Client :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.customerId}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Agence :"}
+					{'Agence :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.agence}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Localisation :"}
+					{'Localisation :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.location}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Distance :"}
+					{'Distance :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.distance}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Durée déplacement :"}
+					{'Durée déplacement :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.moveTime}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Téléphone :"}
+					{'Téléphone :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.phone}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Fax :"}
+					{'Fax :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.fax}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Numéro Siren :"}
+					{'Numéro Siren :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.siren}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"APE :"}
+					{'APE :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.ape}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Raison Sociale :"}
+					{'Raison Sociale :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<Truncate lines={1}>
 						{customer.social}
-						</Truncate>
+					</Truncate>
 				</div>
 			</div>
 			<div className="isp-customer-section-actions-information-customer-element">
 				<div>
-					{"Url Client :"}
+					{'Url :'}
 				</div>
 				<div className="isp-customer-section-actions-information-customer-element-value">
 					<a href={`https://${customer.url}`}>
-							{customer.url}
-						</a>
+						{customer.url}
+					</a>
 				</div>
+			</div>
+			<div className="isp-customer-section-actions-information-customer-element-button-container">
+				<Button
+					color="primary"
+					variant="raised"
+				>
+					{'Modifier'}
+				</Button>
 			</div>
 		</div>
 	</div>
