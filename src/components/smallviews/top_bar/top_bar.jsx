@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import { withTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import Person from '@material-ui/icons/Person';
 
 import AtomicButton from '../../smallviews/buttons/atomic_button';
+import StatisticsButton from '../../smallviews/statistics/statistics_button';
 
 import {
 	setUserSidePanelOpenState as setUserSidePanelOpenStateAction
@@ -28,35 +28,52 @@ class TopBar extends Component {
 	setDrawerOpenState = state => this.setState({ openDrawer: state });
 
 	render() {
-		const { windowWidth, hasReceivedUserData } = this.props;
+		const { windowWidth, hasReceivedUserData, role } = this.props;
 		if (!windowWidth || windowWidth > 700) {
-			return <DesktopTopBar hasReceivedUserData={hasReceivedUserData} />
+			return (
+				<DesktopTopBar
+					hasReceivedUserData={hasReceivedUserData}
+					role={role}
+				/>
+			)
 		}
 		return (
 			<MobileTopBar
 				openDrawer={this.state.openDrawer}
 				setDrawerOpenState={this.setDrawerOpenState}
 				hasReceivedUserData={hasReceivedUserData}
+				role={role}
 			/>
 		);
 	}
 }
 
-const DesktopTopBar = ({ hasReceivedUserData }) => (
+const DesktopTopBar = ({ hasReceivedUserData, role }) => (
 	<div className="nav-bar">
 		<Logo />
-		<Content hasReceivedUserData={hasReceivedUserData} />
+		<Content
+			hasReceivedUserData={hasReceivedUserData}
+			role={role}
+		/>
 	</div>
 );
 
-const MobileTopBar = ({ openDrawer, setDrawerOpenState, hasReceivedUserData }) => (
+const MobileTopBar = ({
+	openDrawer,
+	setDrawerOpenState,
+	hasReceivedUserData,
+	role
+}) => (
 	<div className="nav-bar">
 		<DrawerToggler setDrawerOpenState={setDrawerOpenState} />
 		<Drawer
 			open={openDrawer}
 			onClose={() => setDrawerOpenState(false)}
 		>
-			<Content hasReceivedUserData={hasReceivedUserData} />
+			<Content
+				hasReceivedUserData={hasReceivedUserData}
+				role={role}
+			/>
 		</Drawer>
 		<Logo />
 	</div>
@@ -70,7 +87,7 @@ const Logo = () => (
 	</div>
 );
 
-const Content = ({ hasReceivedUserData }) => (
+const Content = ({ hasReceivedUserData, role }) => (
 	<div id="nav-bar-navigation">
 		<Link to="/">
 			<AtomicButton
@@ -78,6 +95,7 @@ const Content = ({ hasReceivedUserData }) => (
 				label="Accueil"
 			/>
 		</Link>
+		{role === 'A' && <StatisticsButton />}
 		<Connection hasReceivedUserData={hasReceivedUserData} />
 	</div>
 );
@@ -114,6 +132,7 @@ const Connection = connect(undefined, mapDispatchToProps)(({ hasReceivedUserData
 
 const mapStateToProps = state => ({
 	hasReceivedUserData: state.user.hasReceivedUserData,
+	role: state.user.role,
 	windowWidth: state.utils.windowWidth
 });
 

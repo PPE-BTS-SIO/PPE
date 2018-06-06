@@ -25,9 +25,13 @@ export default (state = initialState, action) => {
 	case LOGIN_USER_RECEIVED_DATA: {
 		const { response } = action;
 		let { hasReceivedUserData, informations } = state;
+		let role = null;
 		if (response) {
 			const { status, data } = response;
 			if (status && status === 'success' && data) {
+				if (data.Type) {
+					role = data.Type;
+				}
 				hasReceivedUserData = true;
 				informations = data;
 				const { secretKey } = response;
@@ -39,7 +43,8 @@ export default (state = initialState, action) => {
 		return Object.assign({}, state, {
 			hasReceivedLoginCallback: true,
 			hasReceivedUserData,
-			informations
+			informations,
+			role
 		})
 	}
 

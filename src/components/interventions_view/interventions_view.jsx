@@ -13,9 +13,7 @@ import StatusDialog from './smallviews/dialogs/status_dialog';
 import DateDialog from './smallviews/dialogs/date_dialog';
 import Wrapper from './smallviews/wrapper';
 
-import {
-	requestInterventions as requestInterventionsAction
-} from '../../actions/main_actions';
+import { requestInterventions as requestInterventionsAction } from '../../actions/main_actions';
 
 import '../../styles/interventions_view/interventions_view.css';
 import '../../styles/interventions_view/smallviews/interventions_content.css';
@@ -154,6 +152,10 @@ class InterventionsView extends Component {
 	filterInterventions = (props = this.props, state = this.state) => {
 		const { interventions } = props;
 		const { interventionsInput, preciseFilters } = state;
+
+		if (!interventions) {
+			return;
+		}
 
 		const newInterventions = [...interventions].filter((intervention) => {
 			console.log(interventionsInput);

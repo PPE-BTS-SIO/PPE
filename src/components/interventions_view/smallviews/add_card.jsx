@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import CommentIcon from '@material-ui/icons/Comment';
 
 import DatePicker from 'material-ui-pickers/DatePicker';

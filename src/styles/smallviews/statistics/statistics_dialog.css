@@ -1,0 +1,26 @@
+.sd-content {
+
+	max-width: 300px;
+
+}
+
+.sd-content > * {
+
+	width: 100%;
+
+}
+
+.sd-content > *:not(:last-child) {
+
+	margin-bottom: 15px;
+
+}
+
+.sd-content-loading {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+
+}
