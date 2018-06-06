@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import IconButton from '@material-ui/core/IconButton';
 import Search from '@material-ui/icons/Search';
@@ -9,17 +10,27 @@ import '../../../styles/interventions_view/smallviews/interventions_banner.css';
 import '../../../styles/interventions_view/smallviews/interventions_searchbox.css';
 import '../../../styles/interventions_view/smallviews/interventions_add_button.css';
 
-const InterventionsBanner = ({ setInterventionsInput, handleAddClick, isAdding }) => (
-	<div id="interventions-banner">
-		<InterventionsSearchbox
-			setInterventionsInput={setInterventionsInput}
-		/>
-		<ActionButton
-			handleAddClick={handleAddClick}
-			isAdding={isAdding}
-		/>
-	</div>
-);
+const InterventionsBanner = ({
+	setInterventionsInput, handleAddClick, isAdding, role
+}) => {
+	let content = null;
+	if (role === 'A') {
+		content = (
+			<ActionButton
+				handleAddClick={handleAddClick}
+				isAdding={isAdding}
+			/>
+		);
+	}
+	return (
+		<div id="interventions-banner">
+			<InterventionsSearchbox
+				setInterventionsInput={setInterventionsInput}
+			/>
+			{content}
+		</div>
+	);
+}
 
 const InterventionsSearchbox = ({ setInterventionsInput }) => (
 	<div id="ib-searchbox">
@@ -46,4 +57,6 @@ const ActionButton = ({ handleAddClick, isAdding }) => (
 	</div>
 );
 
-export default InterventionsBanner;
+const mapStateToProps = ({ user: { role } }) => ({ role });
+
+export default connect(mapStateToProps)(InterventionsBanner);

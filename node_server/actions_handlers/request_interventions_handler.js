@@ -32,13 +32,15 @@ const handleInterventionsRequest = (callback, id) => {
 			const location = result.Localisation;
 			const assignedTechnician = result.Matricule;
 			const customerId = result.NumeroClient;
+			const duration = result.Duree_Intervention;
 			return {
 				id: interventionId,
 				date,
 				comment,
 				location,
 				assignedTechnician,
-				customerId
+				customerId,
+				duration
 			}
 		});
 		console.log(mysql, 'Got interventions!');

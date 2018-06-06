@@ -10,6 +10,7 @@ const {
 	handleInterventionCreation,
 	handleTechnicianStatisticsRequest,
 	handleTechnicianAssignation,
+	handleInterventionFinish,
 	handlePDFCreation
 } = require('./actions_handlers');
 const {
@@ -33,6 +34,7 @@ const handleClientRequests = (client) => {
 	client.on('client/request-technician-statistics', (data, callback) => handleTechnicianStatisticsRequest(callback, id, data));
 	client.on('client/assign-technician', (data, callback) => handleTechnicianAssignation(callback, id, data));
 	client.on('client/create-pdf', (data, callback) => handlePDFCreation(callback, id, data));
+	client.on('client/finish-intervention', (data, callback) => handleInterventionFinish(callback, id, data));
 }
 
 socketio.on('connection', (client) => {

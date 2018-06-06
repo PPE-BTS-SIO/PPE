@@ -11,6 +11,7 @@ import {
 
 	RECEIVED_NEW_INTERVENTION,
 	RECEIVED_TECHNICIAN_ASSIGNATION,
+	RECEIVED_INTERVENTION_FINISHED,
 
 	SET_USER_SIDE_PANEL_OPEN_STATE
 
@@ -88,6 +89,32 @@ export default (state = initialState, action) => {
 		newInterventions[selectedInterventionIndex] = Object.assign({}, newInterventions[selectedInterventionIndex], {
 			assignedTechnician: matricule
 		});
+		return Object.assign({}, state, { interventions: newInterventions });
+	}
+
+	case RECEIVED_INTERVENTION_FINISHED: {
+		console.log(action);
+		if (!action || !action.interventionId || !action.duration) {
+			return state;
+		}
+		const { interventionId, comment, duration } = action;
+		const newInterventions = [...state.interventions];
+		let selectedInterventionIndex = null;
+		const selectedIntervention = newInterventions.find((intervention, index) => {
+			if (intervention && intervention.id === interventionId) {
+				selectedInterventionIndex = index;
+				return true;
+			}
+			return false;
+		});
+		if (selectedInterventionIndex === null || !selectedIntervention) {
+			return state;
+		}
+		newInterventions[selectedInterventionIndex] = Object.assign({}, newInterventions[selectedInterventionIndex], {
+			comment,
+			duration
+		});
+		console.log(newInterventions);
 		return Object.assign({}, state, { interventions: newInterventions });
 	}
 

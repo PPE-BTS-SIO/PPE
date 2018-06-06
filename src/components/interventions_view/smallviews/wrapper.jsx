@@ -85,6 +85,7 @@ const Content = ({
 				location={intervention.location}
 				comment={intervention.comment}
 				assignedTechnician={intervention.assignedTechnician}
+				duration={intervention.duration}
 			/>
 		))
 	}

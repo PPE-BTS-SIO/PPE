@@ -16,6 +16,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 
 import EmployeesDialog from './dialogs/employees_dialog';
 
+import StatusButton from './status/status_button';
 import CreatePDFButton from './create_pdf_button';
 
 import '../../../styles/interventions_view/smallviews/intervention_card.css';
@@ -46,9 +47,10 @@ class InterventionCard extends Component {
 			customerId = '?',
 			plannedDate = 'Date inconnue',
 			location = 'Localisation inconnue',
-			comment = 'Commentaire inconnu',
+			comment = 'Pas encore réalisée',
 			assignedTechnician,
-			status = 'planned'
+			duration,
+			role
 		} = this.props;
 
 		const { employeesDialogOpenState } = this.state;
@@ -90,11 +92,17 @@ class InterventionCard extends Component {
 				<InterventionId id={id} />
 				<CreatePDFButton interventionId={id} />
 				<div className="ic-buttons-container">
-					<AssignTechnicianButton
-						assignedTechnician={assignedTechnician}
-						setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
+					{role === '1' && (
+						<AssignTechnicianButton
+							assignedTechnician={assignedTechnician}
+							setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
+						/>)
+					}
+					<StatusButton
+						interventionId={id}
+						duration={duration}
+						role={role}
 					/>
-					<StatusButton />
 				</div>
 				<div className="ic-content">
 					<CustomerId
@@ -158,12 +166,6 @@ const AssignTechnicianButton = ({ assignedTechnician, setEmployeesDialogOpenStat
 		</Tooltip>
 	);
 }
-
-const StatusButton = () => (
-	<div className="ic-status-button">
-		<CheckIcon style={{ fill: '#7F7F7F' }} />
-	</div>
-);
 
 const ContentRow = ({
 	useMobileLayout,
@@ -230,12 +232,14 @@ const Comment = ({ comment, useMobileLayout }) => {
 };
 
 const mapStateToProps = ({
+	user: { role },
 	main: { employees },
 	nodeServer: { status, socket }
 }) => ({
 	isConnected: status === 'connected',
 	socket,
-	employees
+	employees,
+	role
 });
 
 export default connect(mapStateToProps)(InterventionCard);

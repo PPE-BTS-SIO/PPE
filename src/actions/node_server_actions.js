@@ -11,7 +11,8 @@ import {
 import { dispatchQueuedActions } from './utils_actions';
 import {
 	handleReceivedNewIntervention,
-	handleReceivedTechnicianAssignation
+	handleReceivedTechnicianAssignation,
+	handleReceivedInterventionFinished
 } from './main_actions';
 
 export const connectToServer = () => (dispatch) => {
@@ -43,5 +44,8 @@ export const connectToServer = () => (dispatch) => {
 		dispatch(handleReceivedNewIntervention(data)));
 
 	socket.on('server/technician_assigned', data =>
-		dispatch(handleReceivedTechnicianAssignation(data)))
+		dispatch(handleReceivedTechnicianAssignation(data)));
+
+	socket.on('server/intervention-finished', data =>
+		dispatch(handleReceivedInterventionFinished(data)))
 }

@@ -11,6 +11,7 @@ import {
 
 	RECEIVED_NEW_INTERVENTION,
 	RECEIVED_TECHNICIAN_ASSIGNATION,
+	RECEIVED_INTERVENTION_FINISHED,
 
 	SET_USER_SIDE_PANEL_OPEN_STATE
 
@@ -93,6 +94,15 @@ export const handleReceivedTechnicianAssignation = data => (dispatch) => {
 	console.log('Received new technician assignation!');
 	dispatch({
 		type: RECEIVED_TECHNICIAN_ASSIGNATION,
+		...data
+	});
+}
+
+export const handleReceivedInterventionFinished = data => (dispatch) => {
+	if (!data || !data.interventionId || !data.duration) return;
+	console.log('Received new intervention finished state!');
+	dispatch({
+		type: RECEIVED_INTERVENTION_FINISHED,
 		...data
 	});
 }

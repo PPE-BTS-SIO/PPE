@@ -98,6 +98,7 @@
 }
 
 .ic-status-button,
+.ic-status-button-assigned,
 .ic-assign-technician-button,
 .ic-assigned-technician-button,
 .ic-create-pdf-button {
@@ -123,7 +124,9 @@
 
 .ic-assign-technician-button,
 .ic-assigned-technician-button,
-.ic-create-pdf-button {
+.ic-create-pdf-button,
+.ic-status-button,
+.ic-status-button-assigned {
 
 	transition: .4s;
 
@@ -137,7 +140,8 @@
 }
 
 .ic-assign-technician-button:hover,
-.ic-create-pdf-button:hover {
+.ic-create-pdf-button:hover,
+.ic-status-button:hover {
 
 	background-color: #7F7F7F;
 	border: none;
@@ -146,19 +150,21 @@
 }
 
 .ic-assign-technician-button:hover svg,
-.ic-create-pdf-button:hover svg {
+.ic-create-pdf-button:hover svg,
+.ic-status-button:hover svg,
+.ic-status-button-assigned:hover svg {
 
 	fill: #FFF !important;
 
 }
 
-.ic-assigned-technician-button {
+.ic-assigned-technician-button, .ic-status-button-assigned {
 
 	border: 1px solid rgb(30, 136, 229);
 
 }
 
-.ic-assigned-technician-button:hover {
+.ic-assigned-technician-button:hover, .ic-status-button-assigned:hover {
 
 	background-color: rgb(30, 136, 229);
 	cursor: pointer;
