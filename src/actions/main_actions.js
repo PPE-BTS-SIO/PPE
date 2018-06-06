@@ -23,14 +23,22 @@ export const requestInterventions = () => (dispatch, getState) => {
 	dispatch({
 		type: REQUEST_INTERVENTIONS_STARTED
 	});
-	const { nodeServer } = getState();
+	const state = getState();
+	const { user, nodeServer } = state;
 	if (!nodeServer || nodeServer.status !== 'connected') {
 		dispatch(queueAction(requestInterventions));
 		return false;
 	}
+	if (!user || !user.role || !user.informations || user.informations.Matricule === undefined) {
+		return false;
+	}
 	const { socket } = nodeServer;
+	const { user: { role, informations: { Matricule } } } = state;
 	console.log("Interventions' request sent, waiting for callback...");
-	return socket.emit('client/request-interventions', null, (receivedData) => {
+	return socket.emit('client/request-interventions', {
+		role,
+		matricule: Matricule
+	}, (receivedData) => {
 		console.log('Received callback!');
 		dispatch({
 			type: REQUEST_INTERVENTIONS_RECEIVED_DATA,

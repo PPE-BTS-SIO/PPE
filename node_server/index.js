@@ -27,7 +27,7 @@ const handleClientRequests = (client) => {
 	const { id } = client;
 	client.on('disconnect', () => removeClient(client));
 	client.on('client/login', (data, callback) => handleLogin(data, callback, id, client));
-	client.on('client/request-interventions', (data, callback) => handleInterventionsRequest(callback, id));
+	client.on('client/request-interventions', (data, callback) => handleInterventionsRequest(callback, id, data));
 	client.on('client/request-customers', (data, callback) => handleCustomersRequest(callback, id))
 	client.on('client/request-employees', (data, callback) => handleEmployeesRequest(callback, id));
 	client.on('client/create-intervention', (data, callback) => handleInterventionCreation(callback, id, data));
