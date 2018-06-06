@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import CommentIcon from '@material-ui/icons/Comment';
+import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 
 import DatePicker from 'material-ui-pickers/DatePicker';
 
@@ -25,7 +25,7 @@ const initialState = {
 	customerId: '',
 	location: '',
 	date: new Date(),
-	comment: '',
+	numSerie: '',
 	technicianId: null,
 	openEmployeesDialog: false,
 	openCustomersDialog: false
@@ -53,7 +53,7 @@ class InterventionAddCard extends Component {
 			customerId,
 			location,
 			date,
-			comment,
+			numSerie,
 			technicianId,
 			openEmployeesDialog,
 			openCustomersDialog,
@@ -81,7 +81,7 @@ class InterventionAddCard extends Component {
 						customerId={customerId}
 						location={location}
 						date={date}
-						comment={comment}
+						numSerie={numSerie}
 						technicianId={technicianId}
 						handleChange={this.handleChange}
 						socket={socket}
@@ -106,7 +106,7 @@ const Content = ({
 	customerId,
 	location,
 	date,
-	comment,
+	numSerie,
 	technicianId,
 	handleChange,
 	socket,
@@ -139,18 +139,18 @@ const Content = ({
 		/>
 		<LocationPicker onChange={value => setState({ location: value })} />
 		<FormControl>
-			<InputLabel htmlFor="newIntervention_comment">
-				{'Commentaire'}
+			<InputLabel htmlFor="newIntervention_numSerie">
+				{'Numéro de série'}
 			</InputLabel>
 			<Input
-				id="newIntervention_comment"
+				id="newIntervention_numSerie"
 				type="text"
-				value={comment}
-				onChange={handleChange('comment')}
+				value={numSerie}
+				onChange={handleChange('numSerie')}
 				endAdornment={
 					<InputAdornment position="end">
 						<IconButton>
-							<CommentIcon />
+							<DeviceHubIcon />
 						</IconButton>
 					</InputAdornment>
 				}
@@ -160,7 +160,7 @@ const Content = ({
 			customerId={customerId}
 			date={date}
 			location={location}
-			comment={comment}
+			numSerie={numSerie}
 			technicianId={technicianId}
 			socket={socket}
 			socketStatus={socketStatus}
@@ -173,7 +173,7 @@ const Buttons = ({
 	customerId,
 	date,
 	location,
-	comment,
+	numSerie,
 	technicianId,
 	socket,
 	socketStatus,
@@ -182,8 +182,7 @@ const Buttons = ({
 	const disabled = !customerId
 	|| !date
 	|| !location
-	|| !comment
-	|| !technicianId
+	|| !numSerie
 	|| socketStatus !== 'connected';
 	return (
 		<div className="iac-buttons">
@@ -206,7 +205,7 @@ const Buttons = ({
 							customerId,
 							date,
 							location,
-							comment,
+							numSerie,
 							assignedTechnician: technicianId
 						}, (answer) => {
 							if (answer && answer.success) {
