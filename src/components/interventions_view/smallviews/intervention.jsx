@@ -92,7 +92,7 @@ class InterventionCard extends Component {
 				<InterventionId id={id} />
 				<CreatePDFButton interventionId={id} />
 				<div className="ic-buttons-container">
-					{role === '1' && (
+					{role === 'A' && (
 						<AssignTechnicianButton
 							assignedTechnician={assignedTechnician}
 							setEmployeesDialogOpenState={this.setEmployeesDialogOpenState}
@@ -226,7 +226,7 @@ const Comment = ({ comment, useMobileLayout }) => {
 		<ContentRow
 			icon={<CommentIcon style={{ fill: '#7F7F7F' }} />}
 			parameter="Commentaire"
-			value={comment}
+			value={comment || 'Pas encore réalisée'}
 		/>
 	);
 };
