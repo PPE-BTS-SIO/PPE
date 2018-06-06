@@ -10,6 +10,7 @@ import {
 	REQUEST_EMPLOYEES_RECEIVED_DATA,
 
 	RECEIVED_NEW_INTERVENTION,
+	RECEIVED_TECHNICIAN_ASSIGNATION,
 
 	SET_USER_SIDE_PANEL_OPEN_STATE
 
@@ -84,6 +85,15 @@ export const handleReceivedNewIntervention = data => (dispatch) => {
 	return dispatch({
 		type: RECEIVED_NEW_INTERVENTION,
 		intervention
+	});
+}
+
+export const handleReceivedTechnicianAssignation = data => (dispatch) => {
+	if (!data || !data.interventionId || !data.matricule) return;
+	console.log('Received new technician assignation!');
+	dispatch({
+		type: RECEIVED_TECHNICIAN_ASSIGNATION,
+		...data
 	});
 }
 

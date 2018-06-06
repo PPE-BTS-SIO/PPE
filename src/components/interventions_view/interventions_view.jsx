@@ -158,7 +158,6 @@ class InterventionsView extends Component {
 		}
 
 		const newInterventions = [...interventions].filter((intervention) => {
-			console.log(interventionsInput);
 			if (interventionsInput) {
 				if (!Object.values(intervention).some(value =>
 					typeof (value) === 'string' && value.toLowerCase().includes(interventionsInput))) {

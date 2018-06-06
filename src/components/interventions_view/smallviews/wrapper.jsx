@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,7 +11,7 @@ import Intervention from './intervention';
 
 import { requestEmployees as requestEmployeesAction } from '../../../actions/main_actions';
 
-class InterventionsContent extends PureComponent {
+class InterventionsContent extends Component {
 	render() {
 		const {
 			windowWidth,

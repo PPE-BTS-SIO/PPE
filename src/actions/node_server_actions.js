@@ -9,7 +9,10 @@ import {
 } from './types';
 
 import { dispatchQueuedActions } from './utils_actions';
-import { handleReceivedNewIntervention } from './main_actions';
+import {
+	handleReceivedNewIntervention,
+	handleReceivedTechnicianAssignation
+} from './main_actions';
 
 export const connectToServer = () => (dispatch) => {
 	const socket = openSocket('78.237.195.145:8000');
@@ -38,4 +41,7 @@ export const connectToServer = () => (dispatch) => {
 
 	socket.on('server/intervention-created', data =>
 		dispatch(handleReceivedNewIntervention(data)));
+
+	socket.on('server/technician_assigned', data =>
+		dispatch(handleReceivedTechnicianAssignation(data)))
 }

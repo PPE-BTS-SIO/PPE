@@ -10,6 +10,7 @@ import {
 	REQUEST_EMPLOYEES_RECEIVED_DATA,
 
 	RECEIVED_NEW_INTERVENTION,
+	RECEIVED_TECHNICIAN_ASSIGNATION,
 
 	SET_USER_SIDE_PANEL_OPEN_STATE
 
@@ -63,6 +64,29 @@ export default (state = initialState, action) => {
 			? []
 			: JSON.parse(JSON.stringify(state.interventions));
 		newInterventions.push({ ...action.intervention, id: newInterventions.length + 1 });
+		return Object.assign({}, state, { interventions: newInterventions });
+	}
+
+	case RECEIVED_TECHNICIAN_ASSIGNATION: {
+		if (!action || !action.interventionId || !action.matricule) {
+			return state;
+		}
+		const { interventionId, matricule } = action;
+		const newInterventions = [...state.interventions];
+		let selectedInterventionIndex = null;
+		const selectedIntervention = newInterventions.find((intervention, index) => {
+			if (intervention && intervention.id === interventionId) {
+				selectedInterventionIndex = index;
+				return true;
+			}
+			return false;
+		});
+		if (selectedInterventionIndex === null || !selectedIntervention) {
+			return state;
+		}
+		newInterventions[selectedInterventionIndex] = Object.assign({}, newInterventions[selectedInterventionIndex], {
+			assignedTechnician: matricule
+		});
 		return Object.assign({}, state, { interventions: newInterventions });
 	}
 

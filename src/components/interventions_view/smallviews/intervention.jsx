@@ -67,6 +67,17 @@ class InterventionCard extends Component {
 					title="Assigner un technicien"
 					typeToShow="T"
 					open={employeesDialogOpenState}
+					onSelected={(technician) => {
+						const { isConnected, socket } = this.props;
+						if (technician && technician.matricule && isConnected) {
+							const { matricule } = technician;
+							socket.emit('client/assign-technician', {
+								matricule,
+								interventionId: id
+							});
+							this.setEmployeesDialogOpenState(false);
+						}
+					}}
 					onClose={() => this.setEmployeesDialogOpenState(false)}
 				/>
 				<InterventionId id={id} />
@@ -210,6 +221,13 @@ const Comment = ({ comment, useMobileLayout }) => {
 	);
 };
 
-const mapStateToProps = ({ main: { employees } }) => ({ employees });
+const mapStateToProps = ({
+	main: { employees },
+	nodeServer: { status, socket }
+}) => ({
+	isConnected: status === 'connected',
+	socket,
+	employees
+});
 
 export default connect(mapStateToProps)(InterventionCard);
