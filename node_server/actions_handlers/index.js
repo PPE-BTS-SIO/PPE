@@ -5,6 +5,7 @@ const handleEmployeesRequest = require('./request_employees_handler');
 const handleInterventionCreation = require('./create_intervention_handler');
 const handleTechnicianStatisticsRequest = require('./request_technician_statistics_handler');
 const handleTechnicianAssignation = require('./assign_technician_handler');
+const handlePDFCreation = require('./request_pdf_creation_handler');
 
 module.exports = {
 	handleLogin,
@@ -13,5 +14,6 @@ module.exports = {
 	handleEmployeesRequest,
 	handleInterventionCreation,
 	handleTechnicianStatisticsRequest,
-	handleTechnicianAssignation
+	handleTechnicianAssignation,
+	handlePDFCreation
 }

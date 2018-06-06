@@ -24,7 +24,7 @@ class InterventionsSidePanel extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		const { hasReceivedCustomers } = this.props;
 		if (hasReceivedCustomers === false) {
 			const { requestCustomers } = this.props;

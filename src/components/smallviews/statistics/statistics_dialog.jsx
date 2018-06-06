@@ -168,7 +168,7 @@ class StatisticsDialog extends PureComponent {
 					<DialogActions>
 						<Button
 							size="small"
-							onClick={onClose}
+							onClick={this.handleClose}
 						>
 							{'Fermer'}
 						</Button>

@@ -42,6 +42,7 @@ export default (state = initialState, action) => {
 		});
 
 	case REQUEST_CUSTOMERS_STARTED:
+	console.log('Passed here!');
 		return Object.assign({}, state, { hasReceivedCustomersData: null });
 
 	case REQUEST_CUSTOMERS_RECEIVED_DATA:

@@ -18,7 +18,7 @@ import { requestCustomers as requestCustomersAction } from '../../../../actions/
 import '../../../../styles/interventions_view/smallviews/dialogs/customers_dialog.css';
 
 class CustomersDialog extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		const { hasReceivedCustomers } = this.props;
 		if (hasReceivedCustomers === false) {
 			const { requestCustomers } = this.props;

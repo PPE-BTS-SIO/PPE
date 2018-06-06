@@ -64,7 +64,7 @@ export const requestEmployees = () => (dispatch, getState) => {
 	});
 	const { nodeServer } = getState();
 	if (!nodeServer || nodeServer.status !== 'connected') {
-		dispatch(queueAction(requestCustomers));
+		dispatch(queueAction(requestEmployees));
 		return false;
 	}
 	const { socket } = nodeServer;

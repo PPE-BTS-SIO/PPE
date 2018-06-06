@@ -16,6 +16,8 @@ import CommentIcon from '@material-ui/icons/Comment';
 
 import EmployeesDialog from './dialogs/employees_dialog';
 
+import CreatePDFButton from './create_pdf_button';
+
 import '../../../styles/interventions_view/smallviews/intervention_card.css';
 
 class InterventionCard extends Component {
@@ -86,6 +88,7 @@ class InterventionCard extends Component {
 					onClose={() => this.setEmployeesDialogOpenState(false)}
 				/>
 				<InterventionId id={id} />
+				<CreatePDFButton interventionId={id} />
 				<div className="ic-buttons-container">
 					<AssignTechnicianButton
 						assignedTechnician={assignedTechnician}

@@ -69,6 +69,21 @@
 
 }
 
+.ic-create-pdf-button {
+
+	position: absolute;
+
+	right: 20px;
+	bottom: 80px;
+
+}
+
+.ic-create-pdf-button svg {
+
+	max-height: 20px !important;
+
+}
+
 .ic-buttons-container {
 
 	position: absolute;
@@ -84,7 +99,8 @@
 
 .ic-status-button,
 .ic-assign-technician-button,
-.ic-assigned-technician-button {
+.ic-assigned-technician-button,
+.ic-create-pdf-button {
 
 	height: 40px;
 	width: 40px;
@@ -106,19 +122,22 @@
 }
 
 .ic-assign-technician-button,
-.ic-assigned-technician-button {
+.ic-assigned-technician-button,
+.ic-create-pdf-button {
 
 	transition: .4s;
 
 }
 
-.ic-assign-technician-button {
+.ic-assign-technician-button,
+.ic-create-pdf-button {
 
 	border: 1px solid lightgray;
 
 }
 
-.ic-assign-technician-button:hover {
+.ic-assign-technician-button:hover,
+.ic-create-pdf-button:hover {
 
 	background-color: #7F7F7F;
 	border: none;
@@ -126,7 +145,8 @@
 
 }
 
-.ic-assign-technician-button:hover svg {
+.ic-assign-technician-button:hover svg,
+.ic-create-pdf-button:hover svg {
 
 	fill: #FFF !important;
 
